@@ -3,47 +3,90 @@
 
 #include <stdbool.h>
 
+#include "src/world.h"
+#include "src/object.h"
+#include "src/keybinds.h"
+#include "src/player.h"
+
+
+
+
+
+bool Render_StaticObject(SDL_Renderer *ren, struct Object *object) {
+
+    SDL_Rect dst = {object->position.x, object->position.y, object->size.x, object->size.y};
+    SDL_RenderCopy(ren, object->sprites[0].texture, NULL, &dst);
+}
+
+
+
 int main() {
+
+    // setup
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
-    SDL_Window *win = SDL_CreateWindow("Moving Image",
+    SDL_Window *win = SDL_CreateWindow("Bulanci",
                                        SDL_WINDOWPOS_CENTERED,
                                        SDL_WINDOWPOS_CENTERED,
                                        800, 600,
                                        0);
     SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
 
-    SDL_Surface* surface = IMG_Load("image.png");
-    if (!surface) {
-        printf("Failed to load image: %s\n", IMG_GetError());
-        return 1;
-    }
+    struct Object object = {
+        "Postavicka1",
+        {50,50},
+        {50,50},
+        NULL,
+        1
+    };
+    object.sprites = (struct Sprite*)malloc(sizeof(struct Sprite) * object.spriteCount);
+    strcpy(object.sprites[0].spritePath , "textures/image.png");
 
-    SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, surface);
-    SDL_FreeSurface(surface);
+    struct Player player = {
+        object,
+        1,
+        2
+    };
+    Object_SetTexture(ren, &object);
+
+    struct World world = World_Create();
+
+    World_AddPlayer(&world, &player);
+
+    World_Print(&world);
+
 
     bool running = true;
     SDL_Event e;
-    int x = 0;
 
     while (running) {
-        while (SDL_PollEvent(&e))
-            if (e.type == SDL_QUIT)
-                running = false;
+        while (SDL_PollEvent(&e)) {
+            switch (e.type) {
+                case SDL_QUIT: // ZAVRIT OKNO
+                    running = false;
+                    break;
+                case SDL_KEYDOWN:
+                    int playerIndex = KeyBinds_GetPlayerIndexByInput(&world, &e);
+                    if (playerIndex != -1) {
+                        struct Player *playerWithInput = World_GetPlayerByIndex(&world, playerIndex);
+                        Player_HandleInput(playerWithInput, e);
+                    }
+            }
+        }
 
-        SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
+
+
         SDL_RenderClear(ren);
 
-        SDL_Rect dst = {x, 200, 100, 100};
-        SDL_RenderCopy(ren, tex, NULL, &dst);
+        Render_StaticObject(ren, &world.players[0].object);
+
         SDL_RenderPresent(ren);
 
-        x += 2; // move image
-        if (x > 800) x = -100; // wrap around
-        SDL_Delay(16); // ~60 FPS
+
+        //SDL_Delay(16); // ~60 FPS
     }
 
-    SDL_DestroyTexture(tex);
+    SDL_DestroyTexture(object.sprites[0].texture);
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(win);
     SDL_Quit();
