@@ -6,10 +6,44 @@
 #include "src/world.h"
 #include "src/object.h"
 #include "src/keybinds.h"
-#include "src/liveInput.h"
 #include "src/player.h"
 
+#include "src/WorkingWithFiles.h"
 
+void STARTMAP(struct World *world, SDL_Renderer *renderer) {
+
+    int w,h;
+
+    SDL_GetRendererOutputSize(renderer,&w,&h);
+
+    struct Object background = {
+        "background",
+        {w,h},
+        {0,0},
+        NULL,
+        1,
+        0,
+        COLLISION_BLOCK
+    };
+    background.sprites = (struct Sprite*)malloc(sizeof(struct Sprite) * background.spriteCount);
+    strcpy(background.sprites[0].spritePath , "textures/background.jpeg");
+    Object_SetTexture(renderer, &background);
+    World_AddObject(world, &background);
+
+    struct Object tree = {
+        "tree",
+        {50,50},
+        {200,200},
+        NULL,
+        1
+    };
+    tree.sprites = (struct Sprite*)malloc(sizeof(struct Sprite) * tree.spriteCount);
+    strcpy(tree.sprites[0].spritePath , "textures/tree.png");
+    Object_SetTexture(renderer, &tree);
+
+    World_AddObject(world, &tree);
+
+}
 
 
 
@@ -19,9 +53,30 @@ bool Render_StaticObject(SDL_Renderer *ren, struct Object *object) {
     SDL_RenderCopy(ren, object->sprites[0].texture, NULL, &dst);
 }
 
+void handleInput(struct World *world, const Uint8 *keys) {
+    for (int i = world->playerCount - 1; i >= 0; --i) {
+        struct Player *player = &world->players[i];
+        struct PlayerKeybindSet playerKeybindSet = PlayerKeybindSets[world->players[i].PlayerKeybindSetIndex];
+        struct Vector2 addToPos = {0,0};
+        if (keys[playerKeybindSet.move_up]) {addToPos.y -= player->speed;}
+        if (keys[playerKeybindSet.move_left]) {addToPos.x -= player->speed;}
+        if (keys[playerKeybindSet.move_down]) {addToPos.y += player->speed;}
+        if (keys[playerKeybindSet.move_right]) {addToPos.x += player->speed;}
+
+        if ((addToPos.x != 0 || addToPos.y != 0)) {
+            Object_MoveBy(&player->object,addToPos);
+        }
+
+    }
+}
+
 
 
 int main() {
+    // struct Object *objekty = NULL;
+    // int *length = 0;
+    //
+    // GetMapObjects(objekty,length);
 
     // setup
     SDL_Init(SDL_INIT_VIDEO);
@@ -38,7 +93,9 @@ int main() {
         {50,50},
         {50,50},
         NULL,
-        1
+        1,
+        1,
+        COLLISION_BLOCK,
     };
     object.sprites = (struct Sprite*)malloc(sizeof(struct Sprite) * object.spriteCount);
     strcpy(object.sprites[0].spritePath , "textures/image.png");
@@ -50,7 +107,9 @@ int main() {
     };
     Object_SetTexture(ren, &object);
 
+
     struct World world = World_Create();
+    STARTMAP(&world, ren);
 
     World_AddPlayer(&world, &player);
 
@@ -60,10 +119,6 @@ int main() {
     bool running = true;
 
     SDL_Event e;
-    struct LiveInputKeyManager liveInputKeyManager = {
-        NULL,
-        0
-    };
 
     while (running) {
         while (SDL_PollEvent(&e)) {
@@ -71,27 +126,24 @@ int main() {
                 case SDL_QUIT: // ZAVRIT OKNO
                     running = false;
                     break;
-                case SDL_KEYDOWN: {
-                    if (!LiveInput_KeyInArray(&liveInputKeyManager,e.key.keysym.sym)){LiveInput_AddKey(&liveInputKeyManager,e.type,e.key.keysym.sym);}
-                }break;
-                case SDL_KEYUP: {
-                    if (LiveInput_KeyInArray(&liveInputKeyManager,e.key.keysym.sym)){LiveInput_RemoveKey(&liveInputKeyManager,e.type,e.key.keysym.sym);}
-                }break;
             }
         }
+        const Uint8 *keys = SDL_GetKeyboardState(NULL);
+        handleInput(&world, keys);
 
-        for (int i = 0; i < liveInputKeyManager.activeKeysCount; ++i) {
-            int playerIndex = KeyBinds_GetPlayerIndexByInput(&world, liveInputKeyManager.activeKeys[i]);
-            if (playerIndex != -1) {
-                struct Player *playerWithInput = World_GetPlayerByIndex(&world, playerIndex);
-                Player_HandleInput(playerWithInput, liveInputKeyManager.activeKeys[i]);
-            }
-        }
 
 
         SDL_RenderClear(ren);
 
-        Render_StaticObject(ren, &world.players[0].object);
+        for (int i = 0; i < world.objectCount; ++i) {
+            Render_StaticObject(ren, &world.objects[i]);
+        }
+
+
+        for (int i = 0; i < world.playerCount; ++i) {
+            Render_StaticObject(ren, &world.players[0].object);
+        }
+
 
         SDL_RenderPresent(ren);
 

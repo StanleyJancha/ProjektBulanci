@@ -20,6 +20,19 @@ bool Object_SetTexture(SDL_Renderer *ren, struct Object *object) {
     return object->sprites[0].texture != NULL;
 }
 
+bool Object_MoveBy(struct Object *object, struct Vector2 addVector) {
+    object->position.x += addVector.x;
+    object->position.y += addVector.y;
+
+
+}
+
+bool Object_CheckCollision(struct World *world, struct Object *object) {
+
+}
+
+
+
 void Object_Print(const struct Object *object) {
     printf("Object:\n\t\t\tName: %s\n", object->name);
 }

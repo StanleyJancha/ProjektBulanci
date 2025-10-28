@@ -20,6 +20,7 @@ add_executable(Projekt main.c
         src/player.h
         src/liveInput.c
         src/liveInput.h
-        movementTest.c
+        src/WorkingWithFiles.h
+        src/WorkingWIthFiles.c
 )
 target_link_libraries(Projekt ${SDL2_LIBRARIES} SDL2_image)

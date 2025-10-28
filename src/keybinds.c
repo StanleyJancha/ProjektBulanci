@@ -5,31 +5,31 @@
 #include "keybinds.h"
 #include "player.h"
 
-struct PlayerKeybindSet PlayerKeybindSets[NUM_PLAYER_KEYBINDS] = {
+struct PlayerKeybindSet PlayerKeybindSets[NUM_PLAYER_KEYBINDSETS] = {
     {
-        SDLK_UP,
-        SDLK_LEFT,
-        SDLK_DOWN,
-        SDLK_RIGHT,
+        SDL_SCANCODE_UP,
+        SDL_SCANCODE_LEFT,
+        SDL_SCANCODE_DOWN,
+        SDL_SCANCODE_RIGHT,
     },
 {
-    SDLK_w,
-    SDLK_a,
-    SDLK_s,
-    SDLK_d,
+    SDL_SCANCODE_W,
+    SDL_SCANCODE_A,
+    SDL_SCANCODE_S,
+    SDL_SCANCODE_D,
     },
 {
-    SDLK_8,
-    SDLK_4,
-    SDLK_5,
-    SDLK_6,
+    SDL_SCANCODE_8,
+    SDL_SCANCODE_4,
+    SDL_SCANCODE_5,
+    SDL_SCANCODE_6,
     }
 };
 
 int KeyBinds_GetPlayerIndexByInput(const struct World *world, SDL_Keycode key) {
     int KeyBindSetIndex = -1; // jaky keyBindSet byl pouzit
 
-    for (int j = 0; j < NUM_PLAYER_KEYBINDS; ++j) { // hledame v jakem KeyBindSetu je prave zmacknuta klavesa
+    for (int j = 0; j < NUM_PLAYER_KEYBINDSETS; ++j) { // hledame v jakem KeyBindSetu je prave zmacknuta klavesa
         if (key == PlayerKeybindSets[j].move_up ||
             key == PlayerKeybindSets[j].move_down ||
             key == PlayerKeybindSets[j].move_left ||

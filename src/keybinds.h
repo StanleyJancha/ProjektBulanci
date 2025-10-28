@@ -9,15 +9,16 @@
 #include "world.h"
 
 struct PlayerKeybindSet {
-    enum SDL_KeyCode move_up;
-    enum SDL_KeyCode move_left;
-    enum SDL_KeyCode move_down;
-    enum SDL_KeyCode move_right;
+    enum SDL_Scancode move_up;
+    enum SDL_Scancode move_left;
+    enum SDL_Scancode move_down;
+    enum SDL_Scancode move_right;
 };
 
+#define NUM_PLAYER_KEYBINDS 4 // pocet keybindu na jednoho hrace
 
-#define NUM_PLAYER_KEYBINDS 3
-extern struct PlayerKeybindSet PlayerKeybindSets[NUM_PLAYER_KEYBINDS];
+#define NUM_PLAYER_KEYBINDSETS 3 // kolik variant ruznych keybindu
+extern struct PlayerKeybindSet PlayerKeybindSets[NUM_PLAYER_KEYBINDSETS];
 
 void KeyBinds_HandleInput(SDL_Event *e);
 int KeyBinds_GetPlayerIndexByInput(const struct World *world, SDL_Keycode key);
