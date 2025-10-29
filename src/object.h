@@ -8,6 +8,7 @@
 
 enum Collions {
     COLLISION_NONE,
+    COLLISION_OVERLAP,
     COLLISION_BLOCK
 };
 
@@ -21,11 +22,13 @@ struct Object {
     enum Collions collision;
 };
 
-bool Object_SetTexture(SDL_Renderer *ren, struct Object *object);
+bool Object_SetTextures(SDL_Renderer *ren, struct Object *object);
 
 
 bool Object_MoveBy(struct Object *object, struct Vector2 addVector);
 
+
+void Object_Destroy(struct Object * object);
 
 void Object_Print(const struct Object *object);
 

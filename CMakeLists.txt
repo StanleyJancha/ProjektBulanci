@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 4.0)
 project(Projekt C)
 
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
-
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -g -fsanitize=address")
 
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
@@ -22,5 +21,7 @@ add_executable(Projekt main.c
         src/liveInput.h
         src/WorkingWithFiles.h
         src/WorkingWIthFiles.c
+        src/collisions.c
+        src/collisions.h
 )
 target_link_libraries(Projekt ${SDL2_LIBRARIES} SDL2_image)

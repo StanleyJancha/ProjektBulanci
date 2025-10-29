@@ -12,3 +12,6 @@ Struktura
             PlayerKeybindSetIndex
         Objects (array)
         
+
+
+pointry na funkce

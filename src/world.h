@@ -12,11 +12,18 @@ struct World {
     int objectCount;
     struct Player *players;
     int playerCount;
+
+    struct Object *tickObjects;
+    int tickObjectsCount;
 };
 
 struct World World_Create();
+void World_Destroy(struct World * world);
+
 bool World_AddObject(struct World *world, struct Object *object);
 bool World_AddPlayer(struct World *world, struct Player *player);
+bool World_RemoveObject(struct World *world, struct Object *object);
+bool World_RemovePlayer(struct World *world, struct Player *player);
 void World_Print(const struct World *world);
 struct Player* World_GetPlayerByIndex(const struct World *world, int index);
 

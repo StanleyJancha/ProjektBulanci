@@ -20,8 +20,17 @@ void Player_HandleInput(struct Player *player, SDL_Keycode key) {
     }
 }
 
+
+int Player_TakeDamage(struct Player *player, int damage) {
+
+}
+
+
+
+
 void Player_Print(const struct Player *player) {
     Object_Print(&player->object);
-    printf("Speed: %d\n", player->speed);
-    printf("PlayerKeybindSetIndex: %d\n", player->PlayerKeybindSetIndex);
+    printf("\t\tSpeed: %d\n", player->speed);
+    printf("\t\tPlayerKeybindSetIndex: %d\n", player->PlayerKeybindSetIndex);
+    printf("\t\tHP: %d\n", player->HP);
 }

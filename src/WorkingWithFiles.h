@@ -7,11 +7,13 @@
 #include <stdbool.h>
 #include "object.h"
 
-#define MAP_OBJECTS_FILE "configs/mapObjects.txt"
+#define MAP_OBJECTS_FILE "configs/mapObjects.json"
 
 bool GetMapObjects(struct Object *objects, int *length);
 
 bool GetObject(struct Object *object);
+
+
 
 
 

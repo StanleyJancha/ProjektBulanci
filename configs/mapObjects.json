@@ -1,0 +1,15 @@
+{
+  "Objects": [
+    {
+        "Object": {
+          "name": "player1",
+          "position": { "x": 100, "y": 200 },
+          "size": { "width": 32, "height": 32 },
+          "sprites": [
+            "player_idle.png",
+            "player_run.png"
+          ]
+        }
+    }
+  ]
+}
