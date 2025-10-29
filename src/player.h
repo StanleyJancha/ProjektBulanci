@@ -12,8 +12,12 @@ struct Player {
     struct Object object;
     int PlayerKeybindSetIndex;
     int speed;
+    int HP;
 };
 
 void Player_HandleInput(struct Player *player, SDL_Keycode key);
 void Player_Print(const struct Player *player);
+
+int Player_TakeDamage(struct Player *player, int damage);
+
 #endif //PROJEKT_PLAYER_H

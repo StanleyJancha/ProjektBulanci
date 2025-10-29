@@ -10,14 +10,17 @@ bool GetMapObjects(struct Object *objects, int *length) {
     FILE *file = fopen(MAP_OBJECTS_FILE, "r");
     if (!file) {return false;}
 
-    char line[256];
-    while (fgets(line, sizeof(line), file)) {
-        strcmp("Objects", line);
+    char line[512];
+    int i = 0;
+    char tmp;
+    while((tmp = (char)fgetc(file)) != EOF) {
+        line[i] = tmp;
+        i++;
     }
 
 
 
-    printf("\n\n\n\n");
+    printf("%s",line);
 
 
 

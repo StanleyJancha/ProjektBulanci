@@ -1,6 +1,0 @@
-Object {
-    name: Player
-    position: 100 200
-    size: 32 32
-    sprites: player_idle.png player_run.png
-}
