@@ -11,6 +11,8 @@
 #include "collisions.h"
 #include "world.h"
 
+#include "animace.h"
+
 bool Object_SetTextures(SDL_Renderer *ren, struct Object *object) {
     for (int i = 0; i < object->spriteCount; ++i) {
         SDL_Surface* surface = IMG_Load(object->sprites[i].spritePath);
@@ -40,10 +42,8 @@ bool Object_CheckCollision(struct World *world, struct Object *object) {
 
 void Object_Destroy(struct Object * object) {
     // for (int i = 0; i < object->spriteCount; ++i) {
-    //     free(object->sprites[i].spritePath);
-    //     free(object->sprites[i].texture);
+    //     object->sprites[i].texture;
     // }
-    // free(object->name);
     free(object->sprites);
     object->sprites = NULL;
 }

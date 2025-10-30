@@ -94,9 +94,12 @@ bool World_RemoveObject(struct World *world, struct Object *object) {
 
     struct Object *newObjectArray = malloc(sizeof(struct Object) * (world->objectCount - 1) ); // vytvorime nove pole s velikosti o jednu mensi
 
-    for (int i = 0; i < world->objectCount; i++) {
-        newObjectArray[i] = world->objects[i - ((i >= indexToRemove)?1:0)];
+    for (int i = 0; i < world->objectCount - 1; i++) {
+        int newIndex = i + ((i >= indexToRemove)?1:0);
+        newObjectArray[i] = world->objects[newIndex];
     }
+
+    Object_Destroy(&world->objects[indexToRemove]);
 
     free(world->objects);
 
@@ -121,7 +124,11 @@ bool World_RemovePlayer(struct World *world, struct Player *player) {
         return false;
     }
 
+
     if (world->playerCount - 1 == 0) { // nastane, pokud se nasel a zaroven je nova velikost nulova
+        for (int i = 0; i < world->playerCount - 1; ++i) {
+            Object_Destroy(&world->players[i].object);
+        }
         free(world->players);
         world->players = NULL;
         world->playerCount = 0;
@@ -130,9 +137,14 @@ bool World_RemovePlayer(struct World *world, struct Player *player) {
 
     struct Player *newPlayerArray = malloc(sizeof(struct Player) * (world->playerCount - 1) ); // vytvorime nove pole s velikosti o jednu mensi
 
-    for (int i = 0; i < world->playerCount; i++) {
-        newPlayerArray[i] = world->players[i];
+    for (int i = 0; i < world->playerCount - 1; i++) {
+        int newIndex = i + ((i >= indexToRemove)?1:0);
+        newPlayerArray[i] = world->players[newIndex];
     }
+
+    Object_Destroy(&world->players[indexToRemove].object);
+
+
 
     free(world->players);
 

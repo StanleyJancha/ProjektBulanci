@@ -12,8 +12,5 @@ struct Vector2 {
     int y;
 };
 
-struct Sprite {
-    SDL_Texture *texture;
-    char spritePath[64];
-};
+
 #endif //PROJEKT_BASICSTRUCT_H

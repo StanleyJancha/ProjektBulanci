@@ -6,7 +6,7 @@
 #define PROJEKT_OBJECT_H
 #include "basicStructs.h"
 
-enum Collions {
+enum Collisions {
     COLLISION_NONE,
     COLLISION_OVERLAP,
     COLLISION_BLOCK
@@ -19,7 +19,7 @@ struct Object {
     struct Sprite *sprites; // pole struktur sprite - struktura pro texturu a jeji cestu
     int spriteCount;
     int zLayer;
-    enum Collions collision;
+    enum Collisions collision;
 };
 
 bool Object_SetTextures(SDL_Renderer *ren, struct Object *object);

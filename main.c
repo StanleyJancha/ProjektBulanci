@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 
+#include "src/animace.h"
 #include "src/world.h"
 #include "src/object.h"
 #include "src/keybinds.h"
@@ -11,7 +12,7 @@
 #include "src/collisions.h"
 
 #include "src/WorkingWithFiles.h"
-struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, char *spritePaths[], int spriteCount, int zLayer, enum Collions collions) {
+struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, char *spritePaths[], int spriteCount, int zLayer, enum Collisions collions) {
     struct Object *object = malloc(sizeof(struct Object));
     if (!object) return NULL;
 
@@ -224,6 +225,54 @@ int main() {
     free(player);
     player = NULL;
 
+    struct Vector2 size2 = {100,100};
+    struct Vector2 pos2 = {300,300};
+    char *texturePaths2[] = {"textures/image.png"};
+
+    struct Player *player2 = Player_CreatePlayer(
+        Object_CreateObject(
+            "Player2",
+            size2,
+            pos2,
+            texturePaths2,
+            1,
+            2,
+            COLLISION_OVERLAP
+            ),
+            1,
+            5,
+            5
+        );
+    Object_SetTextures(ren, &player2->object);
+
+    World_AddPlayer(&world,player2);
+    free(player2);
+    player2 = NULL;
+
+    struct Vector2 size3 = {100,100};
+    struct Vector2 pos3 = {200,200};
+    char *texturePaths3[] = {"textures/image.png"};
+
+    struct Player *player3 = Player_CreatePlayer(
+        Object_CreateObject(
+            "Player3",
+            size3,
+            pos3,
+            texturePaths3,
+            1,
+            2,
+            COLLISION_OVERLAP
+            ),
+            1,
+            5,
+            5
+        );
+    Object_SetTextures(ren, &player3->object);
+
+    World_AddPlayer(&world,player3);
+    free(player3);
+    player3 = NULL;
+
     //_temp_spawnPlayers(&world,ren);
 
     World_Print(&world);
@@ -243,7 +292,11 @@ int main() {
                 case SDL_KEYDOWN: {
                         switch (e.key.keysym.scancode) {
                             case SDL_SCANCODE_O: {
-                                // World_RemovePlayer(&world, &world.players[1]);
+                                World_RemovePlayer(&world, &world.players[1]);
+                                World_Print(&world);
+                            }break;
+                            case SDL_SCANCODE_K: {
+                                printf("Vymazani objektu se %d\n\n",World_RemoveObject(&world, &world.objects[1]));
                                 World_Print(&world);
                             }break;
                         }
@@ -256,24 +309,25 @@ int main() {
         /* ----------------- END Main loop ----------------- */
 
         /////RENDER
-        {
-            SDL_RenderClear(ren);
 
-            for (int i = 0; i < world.objectCount; ++i) {
-                Render_StaticObject(ren, &world.objects[i]);
-            }
+        if (world.playerCount != 3) {
+            printf("");
+        }
 
+        SDL_RenderClear(ren);
 
-            for (int i = 0; i < world.playerCount; ++i) {
-                Render_StaticObject(ren, &world.players[i].object);
-            }
-
-
-            SDL_RenderPresent(ren);
+        for (int i = 0; i < world.objectCount; ++i) {
+            Render_StaticObject(ren, &world.objects[i]);
+        }
 
 
-            SDL_Delay(16); // ~60 FPS
-            }
+        for (int i = 0; i < world.playerCount; ++i) {
+            Render_StaticObject(ren, &world.players[i].object);
+        }
+
+        SDL_RenderPresent(ren);
+        SDL_Delay(16); // ~60 FPS
+
     }
 
 
