@@ -25,5 +25,7 @@ add_executable(Projekt main.c
         src/collisions.h
         src/animace.h
         src/animace.c
+        src/render.c
+        src/render.h
 )
 target_link_libraries(Projekt ${SDL2_LIBRARIES} SDL2_image)

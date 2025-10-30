@@ -5,6 +5,7 @@
 #ifndef PROJEKT_OBJECT_H
 #define PROJEKT_OBJECT_H
 #include "basicStructs.h"
+#include "animace.h"
 
 enum Collisions {
     COLLISION_NONE,
@@ -16,8 +17,9 @@ struct Object {
     char name[32];
     struct Vector2 size;
     struct Vector2 position;
-    struct Sprite *sprites; // pole struktur sprite - struktura pro texturu a jeji cestu
-    int spriteCount;
+    union AnimationSetType animationsSet;
+    enum ObjectAnimationsType objectAnimationsType;
+    int animationsCount;
     int zLayer;
     enum Collisions collision;
 };

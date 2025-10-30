@@ -10,24 +10,21 @@
 #include "src/player.h"
 
 #include "src/collisions.h"
+#include "src/animace.h"
+#include "src/render.h"
 
 #include "src/WorkingWithFiles.h"
-struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, char *spritePaths[], int spriteCount, int zLayer, enum Collisions collions) {
+
+#define GAME_LOOP_MILLIS_DELAY 16
+
+
+struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions) {
     struct Object *object = malloc(sizeof(struct Object));
     if (!object) return NULL;
 
     strcpy(object->name,name);
     object->size = size;
     object->position = position;
-    object->sprites = malloc(sizeof(struct Sprite) * spriteCount);
-    if (!object->sprites) {
-        free(object);
-        return NULL;
-    }
-    object->spriteCount = spriteCount;
-    for (int i = 0; i < spriteCount; ++i) {
-        strcpy(object->sprites[i].spritePath, spritePaths[i]);
-    }
 
     object->zLayer = zLayer;
     object->collision = collions;
@@ -59,93 +56,114 @@ void STARTMAP(struct World *world, SDL_Renderer *renderer) {
     int w,h;
     SDL_GetRendererOutputSize(renderer,&w,&h);
 
-    struct Vector2 size2 = {w,h};
-    struct Vector2 pos2 = {0,0};
-    char *texturePaths2[] = {"textures/background.jpeg"};
-    struct Object *object2 = Object_CreateObject("Background",size2,pos2,texturePaths2, 1,0,COLLISION_NONE);
-    Object_SetTextures(renderer, object2);
+    struct Vector2 size1 = {w,h};
+    struct Vector2 pos1 = {0,0};
+    struct Object *object1 = Object_CreateObject("pozadi",size1,pos1,0,COLLISION_NONE);
+    Animation_AddAnimationsToObject(renderer,object1,ANIMATIONS_SINGLE,0);
+
+    World_AddObject(world,object1);
+    free(object1);
+    object1 = NULL;
+
+    struct Vector2 size2 = {100,100};
+    struct Vector2 pos2 = {500,500};
+    struct Object *object2 = Object_CreateObject("tucnacek",size2,pos2,0,COLLISION_NONE);
+    Animation_AddAnimationsToObject(renderer,object2,ANIMATIONS_OBJECT,0);
 
     World_AddObject(world,object2);
     free(object2);
     object2 = NULL;
 
-    struct Vector2 size = {100,100};
-    struct Vector2 pos = {300,300};
-    char *texturePaths[] = {"textures/tree.png"};
-    struct Object *object = Object_CreateObject("Tree",size,pos,texturePaths, 1,1,COLLISION_BLOCK);
-    Object_SetTextures(renderer, object);
+
+    struct Vector2 size = {300,300};
+    struct Vector2 pos = {100,100};
+    struct Object *object = Object_CreateObject("psik",size,pos,0,COLLISION_NONE);
+    Animation_AddAnimationsToObject(renderer,object,ANIMATIONS_OBJECT,0);
 
     World_AddObject(world,object);
     free(object);
     object = NULL;
 
-}
-
-
-
-void _temp_spawnPlayers(struct World *world, SDL_Renderer *ren) {
-    /* ----------------- Player1 ----------------- */
-
-    struct Object object = {
-        "Postavicka1",
-        {50,50},
-        {50,50},
-        NULL,
-        1,
-        1,
-        COLLISION_BLOCK,
-    };
-    object.sprites = (struct Sprite*)malloc(sizeof(struct Sprite) * object.spriteCount);
-    strcpy(object.sprites[0].spritePath , "textures/image.png");
-
-    struct Player player = {
-        object,
-        1,
-        1,
-        5
-    };
-    Object_SetTextures(ren, &object);
-
-    /* ----------------- End Player1 ----------------- */
-
-    /* ----------------- Player2 ----------------- */
-
-    struct Object object2 = {
-        "Postavicka2",
-        {50,50},
-        {100,100},
-        NULL,
-        1,
-        1,
-        COLLISION_BLOCK,
-    };
-    object2.sprites = (struct Sprite*)malloc(sizeof(struct Sprite) * object2.spriteCount);
-    strcpy(object2.sprites[0].spritePath , "textures/image.png");
-
-    struct Player player2 = {
-        object2,
-        0,
-        1,
-        5
-    };
-    Object_SetTextures(ren, &object2);
-
-    /* ----------------- End Player2 ----------------- */
-
-
-    World_AddPlayer(world, &player);
-    World_AddPlayer(world, &player2);
-
 
 }
 
+//
+// void _temp_spawnPlayers(struct World *world, SDL_Renderer *ren) {
+//     /* ----------------- Player1 ----------------- */
+//     struct Vector2 size = {100,100};
+//     struct Vector2 pos = {50,50};
+//     char *texturePaths[] = {"textures/image.png"};
+//
+//     struct Player *player = Player_CreatePlayer(
+//         Object_CreateObject(
+//             "Player1",
+//             size,
+//             pos,
+//             2,
+//             COLLISION_OVERLAP
+//             ),
+//             0,
+//             5,
+//             5
+//         );
+//     Object_SetTextures(ren, &player->object);
+//
+//     World_AddPlayer(world,player);
+//     free(player);
+//     player = NULL;
+//
+//     struct Vector2 size2 = {100,100};
+//     struct Vector2 pos2 = {300,300};
+//     char *texturePaths2[] = {"textures/image.png"};
+//
+//     struct Player *player2 = Player_CreatePlayer(
+//         Object_CreateObject(
+//             "Player2",
+//             size2,
+//             pos2,
+//             2,
+//             COLLISION_OVERLAP
+//             ),
+//             1,
+//             5,
+//             5
+//         );
+//     Object_SetTextures(ren, &player2->object);
+//
+//     World_AddPlayer(world,player2);
+//     free(player2);
+//     player2 = NULL;
+//
+//     struct Vector2 size3 = {100,100};
+//     struct Vector2 pos3 = {200,200};
+//     char *texturePaths3[] = {"textures/image.png"};
+//
+//     struct Player *player3 = Player_CreatePlayer(
+//         Object_CreateObject(
+//             "Player3",
+//             size3,
+//             pos3,
+//             2,
+//             COLLISION_OVERLAP
+//             ),
+//             1,
+//             5,
+//             5
+//         );
+//     Object_SetTextures(ren, &player3->object);
+//
+//     World_AddPlayer(world,player3);
+//     free(player3);
+//     player3 = NULL;
+// }
+//
 
 
-bool Render_StaticObject(SDL_Renderer *ren, struct Object *object) {
-
-    SDL_Rect dst = {object->position.x, object->position.y, object->size.x, object->size.y};
-    SDL_RenderCopy(ren, object->sprites[0].texture, NULL, &dst);
-}
+// bool Render_StaticObject(SDL_Renderer *ren, struct Object *object) {
+//
+//     SDL_Rect dst = {object->position.x, object->position.y, object->size.x, object->size.y};
+//     SDL_RenderCopy(ren, object->sprites[0].texture, NULL, &dst);
+// }
 
 void handleInput(struct World *world, const Uint8 *keys) {
     for (int i = world->playerCount - 1; i >= 0; --i) {
@@ -154,10 +172,18 @@ void handleInput(struct World *world, const Uint8 *keys) {
         struct PlayerKeybindSet playerKeybindSet = PlayerKeybindSets[world->players[i].PlayerKeybindSetIndex];
         struct Vector2 addToPos = {0,0};
 
-        if (keys[playerKeybindSet.move_up]) {addToPos.y -= player->speed;}
-        if (keys[playerKeybindSet.move_left]) {addToPos.x -= player->speed;}
-        if (keys[playerKeybindSet.move_down]) {addToPos.y += player->speed;}
-        if (keys[playerKeybindSet.move_right]) {addToPos.x += player->speed;}
+        if (keys[playerKeybindSet.move_up]) {
+            addToPos.y -= player->speed;
+        }
+        if (keys[playerKeybindSet.move_left]) {
+            addToPos.x -= player->speed;
+        }
+        if (keys[playerKeybindSet.move_down]) {
+            addToPos.y += player->speed;
+        }
+        if (keys[playerKeybindSet.move_right]) {
+            addToPos.x += player->speed;
+        }
 
         if ((addToPos.x != 0 || addToPos.y != 0)) {
 
@@ -197,83 +223,11 @@ int main() {
                                        0);
     SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
 
+    Uint32 startTime = SDL_GetTicks();
 
     struct World world = World_Create();
-    STARTMAP(&world, ren);
 
-    struct Vector2 size = {100,100};
-    struct Vector2 pos = {50,50};
-    char *texturePaths[] = {"textures/image.png"};
-
-    struct Player *player = Player_CreatePlayer(
-        Object_CreateObject(
-            "Player1",
-            size,
-            pos,
-            texturePaths,
-            1,
-            2,
-            COLLISION_OVERLAP
-            ),
-            0,
-            5,
-            5
-        );
-    Object_SetTextures(ren, &player->object);
-
-    World_AddPlayer(&world,player);
-    free(player);
-    player = NULL;
-
-    struct Vector2 size2 = {100,100};
-    struct Vector2 pos2 = {300,300};
-    char *texturePaths2[] = {"textures/image.png"};
-
-    struct Player *player2 = Player_CreatePlayer(
-        Object_CreateObject(
-            "Player2",
-            size2,
-            pos2,
-            texturePaths2,
-            1,
-            2,
-            COLLISION_OVERLAP
-            ),
-            1,
-            5,
-            5
-        );
-    Object_SetTextures(ren, &player2->object);
-
-    World_AddPlayer(&world,player2);
-    free(player2);
-    player2 = NULL;
-
-    struct Vector2 size3 = {100,100};
-    struct Vector2 pos3 = {200,200};
-    char *texturePaths3[] = {"textures/image.png"};
-
-    struct Player *player3 = Player_CreatePlayer(
-        Object_CreateObject(
-            "Player3",
-            size3,
-            pos3,
-            texturePaths3,
-            1,
-            2,
-            COLLISION_OVERLAP
-            ),
-            1,
-            5,
-            5
-        );
-    Object_SetTextures(ren, &player3->object);
-
-    World_AddPlayer(&world,player3);
-    free(player3);
-    player3 = NULL;
-
-    //_temp_spawnPlayers(&world,ren);
+    STARTMAP(&world,ren);
 
     World_Print(&world);
 
@@ -290,19 +244,22 @@ int main() {
                     break;
                 }
                 case SDL_KEYDOWN: {
-                        switch (e.key.keysym.scancode) {
-                            case SDL_SCANCODE_O: {
-                                World_RemovePlayer(&world, &world.players[1]);
-                                World_Print(&world);
-                            }break;
-                            case SDL_SCANCODE_K: {
-                                printf("Vymazani objektu se %d\n\n",World_RemoveObject(&world, &world.objects[1]));
-                                World_Print(&world);
-                            }break;
-                        }
+                    switch (e.key.keysym.scancode) {
+                        // case SDL_SCANCODE_O: {
+                        //     World_RemovePlayer(&world, &world.players[1]);
+                        //     World_Print(&world);
+                        // }break;
+                        case SDL_SCANCODE_K: {
+                            if (world.objectCount > 0) {
+                                printf("Vymazani objektu %s se %d\n\n",world.objects[0].name,World_RemoveObject(&world, &world.objects[0]));
+                            }
+                            World_Print(&world);
+                        }break;
+                    }
                 }break;
             }
         }
+
         const Uint8 *keys = SDL_GetKeyboardState(NULL);
         handleInput(&world, keys);
 
@@ -310,19 +267,15 @@ int main() {
 
         /////RENDER
 
-        if (world.playerCount != 3) {
-            printf("");
-        }
-
         SDL_RenderClear(ren);
 
+
         for (int i = 0; i < world.objectCount; ++i) {
-            Render_StaticObject(ren, &world.objects[i]);
+            Render_Object(ren, &world.objects[i]);
         }
 
-
         for (int i = 0; i < world.playerCount; ++i) {
-            Render_StaticObject(ren, &world.players[i].object);
+            Render_Object(ren, &world.players[i].object);
         }
 
         SDL_RenderPresent(ren);
@@ -330,24 +283,11 @@ int main() {
 
     }
 
+        World_Destroy(&world);
 
-    for (int i = 0; i < world.objectCount; ++i) {
-        for (int j = 0; j < world.objects[i].spriteCount; ++j) {
-            SDL_DestroyTexture(world.objects[i].sprites[j].texture);
-        }
-    }
+        SDL_DestroyRenderer(ren);
+        SDL_DestroyWindow(win);
+        SDL_Quit();
 
-    for (int i = 0; i < world.playerCount; ++i) {
-        for (int j = 0; j < world.players[i].object.spriteCount; ++j) {
-            SDL_DestroyTexture(world.players[i].object.sprites[j].texture);
-        }
-    }
-
-    World_Destroy(&world);
-
-    SDL_DestroyRenderer(ren);
-    SDL_DestroyWindow(win);
-    SDL_Quit();
-
-    return 0;
+        return 0;
 }
