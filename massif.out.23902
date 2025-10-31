@@ -1,0 +1,2480 @@
+desc: (none)
+cmd: ./cmake-build-debug/Projekt
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=69013676
+mem_heap_B=800978
+mem_heap_extra_B=21510
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=177285300
+mem_heap_B=1603115
+mem_heap_extra_B=99629
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=240520857
+mem_heap_B=3245579
+mem_heap_extra_B=454397
+mem_stacks_B=0
+heap_tree=detailed
+n19: 3245579 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 831120 0x6BEB4A8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 831120 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 831120 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 831120 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 831120 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 831120 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 831120 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 831120 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 831120 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+          n1: 831120 0x4985CC0: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 831120 0x49564C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 831120 0x49580D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 831120 0x48ED4BC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 831120 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n0: 831120 0x1097C6: main (main.c:116)
+ n0: 526225 in 590 places, all below massif's threshold (1.00%)
+ n1: 314928 0x50B62CF: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n1: 314928 0x50B41C7: _XimLocalOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+   n1: 314928 0x50B288F: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 314928 0x4980E47: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 314928 0x4987F54: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 314928 0x49589E9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 314928 0x48A03D7: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n0: 314928 0x109778: main (main.c:109)
+ n1: 271272 0x6E2D1F6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 271272 0x6D1F2D0: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 271272 0x6BEB503: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 271272 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 271272 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 271272 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 271272 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 271272 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 271272 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 271272 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+           n1: 271272 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+            n1: 271272 0x4985CC0: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 271272 0x49564C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 271272 0x49580D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 271272 0x48ED4BC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 271272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n0: 271272 0x1097C6: main (main.c:116)
+ n2: 230144 0x6A13DDA: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+  n1: 152192 0x6A14A7A: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+   n1: 152192 0x6A27001: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+    n1: 152192 0x6A19DA6: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+     n1: 152192 0x6A1B063: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 152192 0x6A16A17: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 152192 0x498582C: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n1: 152192 0x4985BAC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+         n1: 152192 0x49564C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+          n1: 152192 0x49580D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 152192 0x48ED4BC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 152192 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n0: 152192 0x1097C6: main (main.c:116)
+  n1: 77952 0x6A14A8D: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+   n1: 77952 0x6A27001: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+    n1: 77952 0x6A19DA6: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+     n1: 77952 0x6A1B063: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 77952 0x6A16A17: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 77952 0x498582C: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n1: 77952 0x4985BAC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+         n1: 77952 0x49564C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+          n1: 77952 0x49580D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 77952 0x48ED4BC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 77952 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n0: 77952 0x1097C6: main (main.c:116)
+ n1: 214112 0x71EA62E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 214112 0x7BB70D6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 214112 0x6BFE1C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 214112 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 214112 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 214112 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 214112 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 214112 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 214112 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 214112 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+           n1: 214112 0x4985CC0: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 214112 0x49564C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 214112 0x49580D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 214112 0x48ED4BC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 214112 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n0: 214112 0x1097C6: main (main.c:116)
+ n3: 138560 0x6FC6B64: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n2: 81840 0x6FC6BBC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 65584 0x7BB6DCB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 65584 0x6BFE1C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 65584 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 65584 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 65584 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 65584 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 65584 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 65584 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+           n1: 65584 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+            n1: 65584 0x4985CC0: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 65584 0x49564C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 65584 0x49580D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 65584 0x48ED4BC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 65584 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n0: 65584 0x1097C6: main (main.c:116)
+   n0: 16256 in 13 places, all below massif's threshold (1.00%)
+  n1: 51408 0x6FC6D09: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 51408 in 11 places, all below massif's threshold (1.00%)
+  n0: 5312 in 10 places, all below massif's threshold (1.00%)
+ n2: 101178 0xA2D7A4D: ??? (in /usr/lib/x86_64-linux-gnu/libLLVM.so.19.1)
+  n1: 101043 0xA2D7B42: ??? (in /usr/lib/x86_64-linux-gnu/libLLVM.so.19.1)
+   n1: 101043 0xA2C8E42: llvm::cl::Option::addArgument() (in /usr/lib/x86_64-linux-gnu/libLLVM.so.19.1)
+    n0: 101043 in 2450 places, all below massif's threshold (1.00%)
+  n0: 135 in 1 place, below massif's threshold (1.00%)
+ n1: 85280 0x4ABAAB4: __new_exitfn (cxa_atexit.c:112)
+  n1: 85280 0x4ABAB37: __internal_atexit (cxa_atexit.c:44)
+   n0: 85280 in 81 places, all below massif's threshold (1.00%)
+ n1: 73728 0x5A02B8D: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x4004FAD: call_init (dl-init.c:74)
+   n1: 73728 0x4004FAD: call_init (dl-init.c:26)
+    n1: 73728 0x400507B: _dl_init (dl-init.c:121)
+     n0: 73728 0x401C46F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n1: 69632 0x6FC304F: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 69632 0x6BA5336: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 69632 in 17 places, all below massif's threshold (1.00%)
+ n1: 59584 0x6939500: ??? (in /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0)
+  n1: 59584 0x6939DFA: __glDispatchMakeCurrent (in /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0)
+   n1: 59584 0x69B5098: ??? (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+    n1: 59584 0x69B6462: ??? (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+     n1: 59584 0x4985CDB: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 59584 0x49564C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 59584 0x49580D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n1: 59584 0x48ED4BC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+         n1: 59584 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+          n0: 59584 0x1097C6: main (main.c:116)
+ n1: 52488 0x50B6015: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n1: 52488 0x50B41C7: _XimLocalOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+   n1: 52488 0x50B288F: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 52488 0x4980E47: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 52488 0x4987F54: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 52488 0x49589E9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 52488 0x48A03D7: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n0: 52488 0x109778: main (main.c:109)
+ n1: 51840 0x6B55D27: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n0: 51840 in 2 places, all below massif's threshold (1.00%)
+ n1: 50712 0xA334586: ??? (in /usr/lib/x86_64-linux-gnu/libLLVM.so.19.1)
+  n2: 50712 0xA334941: llvm::StringMapImpl::RehashTable(unsigned int) (in /usr/lib/x86_64-linux-gnu/libLLVM.so.19.1)
+   n1: 49164 0xA2D7A8C: ??? (in /usr/lib/x86_64-linux-gnu/libLLVM.so.19.1)
+    n1: 49164 0xA2D7B42: ??? (in /usr/lib/x86_64-linux-gnu/libLLVM.so.19.1)
+     n2: 49164 0xA2C8E42: llvm::cl::Option::addArgument() (in /usr/lib/x86_64-linux-gnu/libLLVM.so.19.1)
+      n1: 49164 0xA227395: ??? (in /usr/lib/x86_64-linux-gnu/libLLVM.so.19.1)
+       n1: 49164 0x4004FAD: call_init (dl-init.c:74)
+        n1: 49164 0x4004FAD: call_init (dl-init.c:26)
+         n1: 49164 0x400507B: _dl_init (dl-init.c:121)
+          n1: 49164 0x4002425: _dl_catch_exception (dl-catch.c:215)
+           n1: 49164 0x400BA27: dl_open_worker (dl-open.c:799)
+            n1: 49164 0x4002398: _dl_catch_exception (dl-catch.c:241)
+             n1: 49164 0x400BDA7: _dl_open (dl-open.c:874)
+              n1: 49164 0x4B08257: dlopen_doit (dlopen.c:56)
+               n1: 49164 0x4002398: _dl_catch_exception (dl-catch.c:241)
+                n1: 49164 0x40024BE: _dl_catch_error (dl-catch.c:260)
+                 n1: 49164 0x4B07D66: _dlerror_run (dlerror.c:138)
+                  n1: 49164 0x4B08308: dlopen_implementation (dlopen.c:71)
+                   n1: 49164 0x4B08308: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                    n1: 49164 0x69B9F66: ??? (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+                     n1: 49164 0x69BB594: ??? (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+                      n1: 49164 0x69B45D4: glXChooseVisual (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+                       n1: 49164 0x498582C: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                        n1: 49164 0x4985BAC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                         n1: 49164 0x49564C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                          n1: 49164 0x49580D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                           n1: 49164 0x48ED4BC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                            n1: 49164 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                             n0: 49164 0x1097C6: main (main.c:116)
+      n0: 0 in 7 places, all below massif's threshold (1.00%)
+   n0: 1548 in 1 place, below massif's threshold (1.00%)
+ n1: 48376 0x6BEB58D: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 48376 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 48376 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 48376 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 48376 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 48376 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 48376 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 48376 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 48376 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+          n1: 48376 0x4985CC0: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 48376 0x49564C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 48376 0x49580D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 48376 0x48ED4BC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 48376 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n0: 48376 0x1097C6: main (main.c:116)
+ n1: 46416 0x6D1EC3A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n0: 46416 in 3 places, all below massif's threshold (1.00%)
+ n1: 42352 0x55519C2: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+  n1: 42352 0x5556240: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+   n1: 42352 0x508A0C1: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 42352 0x5079B44: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+     n0: 42352 in 2 places, all below massif's threshold (1.00%)
+ n1: 37632 0x507A278: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n0: 37632 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=4
+#-----------
+time=323437962
+mem_heap_B=17608791
+mem_heap_extra_B=941041
+mem_stacks_B=0
+heap_tree=peak
+n8: 17608791 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 13069328 0x6FC6B64: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n10: 8038320 0x6FC6BBC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 5083296 in 952 places, all below massif's threshold (1.00%)
+   n2: 961728 0x6EA3759: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 722304 in 197 places, all below massif's threshold (1.00%)
+    n1: 239424 0x6EB3A5F: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 376992 0x6EFE3E9: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 376992 in 131 places, all below massif's threshold (1.00%)
+   n1: 326016 0x6EFE2C4: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 326016 in 90 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB39E5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB3A12: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 219472 0x6EB3A8C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 219472 in 1247 places, all below massif's threshold (1.00%)
+   n1: 207872 0x6EFE447: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 207872 in 308 places, all below massif's threshold (1.00%)
+   n1: 192192 0x6EA7B65: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 192192 in 286 places, all below massif's threshold (1.00%)
+   n1: 191904 0x6EA5E6C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 191904 in 24 places, all below massif's threshold (1.00%)
+  n2: 4517856 0x6FC77C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n4: 4485104 0x6FC789C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n2: 1799440 0x700ADE2: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1701216 0x70A4A4E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1701216 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1701216 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 915712 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 915712 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 915712 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 915712 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 915712 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 915712 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 915712 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 915712 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 915712 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 915712 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 915712 0x1097C6: main (main.c:116)
+        n1: 785504 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 785504 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 785504 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 785504 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 785504 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 785504 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 785504 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 785504 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 785504 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 785504 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 785504 0x1097C6: main (main.c:116)
+     n0: 98224 in 3 places, all below massif's threshold (1.00%)
+    n2: 1375584 0x700AF81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1342832 0x70A4841: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1342832 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1342832 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 884304 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 884304 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 884304 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 884304 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 884304 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 884304 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 884304 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 884304 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 884304 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 884304 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 884304 0x1097C6: main (main.c:116)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+     n0: 32752 in 1 place, below massif's threshold (1.00%)
+    n1: 818800 0x700AEF5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 818800 0x70A4788: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 818800 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 818800 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+        n1: 360272 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 360272 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 360272 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 360272 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 360272 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 360272 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 360272 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 360272 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 360272 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 360272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 360272 0x1097C6: main (main.c:116)
+    n2: 491280 0x700AE58: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 425776 0x70A4C5E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 425776 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 425776 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 425776 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 425776 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 425776 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 425776 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 425776 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 425776 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 425776 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 425776 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 425776 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 425776 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 425776 0x1097C6: main (main.c:116)
+     n0: 65504 in 2 places, all below massif's threshold (1.00%)
+   n0: 32752 in 1 place, below massif's threshold (1.00%)
+  n0: 513152 in 28 places, all below massif's threshold (1.00%)
+ n0: 1522434 in 676 places, all below massif's threshold (1.00%)
+ n2: 1155453 0x4913BA6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+  n1: 1152080 0x48B07D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+   n3: 1152080 0x494F813: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+    n1: 921640 0x49507E5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 921640 0x48E2B1F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 921640 0x10AB99: Animation_SetTexture (animace.c:20)
+       n1: 921640 0x10ADF9: Animation_SetSprites (animace.c:67)
+        n1: 921640 0x10AF06: Animation_SetAnimation (animace.c:83)
+         n2: 921640 0x10B18D: Animation_AddAnimationsToObject (animace.c:140)
+          n1: 921640 0x109506: STARTMAP (main.c:52)
+           n0: 921640 0x1097F6: main (main.c:122)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+    n1: 230440 0x4A5DEF6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2_image-2.0.so.0.800.8)
+     n1: 230440 0x4A5E2C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2_image-2.0.so.0.800.8)
+      n1: 230440 0x4A5EB42: IMG_LoadGIF_RW (in /usr/lib/x86_64-linux-gnu/libSDL2_image-2.0.so.0.800.8)
+       n1: 230440 0x4A5C916: IMG_LoadTyped_RW (in /usr/lib/x86_64-linux-gnu/libSDL2_image-2.0.so.0.800.8)
+        n1: 230440 0x10AB4D: Animation_SetTexture (animace.c:14)
+         n1: 230440 0x10ADF9: Animation_SetSprites (animace.c:67)
+          n1: 230440 0x10AF06: Animation_SetAnimation (animace.c:83)
+           n1: 230440 0x10B18D: Animation_AddAnimationsToObject (animace.c:140)
+            n1: 230440 0x109506: STARTMAP (main.c:52)
+             n0: 230440 0x1097F6: main (main.c:122)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 3373 in 12 places, all below massif's threshold (1.00%)
+ n1: 831120 0x6BEB4A8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 831120 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 831120 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 831120 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 831120 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 831120 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 831120 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 831120 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n2: 831120 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+          n1: 831120 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 831120 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 831120 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 831120 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n0: 831120 0x1097C6: main (main.c:116)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 314928 0x50B62CF: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n1: 314928 0x50B41C7: _XimLocalOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+   n1: 314928 0x50B288F: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 314928 0x4980E47: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 314928 0x4987F54: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 314928 0x49589E9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 314928 0x48A03D7: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n0: 314928 0x109778: main (main.c:109)
+ n1: 271272 0x6E2D1F6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 271272 0x6D1F2D0: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 271272 0x6BEB503: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 271272 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 271272 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 271272 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 271272 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 271272 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 271272 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 271272 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+           n2: 271272 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+            n1: 271272 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 271272 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 271272 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 271272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n0: 271272 0x1097C6: main (main.c:116)
+            n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 230144 0x6A13DDA: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+  n0: 230144 in 2 places, all below massif's threshold (1.00%)
+ n1: 214112 0x71EA62E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 214112 0x7BB70D6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 214112 0x6BFE1C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 214112 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 214112 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 214112 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 214112 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 214112 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 214112 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n2: 214112 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+           n1: 214112 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 214112 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 214112 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 214112 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n0: 214112 0x1097C6: main (main.c:116)
+           n0: 0 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=5
+#-----------
+time=369563843
+mem_heap_B=16330211
+mem_heap_extra_B=940821
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=448145555
+mem_heap_B=16335739
+mem_heap_extra_B=941037
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=526793900
+mem_heap_B=16341363
+mem_heap_extra_B=941253
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=604272549
+mem_heap_B=16575559
+mem_heap_extra_B=941449
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=684893811
+mem_heap_B=16352467
+mem_heap_extra_B=941653
+mem_stacks_B=0
+heap_tree=detailed
+n7: 16352467 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 12868944 0x6FC6B64: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n10: 8035632 0x6FC6BBC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 5080608 in 959 places, all below massif's threshold (1.00%)
+   n2: 961728 0x6EA3759: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 722304 in 197 places, all below massif's threshold (1.00%)
+    n1: 239424 0x6EB3A5F: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 376992 0x6EFE3E9: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 376992 in 131 places, all below massif's threshold (1.00%)
+   n1: 326016 0x6EFE2C4: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 326016 in 90 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB39E5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB3A12: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 219472 0x6EB3A8C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 219472 in 1247 places, all below massif's threshold (1.00%)
+   n1: 207872 0x6EFE447: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 207872 in 308 places, all below massif's threshold (1.00%)
+   n1: 192192 0x6EA7B65: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 192192 in 286 places, all below massif's threshold (1.00%)
+   n1: 191904 0x6EA5E6C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 191904 in 24 places, all below massif's threshold (1.00%)
+  n2: 4321376 0x6FC77C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n4: 4321376 0x6FC789C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n2: 1701216 0x700ADE2: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1701216 0x70A4A4E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1701216 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1701216 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 915712 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 915712 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 915712 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 915712 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 915712 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 915712 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 915712 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 915712 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 915712 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 915712 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 915712 0x1097C6: main (main.c:116)
+        n1: 785504 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 785504 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 785504 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 785504 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 785504 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 785504 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 785504 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 785504 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 785504 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 785504 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 785504 0x1097C6: main (main.c:116)
+     n0: 0 in 3 places, all below massif's threshold (1.00%)
+    n2: 1342832 0x700AF81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1342832 0x70A4841: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1342832 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1342832 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 884304 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 884304 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 884304 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 884304 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 884304 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 884304 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 884304 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 884304 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 884304 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 884304 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 884304 0x1097C6: main (main.c:116)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+    n1: 818800 0x700AEF5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 818800 0x70A4788: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 818800 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 818800 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+        n1: 360272 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 360272 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 360272 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 360272 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 360272 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 360272 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 360272 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 360272 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 360272 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 360272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 360272 0x1097C6: main (main.c:116)
+    n2: 458528 0x700AE58: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 425776 0x70A4C5E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 425776 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 425776 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 425776 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 425776 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 425776 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 425776 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 425776 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 425776 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 425776 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 425776 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 425776 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 425776 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 425776 0x1097C6: main (main.c:116)
+     n0: 32752 in 2 places, all below massif's threshold (1.00%)
+   n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 327232 in 64 places, all below massif's threshold (1.00%)
+  n1: 184704 0x6FC6D09: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 184704 in 40 places, all below massif's threshold (1.00%)
+ n0: 1621947 in 735 places, all below massif's threshold (1.00%)
+ n1: 831120 0x6BEB4A8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 831120 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 831120 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 831120 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 831120 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 831120 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 831120 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 831120 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n2: 831120 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+          n1: 831120 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 831120 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 831120 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 831120 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n0: 831120 0x1097C6: main (main.c:116)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 314928 0x50B62CF: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n1: 314928 0x50B41C7: _XimLocalOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+   n1: 314928 0x50B288F: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 314928 0x4980E47: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 314928 0x4987F54: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 314928 0x49589E9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 314928 0x48A03D7: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n0: 314928 0x109778: main (main.c:109)
+ n1: 271272 0x6E2D1F6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 271272 0x6D1F2D0: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 271272 0x6BEB503: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 271272 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 271272 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 271272 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 271272 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 271272 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 271272 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 271272 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+           n2: 271272 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+            n1: 271272 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 271272 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 271272 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 271272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n0: 271272 0x1097C6: main (main.c:116)
+            n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 230144 0x6A13DDA: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+  n0: 230144 in 2 places, all below massif's threshold (1.00%)
+ n1: 214112 0x71EA62E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 214112 0x7BB70D6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 214112 0x6BFE1C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 214112 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 214112 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 214112 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 214112 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 214112 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 214112 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n2: 214112 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+           n1: 214112 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 214112 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 214112 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 214112 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n0: 214112 0x1097C6: main (main.c:116)
+           n0: 0 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=10
+#-----------
+time=803769933
+mem_heap_B=16360447
+mem_heap_extra_B=941937
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=844463784
+mem_heap_B=16363427
+mem_heap_extra_B=942037
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=923854193
+mem_heap_B=16597623
+mem_heap_extra_B=942217
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=1041762895
+mem_heap_B=16377463
+mem_heap_extra_B=942489
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=1119209747
+mem_heap_B=16382943
+mem_heap_extra_B=942673
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=1198056096
+mem_heap_B=16388423
+mem_heap_extra_B=942873
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=1313376628
+mem_heap_B=16625599
+mem_heap_extra_B=943169
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=1432844052
+mem_heap_B=16634059
+mem_heap_extra_B=943485
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=1513996067
+mem_heap_B=16639539
+mem_heap_extra_B=943669
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=1596095353
+mem_heap_B=16416547
+mem_heap_extra_B=943837
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=1674448114
+mem_heap_B=16422083
+mem_heap_extra_B=944037
+mem_stacks_B=0
+heap_tree=detailed
+n7: 16422083 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 12870240 0x6FC6B64: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n10: 8035632 0x6FC6BBC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 5080608 in 959 places, all below massif's threshold (1.00%)
+   n2: 961728 0x6EA3759: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 722304 in 197 places, all below massif's threshold (1.00%)
+    n1: 239424 0x6EB3A5F: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 376992 0x6EFE3E9: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 376992 in 131 places, all below massif's threshold (1.00%)
+   n1: 326016 0x6EFE2C4: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 326016 in 90 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB39E5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB3A12: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 219472 0x6EB3A8C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 219472 in 1247 places, all below massif's threshold (1.00%)
+   n1: 207872 0x6EFE447: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 207872 in 308 places, all below massif's threshold (1.00%)
+   n1: 192192 0x6EA7B65: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 192192 in 286 places, all below massif's threshold (1.00%)
+   n1: 191904 0x6EA5E6C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 191904 in 24 places, all below massif's threshold (1.00%)
+  n2: 4321376 0x6FC77C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n4: 4321376 0x6FC789C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n2: 1701216 0x700ADE2: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1701216 0x70A4A4E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1701216 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1701216 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 915712 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 915712 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 915712 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 915712 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 915712 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 915712 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 915712 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 915712 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 915712 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 915712 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 915712 0x1097C6: main (main.c:116)
+        n1: 785504 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 785504 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 785504 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 785504 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 785504 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 785504 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 785504 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 785504 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 785504 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 785504 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 785504 0x1097C6: main (main.c:116)
+     n0: 0 in 3 places, all below massif's threshold (1.00%)
+    n2: 1342832 0x700AF81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1342832 0x70A4841: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1342832 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1342832 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 884304 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 884304 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 884304 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 884304 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 884304 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 884304 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 884304 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 884304 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 884304 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 884304 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 884304 0x1097C6: main (main.c:116)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+    n1: 818800 0x700AEF5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 818800 0x70A4788: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 818800 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 818800 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+        n1: 360272 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 360272 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 360272 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 360272 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 360272 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 360272 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 360272 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 360272 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 360272 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 360272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 360272 0x1097C6: main (main.c:116)
+    n2: 458528 0x700AE58: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 425776 0x70A4C5E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 425776 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 425776 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 425776 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 425776 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 425776 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 425776 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 425776 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 425776 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 425776 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 425776 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 425776 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 425776 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 425776 0x1097C6: main (main.c:116)
+     n0: 32752 in 2 places, all below massif's threshold (1.00%)
+   n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 327232 in 64 places, all below massif's threshold (1.00%)
+  n1: 186000 0x6FC6D09: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 186000 in 40 places, all below massif's threshold (1.00%)
+ n0: 1690267 in 735 places, all below massif's threshold (1.00%)
+ n1: 831120 0x6BEB4A8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 831120 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 831120 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 831120 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 831120 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 831120 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 831120 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 831120 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n2: 831120 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+          n1: 831120 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 831120 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 831120 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 831120 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n0: 831120 0x1097C6: main (main.c:116)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 314928 0x50B62CF: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n1: 314928 0x50B41C7: _XimLocalOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+   n1: 314928 0x50B288F: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 314928 0x4980E47: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 314928 0x4987F54: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 314928 0x49589E9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 314928 0x48A03D7: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n0: 314928 0x109778: main (main.c:109)
+ n1: 271272 0x6E2D1F6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 271272 0x6D1F2D0: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 271272 0x6BEB503: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 271272 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 271272 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 271272 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 271272 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 271272 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 271272 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 271272 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+           n2: 271272 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+            n1: 271272 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 271272 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 271272 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 271272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n0: 271272 0x1097C6: main (main.c:116)
+            n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 230144 0x6A13DDA: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+  n0: 230144 in 2 places, all below massif's threshold (1.00%)
+ n1: 214112 0x71EA62E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 214112 0x7BB70D6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 214112 0x6BFE1C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 214112 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 214112 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 214112 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 214112 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 214112 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 214112 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n2: 214112 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+           n1: 214112 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 214112 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 214112 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 214112 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n0: 214112 0x1097C6: main (main.c:116)
+           n0: 0 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=21
+#-----------
+time=1792484528
+mem_heap_B=16659203
+mem_heap_extra_B=944317
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=1871680722
+mem_heap_B=16664683
+mem_heap_extra_B=944549
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=1953123486
+mem_heap_B=16441447
+mem_heap_extra_B=944801
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=2031092769
+mem_heap_B=16446927
+mem_heap_extra_B=945049
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=2108540418
+mem_heap_B=16681123
+mem_heap_extra_B=945229
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=2225050022
+mem_heap_B=16689583
+mem_heap_extra_B=945577
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=2303289209
+mem_heap_B=16695063
+mem_heap_extra_B=945761
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=2383838704
+mem_heap_B=16700543
+mem_heap_extra_B=945977
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=2463063230
+mem_heap_B=16706023
+mem_heap_extra_B=946209
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=2582464923
+mem_heap_B=16714003
+mem_heap_extra_B=946509
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=2701425931
+mem_heap_B=16722463
+mem_heap_extra_B=946857
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=2781322522
+mem_heap_B=16728983
+mem_heap_extra_B=947057
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=2862188590
+mem_heap_B=16734471
+mem_heap_extra_B=947249
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=2902531009
+mem_heap_B=16738843
+mem_heap_extra_B=947333
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=2983381867
+mem_heap_B=16744323
+mem_heap_extra_B=947581
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=3062102620
+mem_heap_B=16749803
+mem_heap_extra_B=947765
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=3180387180
+mem_heap_B=16758263
+mem_heap_extra_B=948097
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=3258945607
+mem_heap_B=16763743
+mem_heap_extra_B=948265
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=3336052995
+mem_heap_B=16769223
+mem_heap_extra_B=948497
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=3414358440
+mem_heap_B=16774703
+mem_heap_extra_B=948697
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=3495129449
+mem_heap_B=16780183
+mem_heap_extra_B=948897
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=3613791627
+mem_heap_B=16788163
+mem_heap_extra_B=949261
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=3731584260
+mem_heap_B=16796623
+mem_heap_extra_B=949609
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=3810374990
+mem_heap_B=16802103
+mem_heap_extra_B=949793
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=3889346496
+mem_heap_B=16807583
+mem_heap_extra_B=949993
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=4006367146
+mem_heap_B=16815563
+mem_heap_extra_B=950245
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=4047043491
+mem_heap_B=16818543
+mem_heap_extra_B=950345
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=4125903246
+mem_heap_B=16824023
+mem_heap_extra_B=950529
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=4205798894
+mem_heap_B=16831407
+mem_heap_extra_B=950721
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=4246789965
+mem_heap_B=17688247
+mem_heap_extra_B=950873
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=4323089094
+mem_heap_B=16839387
+mem_heap_extra_B=950989
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=4364167878
+mem_heap_B=17696227
+mem_heap_extra_B=951141
+mem_stacks_B=0
+heap_tree=detailed
+n8: 17696227 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 12872048 0x6FC6B64: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n10: 8035632 0x6FC6BBC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 5080608 in 959 places, all below massif's threshold (1.00%)
+   n2: 961728 0x6EA3759: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 722304 in 197 places, all below massif's threshold (1.00%)
+    n1: 239424 0x6EB3A5F: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 376992 0x6EFE3E9: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 376992 in 131 places, all below massif's threshold (1.00%)
+   n1: 326016 0x6EFE2C4: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 326016 in 90 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB39E5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB3A12: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 219472 0x6EB3A8C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 219472 in 1247 places, all below massif's threshold (1.00%)
+   n1: 207872 0x6EFE447: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 207872 in 308 places, all below massif's threshold (1.00%)
+   n1: 192192 0x6EA7B65: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 192192 in 286 places, all below massif's threshold (1.00%)
+   n1: 191904 0x6EA5E6C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 191904 in 24 places, all below massif's threshold (1.00%)
+  n2: 4321376 0x6FC77C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n4: 4321376 0x6FC789C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n2: 1701216 0x700ADE2: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1701216 0x70A4A4E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1701216 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1701216 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 915712 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 915712 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 915712 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 915712 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 915712 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 915712 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 915712 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 915712 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 915712 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 915712 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 915712 0x1097C6: main (main.c:116)
+        n1: 785504 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 785504 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 785504 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 785504 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 785504 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 785504 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 785504 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 785504 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 785504 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 785504 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 785504 0x1097C6: main (main.c:116)
+     n0: 0 in 3 places, all below massif's threshold (1.00%)
+    n2: 1342832 0x700AF81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1342832 0x70A4841: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1342832 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1342832 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 884304 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 884304 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 884304 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 884304 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 884304 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 884304 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 884304 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 884304 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 884304 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 884304 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 884304 0x1097C6: main (main.c:116)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+    n1: 818800 0x700AEF5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 818800 0x70A4788: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 818800 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 818800 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+        n1: 360272 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 360272 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 360272 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 360272 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 360272 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 360272 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 360272 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 360272 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 360272 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 360272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 360272 0x1097C6: main (main.c:116)
+    n2: 458528 0x700AE58: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 425776 0x70A4C5E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 425776 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 425776 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 425776 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 425776 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 425776 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 425776 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 425776 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 425776 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 425776 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 425776 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 425776 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 425776 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 425776 0x1097C6: main (main.c:116)
+     n0: 32752 in 2 places, all below massif's threshold (1.00%)
+   n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 327232 in 64 places, all below massif's threshold (1.00%)
+  n1: 187808 0x6FC6D09: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 187808 in 40 places, all below massif's threshold (1.00%)
+ n0: 1807150 in 735 places, all below massif's threshold (1.00%)
+ n2: 1155453 0x4913BA6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+  n1: 1152080 0x48B07D9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+   n3: 1152080 0x494F813: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+    n1: 921640 0x49507E5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 921640 0x48E2B1F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 921640 0x10AB99: Animation_SetTexture (animace.c:20)
+       n1: 921640 0x10ADF9: Animation_SetSprites (animace.c:67)
+        n1: 921640 0x10AF06: Animation_SetAnimation (animace.c:83)
+         n2: 921640 0x10B18D: Animation_AddAnimationsToObject (animace.c:140)
+          n1: 921640 0x109506: STARTMAP (main.c:52)
+           n0: 921640 0x1097F6: main (main.c:122)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+    n1: 230440 0x4A5DEF6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2_image-2.0.so.0.800.8)
+     n1: 230440 0x4A5E2C9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2_image-2.0.so.0.800.8)
+      n1: 230440 0x4A5EB42: IMG_LoadGIF_RW (in /usr/lib/x86_64-linux-gnu/libSDL2_image-2.0.so.0.800.8)
+       n1: 230440 0x4A5C916: IMG_LoadTyped_RW (in /usr/lib/x86_64-linux-gnu/libSDL2_image-2.0.so.0.800.8)
+        n1: 230440 0x10AB4D: Animation_SetTexture (animace.c:14)
+         n1: 230440 0x10ADF9: Animation_SetSprites (animace.c:67)
+          n1: 230440 0x10AF06: Animation_SetAnimation (animace.c:83)
+           n1: 230440 0x10B18D: Animation_AddAnimationsToObject (animace.c:140)
+            n1: 230440 0x109506: STARTMAP (main.c:52)
+             n0: 230440 0x1097F6: main (main.c:122)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 3373 in 12 places, all below massif's threshold (1.00%)
+ n1: 831120 0x6BEB4A8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 831120 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 831120 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 831120 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 831120 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 831120 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 831120 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 831120 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n2: 831120 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+          n1: 831120 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 831120 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 831120 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 831120 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n0: 831120 0x1097C6: main (main.c:116)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 314928 0x50B62CF: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n1: 314928 0x50B41C7: _XimLocalOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+   n1: 314928 0x50B288F: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 314928 0x4980E47: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 314928 0x4987F54: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 314928 0x49589E9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 314928 0x48A03D7: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n0: 314928 0x109778: main (main.c:109)
+ n1: 271272 0x6E2D1F6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 271272 0x6D1F2D0: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 271272 0x6BEB503: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 271272 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 271272 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 271272 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 271272 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 271272 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 271272 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 271272 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+           n2: 271272 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+            n1: 271272 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 271272 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 271272 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 271272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n0: 271272 0x1097C6: main (main.c:116)
+            n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 230144 0x6A13DDA: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+  n0: 230144 in 2 places, all below massif's threshold (1.00%)
+ n1: 214112 0x71EA62E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 214112 0x7BB70D6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 214112 0x6BFE1C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 214112 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 214112 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 214112 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 214112 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 214112 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 214112 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n2: 214112 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+           n1: 214112 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 214112 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 214112 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 214112 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n0: 214112 0x1097C6: main (main.c:116)
+           n0: 0 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=53
+#-----------
+time=4404510316
+mem_heap_B=16762967
+mem_heap_extra_B=965281
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=4444862566
+mem_heap_B=16715455
+mem_heap_extra_B=961289
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=4485207606
+mem_heap_B=16725559
+mem_heap_extra_B=962561
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=4525561627
+mem_heap_B=16735431
+mem_heap_extra_B=963809
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=4565917404
+mem_heap_B=16741679
+mem_heap_extra_B=964417
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=4606260438
+mem_heap_B=16742287
+mem_heap_extra_B=964465
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=4646620487
+mem_heap_B=16742207
+mem_heap_extra_B=964393
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=4686963586
+mem_heap_B=16742227
+mem_heap_extra_B=964429
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=4727318324
+mem_heap_B=16742431
+mem_heap_extra_B=964417
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=4767662980
+mem_heap_B=16742463
+mem_heap_extra_B=964409
+mem_stacks_B=0
+heap_tree=detailed
+n7: 16742463 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 12873744 0x6FC6B64: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n10: 8036400 0x6FC6BBC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 5081376 in 959 places, all below massif's threshold (1.00%)
+   n2: 961728 0x6EA3759: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 722304 in 197 places, all below massif's threshold (1.00%)
+    n1: 239424 0x6EB3A5F: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 376992 0x6EFE3E9: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 376992 in 131 places, all below massif's threshold (1.00%)
+   n1: 326016 0x6EFE2C4: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 326016 in 90 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB39E5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB3A12: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 219472 0x6EB3A8C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 219472 in 1247 places, all below massif's threshold (1.00%)
+   n1: 207872 0x6EFE447: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 207872 in 308 places, all below massif's threshold (1.00%)
+   n1: 192192 0x6EA7B65: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 192192 in 286 places, all below massif's threshold (1.00%)
+   n1: 191904 0x6EA5E6C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 191904 in 24 places, all below massif's threshold (1.00%)
+  n2: 4321376 0x6FC77C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n4: 4321376 0x6FC789C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n2: 1701216 0x700ADE2: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1701216 0x70A4A4E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1701216 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1701216 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 915712 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 915712 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 915712 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 915712 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 915712 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 915712 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 915712 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 915712 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 915712 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 915712 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 915712 0x1097C6: main (main.c:116)
+        n1: 785504 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 785504 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 785504 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 785504 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 785504 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 785504 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 785504 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 785504 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 785504 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 785504 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 785504 0x1097C6: main (main.c:116)
+     n0: 0 in 3 places, all below massif's threshold (1.00%)
+    n2: 1342832 0x700AF81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1342832 0x70A4841: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1342832 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1342832 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 884304 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 884304 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 884304 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 884304 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 884304 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 884304 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 884304 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 884304 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 884304 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 884304 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 884304 0x1097C6: main (main.c:116)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+     n0: 0 in 2 places, all below massif's threshold (1.00%)
+    n2: 818800 0x700AEF5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 818800 0x70A4788: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 818800 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 818800 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+        n1: 360272 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 360272 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 360272 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 360272 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 360272 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 360272 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 360272 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 360272 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 360272 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 360272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 360272 0x1097C6: main (main.c:116)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+    n2: 458528 0x700AE58: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 425776 0x70A4C5E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 425776 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 425776 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 425776 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 425776 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 425776 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 425776 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 425776 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 425776 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 425776 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 425776 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 425776 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 425776 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 425776 0x1097C6: main (main.c:116)
+     n0: 32752 in 3 places, all below massif's threshold (1.00%)
+   n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 328160 in 66 places, all below massif's threshold (1.00%)
+  n1: 187808 0x6FC6D09: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 187808 in 40 places, all below massif's threshold (1.00%)
+ n0: 2007143 in 754 places, all below massif's threshold (1.00%)
+ n1: 831120 0x6BEB4A8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 831120 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 831120 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 831120 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 831120 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 831120 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 831120 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 831120 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n2: 831120 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+          n1: 831120 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 831120 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 831120 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 831120 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n0: 831120 0x1097C6: main (main.c:116)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 314928 0x50B62CF: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n1: 314928 0x50B41C7: _XimLocalOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+   n1: 314928 0x50B288F: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 314928 0x4980E47: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 314928 0x4987F54: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 314928 0x49589E9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 314928 0x48A03D7: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n0: 314928 0x109778: main (main.c:109)
+ n1: 271272 0x6E2D1F6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 271272 0x6D1F2D0: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 271272 0x6BEB503: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 271272 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 271272 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 271272 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 271272 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 271272 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 271272 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 271272 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+           n2: 271272 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+            n1: 271272 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 271272 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 271272 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 271272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n0: 271272 0x1097C6: main (main.c:116)
+            n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 230144 0x6A13DDA: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+  n0: 230144 in 2 places, all below massif's threshold (1.00%)
+ n1: 214112 0x71EA62E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 214112 0x7BB70D6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 214112 0x6BFE1C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 214112 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 214112 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 214112 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 214112 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 214112 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 214112 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n2: 214112 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+           n1: 214112 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 214112 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 214112 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 214112 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n0: 214112 0x1097C6: main (main.c:116)
+           n0: 0 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=63
+#-----------
+time=4808018129
+mem_heap_B=16742463
+mem_heap_extra_B=964401
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=4848362163
+mem_heap_B=16742463
+mem_heap_extra_B=964441
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=4888704763
+mem_heap_B=16742359
+mem_heap_extra_B=964393
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=4929053059
+mem_heap_B=16742167
+mem_heap_extra_B=964345
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=4969408717
+mem_heap_B=16742103
+mem_heap_extra_B=964353
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=5009751783
+mem_heap_B=16742123
+mem_heap_extra_B=964373
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=69
+#-----------
+time=5050106054
+mem_heap_B=16742103
+mem_heap_extra_B=964337
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=5090448713
+mem_heap_B=16742447
+mem_heap_extra_B=964425
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=5130792252
+mem_heap_B=16742367
+mem_heap_extra_B=964401
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=5171139792
+mem_heap_B=16742399
+mem_heap_extra_B=964425
+mem_stacks_B=0
+heap_tree=detailed
+n7: 16742399 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 12873744 0x6FC6B64: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n10: 8036400 0x6FC6BBC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 5081376 in 959 places, all below massif's threshold (1.00%)
+   n2: 961728 0x6EA3759: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 722304 in 197 places, all below massif's threshold (1.00%)
+    n1: 239424 0x6EB3A5F: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 376992 0x6EFE3E9: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 376992 in 131 places, all below massif's threshold (1.00%)
+   n1: 326016 0x6EFE2C4: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 326016 in 90 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB39E5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB3A12: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 219472 0x6EB3A8C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 219472 in 1247 places, all below massif's threshold (1.00%)
+   n1: 207872 0x6EFE447: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 207872 in 308 places, all below massif's threshold (1.00%)
+   n1: 192192 0x6EA7B65: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 192192 in 286 places, all below massif's threshold (1.00%)
+   n1: 191904 0x6EA5E6C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 191904 in 24 places, all below massif's threshold (1.00%)
+  n2: 4321376 0x6FC77C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n4: 4321376 0x6FC789C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n2: 1701216 0x700ADE2: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1701216 0x70A4A4E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1701216 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1701216 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 915712 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 915712 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 915712 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 915712 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 915712 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 915712 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 915712 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 915712 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 915712 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 915712 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 915712 0x1097C6: main (main.c:116)
+        n1: 785504 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 785504 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 785504 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 785504 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 785504 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 785504 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 785504 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 785504 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 785504 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 785504 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 785504 0x1097C6: main (main.c:116)
+     n0: 0 in 3 places, all below massif's threshold (1.00%)
+    n2: 1342832 0x700AF81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1342832 0x70A4841: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1342832 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1342832 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 884304 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 884304 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 884304 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 884304 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 884304 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 884304 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 884304 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 884304 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 884304 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 884304 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 884304 0x1097C6: main (main.c:116)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+     n0: 0 in 2 places, all below massif's threshold (1.00%)
+    n2: 818800 0x700AEF5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 818800 0x70A4788: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 818800 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 818800 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+        n1: 360272 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 360272 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 360272 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 360272 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 360272 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 360272 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 360272 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 360272 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 360272 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 360272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 360272 0x1097C6: main (main.c:116)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+    n2: 458528 0x700AE58: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 425776 0x70A4C5E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 425776 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 425776 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 425776 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 425776 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 425776 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 425776 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 425776 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 425776 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 425776 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 425776 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 425776 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 425776 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 425776 0x1097C6: main (main.c:116)
+     n0: 32752 in 3 places, all below massif's threshold (1.00%)
+   n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 328160 in 66 places, all below massif's threshold (1.00%)
+  n1: 187808 0x6FC6D09: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 187808 in 40 places, all below massif's threshold (1.00%)
+ n0: 2007079 in 754 places, all below massif's threshold (1.00%)
+ n1: 831120 0x6BEB4A8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 831120 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 831120 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 831120 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 831120 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 831120 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 831120 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 831120 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n2: 831120 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+          n1: 831120 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 831120 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 831120 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 831120 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n0: 831120 0x1097C6: main (main.c:116)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 314928 0x50B62CF: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n1: 314928 0x50B41C7: _XimLocalOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+   n1: 314928 0x50B288F: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 314928 0x4980E47: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 314928 0x4987F54: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 314928 0x49589E9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 314928 0x48A03D7: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n0: 314928 0x109778: main (main.c:109)
+ n1: 271272 0x6E2D1F6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 271272 0x6D1F2D0: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 271272 0x6BEB503: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 271272 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 271272 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 271272 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 271272 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 271272 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 271272 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 271272 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+           n2: 271272 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+            n1: 271272 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 271272 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 271272 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 271272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n0: 271272 0x1097C6: main (main.c:116)
+            n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 230144 0x6A13DDA: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+  n0: 230144 in 2 places, all below massif's threshold (1.00%)
+ n1: 214112 0x71EA62E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 214112 0x7BB70D6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 214112 0x6BFE1C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 214112 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 214112 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 214112 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 214112 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 214112 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 214112 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n2: 214112 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+           n1: 214112 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 214112 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 214112 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 214112 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n0: 214112 0x1097C6: main (main.c:116)
+           n0: 0 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=73
+#-----------
+time=5211492624
+mem_heap_B=16742399
+mem_heap_extra_B=964401
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=74
+#-----------
+time=5251842209
+mem_heap_B=16742399
+mem_heap_extra_B=964393
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=5292189810
+mem_heap_B=16742391
+mem_heap_extra_B=964385
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=76
+#-----------
+time=5332548124
+mem_heap_B=16742167
+mem_heap_extra_B=964417
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=5372905221
+mem_heap_B=16742167
+mem_heap_extra_B=964393
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=5413255146
+mem_heap_B=16742167
+mem_heap_extra_B=964385
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=79
+#-----------
+time=5453600627
+mem_heap_B=16742415
+mem_heap_extra_B=964465
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=80
+#-----------
+time=5493950761
+mem_heap_B=16742399
+mem_heap_extra_B=964457
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=5534293572
+mem_heap_B=16742415
+mem_heap_extra_B=964465
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=5574636358
+mem_heap_B=16742387
+mem_heap_extra_B=964437
+mem_stacks_B=0
+heap_tree=detailed
+n7: 16742387 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 12873744 0x6FC6B64: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n10: 8036400 0x6FC6BBC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 5081376 in 959 places, all below massif's threshold (1.00%)
+   n2: 961728 0x6EA3759: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 722304 in 197 places, all below massif's threshold (1.00%)
+    n1: 239424 0x6EB3A5F: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 376992 0x6EFE3E9: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 376992 in 131 places, all below massif's threshold (1.00%)
+   n1: 326016 0x6EFE2C4: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 326016 in 90 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB39E5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB3A12: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 219472 0x6EB3A8C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 219472 in 1247 places, all below massif's threshold (1.00%)
+   n1: 207872 0x6EFE447: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 207872 in 308 places, all below massif's threshold (1.00%)
+   n1: 192192 0x6EA7B65: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 192192 in 286 places, all below massif's threshold (1.00%)
+   n1: 191904 0x6EA5E6C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 191904 in 24 places, all below massif's threshold (1.00%)
+  n2: 4321376 0x6FC77C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n4: 4321376 0x6FC789C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n2: 1701216 0x700ADE2: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1701216 0x70A4A4E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1701216 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1701216 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 915712 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 915712 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 915712 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 915712 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 915712 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 915712 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 915712 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 915712 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 915712 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 915712 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 915712 0x1097C6: main (main.c:116)
+        n1: 785504 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 785504 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 785504 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 785504 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 785504 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 785504 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 785504 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 785504 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 785504 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 785504 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 785504 0x1097C6: main (main.c:116)
+     n0: 0 in 3 places, all below massif's threshold (1.00%)
+    n2: 1342832 0x700AF81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1342832 0x70A4841: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1342832 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1342832 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 884304 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 884304 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 884304 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 884304 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 884304 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 884304 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 884304 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 884304 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 884304 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 884304 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 884304 0x1097C6: main (main.c:116)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+     n0: 0 in 2 places, all below massif's threshold (1.00%)
+    n2: 818800 0x700AEF5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 818800 0x70A4788: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 818800 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 818800 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+        n1: 360272 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 360272 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 360272 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 360272 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 360272 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 360272 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 360272 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 360272 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 360272 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 360272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 360272 0x1097C6: main (main.c:116)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+    n2: 458528 0x700AE58: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 425776 0x70A4C5E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 425776 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 425776 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 425776 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 425776 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 425776 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 425776 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 425776 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 425776 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 425776 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 425776 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 425776 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 425776 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 425776 0x1097C6: main (main.c:116)
+     n0: 32752 in 3 places, all below massif's threshold (1.00%)
+   n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 328160 in 66 places, all below massif's threshold (1.00%)
+  n1: 187808 0x6FC6D09: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 187808 in 40 places, all below massif's threshold (1.00%)
+ n0: 2007067 in 754 places, all below massif's threshold (1.00%)
+ n1: 831120 0x6BEB4A8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 831120 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 831120 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 831120 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 831120 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 831120 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 831120 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 831120 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n2: 831120 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+          n1: 831120 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 831120 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 831120 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 831120 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n0: 831120 0x1097C6: main (main.c:116)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 314928 0x50B62CF: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n1: 314928 0x50B41C7: _XimLocalOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+   n1: 314928 0x50B288F: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 314928 0x4980E47: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 314928 0x4987F54: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 314928 0x49589E9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 314928 0x48A03D7: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n0: 314928 0x109778: main (main.c:109)
+ n1: 271272 0x6E2D1F6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 271272 0x6D1F2D0: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 271272 0x6BEB503: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 271272 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 271272 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 271272 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 271272 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 271272 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 271272 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 271272 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+           n2: 271272 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+            n1: 271272 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 271272 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 271272 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 271272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n0: 271272 0x1097C6: main (main.c:116)
+            n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 230144 0x6A13DDA: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+  n0: 230144 in 2 places, all below massif's threshold (1.00%)
+ n1: 214112 0x71EA62E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 214112 0x7BB70D6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 214112 0x6BFE1C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 214112 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 214112 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 214112 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 214112 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 214112 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 214112 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n2: 214112 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+           n1: 214112 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 214112 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 214112 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 214112 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n0: 214112 0x1097C6: main (main.c:116)
+           n0: 0 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=83
+#-----------
+time=5614984284
+mem_heap_B=16742103
+mem_heap_extra_B=964401
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=84
+#-----------
+time=5655338724
+mem_heap_B=16742431
+mem_heap_extra_B=964457
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=85
+#-----------
+time=5695689586
+mem_heap_B=16742367
+mem_heap_extra_B=964433
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=86
+#-----------
+time=5736047216
+mem_heap_B=16742135
+mem_heap_extra_B=964393
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=87
+#-----------
+time=5776392262
+mem_heap_B=16742103
+mem_heap_extra_B=964401
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=88
+#-----------
+time=5816738128
+mem_heap_B=16742439
+mem_heap_extra_B=964473
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=89
+#-----------
+time=5857093381
+mem_heap_B=16742399
+mem_heap_extra_B=964425
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=90
+#-----------
+time=5897440529
+mem_heap_B=16742447
+mem_heap_extra_B=964457
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=91
+#-----------
+time=5937782958
+mem_heap_B=16744771
+mem_heap_extra_B=964869
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=92
+#-----------
+time=5978143817
+mem_heap_B=16743423
+mem_heap_extra_B=964561
+mem_stacks_B=0
+heap_tree=detailed
+n7: 16743423 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 12873744 0x6FC6B64: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n10: 8036400 0x6FC6BBC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 5081376 in 959 places, all below massif's threshold (1.00%)
+   n2: 961728 0x6EA3759: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 722304 in 197 places, all below massif's threshold (1.00%)
+    n1: 239424 0x6EB3A5F: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 376992 0x6EFE3E9: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 376992 in 131 places, all below massif's threshold (1.00%)
+   n1: 326016 0x6EFE2C4: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 326016 in 90 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB39E5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 239424 0x6EB3A12: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 239424 in 1247 places, all below massif's threshold (1.00%)
+   n1: 219472 0x6EB3A8C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 219472 in 1247 places, all below massif's threshold (1.00%)
+   n1: 207872 0x6EFE447: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 207872 in 308 places, all below massif's threshold (1.00%)
+   n1: 192192 0x6EA7B65: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 192192 in 286 places, all below massif's threshold (1.00%)
+   n1: 191904 0x6EA5E6C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n0: 191904 in 24 places, all below massif's threshold (1.00%)
+  n2: 4321376 0x6FC77C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n4: 4321376 0x6FC789C: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n2: 1701216 0x700ADE2: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1701216 0x70A4A4E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1701216 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1701216 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 915712 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 915712 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 915712 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 915712 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 915712 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 915712 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 915712 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 915712 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 915712 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 915712 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 915712 0x1097C6: main (main.c:116)
+        n1: 785504 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 785504 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 785504 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 785504 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 785504 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 785504 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 785504 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 785504 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 785504 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 785504 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 785504 0x1097C6: main (main.c:116)
+     n0: 0 in 3 places, all below massif's threshold (1.00%)
+    n2: 1342832 0x700AF81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 1342832 0x70A4841: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 1342832 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 1342832 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 884304 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 884304 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 884304 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 884304 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 884304 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 884304 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 884304 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 884304 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 884304 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 884304 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 884304 0x1097C6: main (main.c:116)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+     n0: 0 in 2 places, all below massif's threshold (1.00%)
+    n2: 818800 0x700AEF5: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 818800 0x70A4788: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 818800 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n2: 818800 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 458528 0x6C11E04: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 458528 0x6C12E81: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 458528 0x6C13523: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 458528 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 458528 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 458528 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 458528 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 458528 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 458528 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 458528 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 458528 0x1097C6: main (main.c:116)
+        n1: 360272 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 360272 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 360272 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 360272 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 360272 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 360272 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 360272 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 360272 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 360272 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 360272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 360272 0x1097C6: main (main.c:116)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+    n2: 458528 0x700AE58: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 425776 0x70A4C5E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 425776 0x70A6282: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 425776 0x6C10EAC: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+        n1: 425776 0x6C12625: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+         n1: 425776 0x6C13051: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+          n1: 425776 0x6C1349A: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+           n1: 425776 0x6C14B0B: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+            n1: 425776 0x6C14CA8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+             n1: 425776 0x6E734DB: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+              n1: 425776 0x6E2A5BA: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+               n1: 425776 0x48EFAE6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n1: 425776 0x48EDF64: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                 n1: 425776 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                  n0: 425776 0x1097C6: main (main.c:116)
+     n0: 32752 in 3 places, all below massif's threshold (1.00%)
+   n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 328160 in 66 places, all below massif's threshold (1.00%)
+  n1: 187808 0x6FC6D09: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n0: 187808 in 40 places, all below massif's threshold (1.00%)
+ n0: 2008103 in 754 places, all below massif's threshold (1.00%)
+ n1: 831120 0x6BEB4A8: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 831120 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 831120 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 831120 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 831120 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+      n1: 831120 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 831120 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 831120 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n2: 831120 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+          n1: 831120 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+           n1: 831120 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 831120 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 831120 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n0: 831120 0x1097C6: main (main.c:116)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 314928 0x50B62CF: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+  n1: 314928 0x50B41C7: _XimLocalOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+   n1: 314928 0x50B288F: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+    n1: 314928 0x4980E47: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+     n1: 314928 0x4987F54: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+      n1: 314928 0x49589E9: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+       n1: 314928 0x48A03D7: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+        n0: 314928 0x109778: main (main.c:109)
+ n1: 271272 0x6E2D1F6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 271272 0x6D1F2D0: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 271272 0x6BEB503: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 271272 0x6BFE215: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 271272 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 271272 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+       n1: 271272 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 271272 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 271272 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n1: 271272 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+           n2: 271272 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+            n1: 271272 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 271272 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 271272 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n1: 271272 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+                n0: 271272 0x1097C6: main (main.c:116)
+            n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 230144 0x6A13DDA: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+  n0: 230144 in 2 places, all below massif's threshold (1.00%)
+ n1: 214112 0x71EA62E: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+  n1: 214112 0x7BB70D6: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+   n1: 214112 0x6BFE1C3: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+    n1: 214112 0x6B53551: ??? (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+     n1: 214112 0x6B57356: driCreateContextAttribs (in /usr/lib/x86_64-linux-gnu/libgallium-25.0.7-2.so)
+      n1: 214112 0x6A145D8: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+       n1: 214112 0x6A13818: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+        n1: 214112 0x6A17371: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+         n1: 214112 0x6A176B3: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+          n2: 214112 0x69B5946: glXCreateContext (in /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0)
+           n1: 214112 0x4986875: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+            n1: 214112 0x495728F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+             n1: 214112 0x48ED6B2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+              n1: 214112 0x48E400A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4)
+               n0: 214112 0x1097C6: main (main.c:116)
+           n0: 0 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=93
+#-----------
+time=6018486378
+mem_heap_B=16466767
+mem_heap_extra_B=955105
+mem_stacks_B=0
+heap_tree=empty

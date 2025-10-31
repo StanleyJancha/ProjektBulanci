@@ -4,7 +4,8 @@
 
 #ifndef PROJEKT_RENDER_H
 #define PROJEKT_RENDER_H
-#include <SDL_render.h>
+#include <SDL2/SDL.h>
+
 #include <stdbool.h>
 #include "object.h"
 #endif //PROJEKT_RENDER_H

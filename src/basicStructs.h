@@ -4,8 +4,6 @@
 
 #ifndef PROJEKT_BASICSTRUCT_H
 #define PROJEKT_BASICSTRUCT_H
-#include <SDL_render.h>
-#include <stdbool.h>
 
 struct Vector2 {
     int x;

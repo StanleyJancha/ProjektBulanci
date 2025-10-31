@@ -4,7 +4,7 @@
 
 #ifndef PROJEKT_KEYBINDS_H
 #define PROJEKT_KEYBINDS_H
-#include <SDL_events.h>
+#include <SDL2/SDL.h>
 
 #include "world.h"
 

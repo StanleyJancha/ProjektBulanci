@@ -13,6 +13,20 @@
 
 #include "animace.h"
 
+struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions) {
+    struct Object *object = malloc(sizeof(struct Object));
+    if (!object) return NULL;
+
+    strcpy(object->name,name);
+    object->size = size;
+    object->position = position;
+
+    object->zLayer = zLayer;
+    object->collision = collions;
+
+    return object;
+}
+
 
 bool Object_MoveBy(struct Object *object, struct Vector2 addVector) {
     struct Vector2 newPos = {object->position.x + addVector.x, object->position.y + addVector.y};
@@ -27,11 +41,37 @@ bool Object_CheckCollision(struct World *world, struct Object *object) {
     }
 }
 
+bool Object_SetActiveAnimationByName(struct Object * object, char *animName, bool mirrored) {
+    int newAnimationIndex = -1;
+
+    for (int i = 0; i < object->animationsCount; ++i) {
+        if ((strcmp(object->animations[i].name,animName) == 0) ) {
+            if (object->activeAnimationIndex == i && object->animations[i].mirrored == mirrored) { // jestlize tato animace uz je aktivni, tak konec
+                return true;
+            }
+            object->animations[i].currentFrame = 0; // nastavime aktivni smiek na 1., aby animace zacla od zacatku
+            object->animations[i].mirrored = mirrored;
+            newAnimationIndex = i;
+            break;
+        }
+    }
+    if (newAnimationIndex == -1) {
+        return false;
+    }
+
+    object->activeAnimationIndex = newAnimationIndex;
+    return true;
+
+}
+
 void Object_Destroy(struct Object *object) {
     Animation_RemoveAnimations(object);
 
 }
 
 void Object_Print(const struct Object *object) {
-    printf("\t\tObject:\n\t\t\tName: %s\n", object->name);
+    printf("Object:\n\tName: %s\n", object->name);
+    for (int i = 0; i < object->animationsCount; ++i) {
+        Animation_PrintAnimation(&object->animations[i]);
+    }
 }

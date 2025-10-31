@@ -4,6 +4,26 @@
 
 #include "player.h"
 
+struct Player *Player_CreatePlayer(struct Object *object, int PlayerKeybindSetIndex, int speed, int HP) {
+    struct Player *player = malloc(sizeof(struct Player));
+    if (!player) return NULL;
+
+    if (!object) {
+        free(player);
+        return NULL;
+    };
+
+    player->object = *object;
+    free(object);
+    object = NULL;
+
+    player->PlayerKeybindSetIndex = PlayerKeybindSetIndex;
+    player->speed = speed;
+    player->HP = HP;
+
+    return player;
+}
+
 void Player_HandleInput(struct Player *player, SDL_Keycode key) {
 
     if (key == PlayerKeybindSets[player->PlayerKeybindSetIndex].move_up) {
@@ -25,7 +45,9 @@ int Player_TakeDamage(struct Player *player, int damage) {
 
 }
 
-
+void Player_Destroy(struct Player *player) {
+    Object_Destroy(&player->object);
+}
 
 
 void Player_Print(const struct Player *player) {

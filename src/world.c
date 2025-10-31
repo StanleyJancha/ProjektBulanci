@@ -25,12 +25,12 @@ void World_Destroy(struct World * world) {
     world->objects = NULL;
     world->objectCount = 0;
 
-    // for (int i = 0; i < world->playerCount; ++i) {
-    //     Object_Destroy(&world->players[i].object);
-    // }
-    // free(world->players);
-    // world->players = NULL;
-    // world->playerCount = 0;
+    for (int i = 0; i < world->playerCount; ++i) {
+        World_RemovePlayer(world,&world->players[i]);
+    }
+    free(world->players);
+    world->players = NULL;
+    world->playerCount = 0;
 }
 
 bool World_AddObject(struct World *world, struct Object *object) {
@@ -90,6 +90,8 @@ bool World_RemoveObject(struct World *world, struct Object *object) {
     if (world->objectCount - 1 == 0) { // nastane, pokud se nasel a zaroven je nova velikost nulova
         Object_Destroy(&world->objects[0]);
         world->objectCount = 0;
+        free(world->objects);
+        world->objects = NULL;
         return true;
     }
 
@@ -109,51 +111,48 @@ bool World_RemoveObject(struct World *world, struct Object *object) {
 
     return true;
 }
-// bool World_RemovePlayer(struct World *world, struct Player *player) {
-//     if (world->playerCount <= 0){return -3;} // jesli je pocet keys 0, tak neni co mazat
-//
-//     int indexToRemove = -1;
-//
-//     for (int i = 0; i < world->playerCount; i++) {
-//         if (world->players[i].object.name == player->object.name) {
-//             indexToRemove = i;
-//             break;
-//         }
-//     }
-//
-//     if (indexToRemove == -1) { // pokud tam neni prvek, ktery chceme vymazat
-//         return false;
-//     }
-//
-//
-//     if (world->playerCount - 1 == 0) { // nastane, pokud se nasel a zaroven je nova velikost nulova
-//         for (int i = 0; i < world->playerCount - 1; ++i) {
-//             Object_Destroy(&world->players[i].object);
-//         }
-//         free(world->players);
-//         world->players = NULL;
-//         world->playerCount = 0;
-//         return true;
-//     }
-//
-//     struct Player *newPlayerArray = malloc(sizeof(struct Player) * (world->playerCount - 1) ); // vytvorime nove pole s velikosti o jednu mensi
-//
-//     for (int i = 0; i < world->playerCount - 1; i++) {
-//         int newIndex = i + ((i >= indexToRemove)?1:0);
-//         newPlayerArray[i] = world->players[newIndex];
-//     }
-//
-//     Object_Destroy(&world->players[indexToRemove].object);
-//
-//
-//
-//     free(world->players);
-//
-//     world->players = newPlayerArray;
-//     world->playerCount -= 1;
-//
-//     return true;
-// }
+bool World_RemovePlayer(struct World *world, struct Player *player) {
+    if (world->playerCount <= 0){return -3;} // jesli je pocet keys 0, tak neni co mazat
+
+    int indexToRemove = -1;
+
+    for (int i = 0; i < world->playerCount; i++) {
+        if (world->players[i].object.name == player->object.name) {
+            indexToRemove = i;
+            break;
+        }
+    }
+
+    if (indexToRemove == -1) { // pokud tam neni prvek, ktery chceme vymazat
+        return false;
+    }
+
+
+    if (world->playerCount - 1 == 0) { // nastane, pokud se nasel a zaroven je nova velikost nulova
+        Player_Destroy(&world->players[indexToRemove]);
+        world->playerCount = 0;
+        free(world->players);
+        world->players = NULL;
+        return true;
+    }
+
+    struct Player *newPlayerArray = malloc(sizeof(struct Player) * (world->playerCount - 1) ); // vytvorime nove pole s velikosti o jednu mensi
+
+    for (int i = 0; i < world->playerCount - 1; i++) {
+        int newIndex = i + ((i >= indexToRemove)?1:0);
+        newPlayerArray[i] = world->players[newIndex];
+    }
+
+    Player_Destroy(&world->players[indexToRemove]);
+
+    free(world->players);
+    world->players = NULL;
+
+    world->players = newPlayerArray;
+    world->playerCount -= 1;
+
+    return true;
+}
 
 void World_Print(const struct World *world) {
     printf("World:\n\tObjects:\n");

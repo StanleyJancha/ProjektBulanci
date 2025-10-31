@@ -17,15 +17,19 @@ struct Object {
     char name[32];
     struct Vector2 size;
     struct Vector2 position;
-    union AnimationSetType animationsSet;
+    struct Animation *animations;
     enum ObjectAnimationsType objectAnimationsType;
+    int activeAnimationIndex;
+    int animationSetIndex;
     int animationsCount;
     int zLayer;
     enum Collisions collision;
 };
 
-bool Object_SetTextures(SDL_Renderer *ren, struct Object *object);
+struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions);
 
+bool Object_SetTextures(SDL_Renderer *ren, struct Object *object);
+bool Object_SetActiveAnimationByName(struct Object * object, char *animName, bool mirrored);
 
 bool Object_MoveBy(struct Object *object, struct Vector2 addVector);
 

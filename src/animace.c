@@ -56,6 +56,10 @@ bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *s
     }
     closedir(dir);
 
+    if (filesCount < 1) {
+        printf("Nenasly se sprity pro animaci: %s pro objekt: %s",animName,name);
+    }
+
     *sprites = malloc(sizeof(struct Sprite) * filesCount);
 
     for (int i = 0; i < filesCount; ++i) {
@@ -72,55 +76,95 @@ bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *s
 }
 
 bool Animation_SetAnimation(SDL_Renderer *renderer,struct Animation *animation,char name[32], char animName[32]) {
-    if (strcmp(animName, "idle") == 0) {
-        strcpy(animation->name, "idle");
-        animation->currentFrame = 0;
-        animation->frames = NULL;
-        animation->lastFrameTime = 0;
-        Animation_SetSprites(renderer,&animation->frames,&animation->framesCount,name,animName);
+    strcpy(animation->name, animName);
+    animation->currentFrame = 0;
+    animation->frames = NULL;
+    animation->lastFrameTime = 0;
+    animation->mirrored = false;
+    Animation_SetSprites(renderer,&animation->frames,&animation->framesCount,name,animName);
 
-        return true;
+    return true;
 
-    }else
-    if (strcmp(animName, "") == 0) {
+}
 
+int Animation_GetAnimationsCount(char objectName[32], char animNames[99][32]) {
+    char path[256];
+
+    snprintf(path, 256, "anims/%s", objectName); // vytvori cestu
+    DIR *dir = opendir(path);
+
+    if (dir == NULL) {
+        perror("opendir");
+        return 0;
     }
-    return false;
+    struct dirent *entry;
+    int animationsCount = 0;
+    while ((entry = readdir(dir)) != NULL) {
+
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+            continue;
+
+        if (entry->d_type == DT_DIR) {
+            strcpy(animNames[animationsCount],entry->d_name);
+            animationsCount++;
+        }
+        if (animationsCount >= 99) {
+            printf("ERROR: pri pocet animaci pro objekt '%s' presahl limit %d",objectName,99);
+            closedir(dir);
+            return 0;
+        }
+    }
+    closedir(dir);
+    return animationsCount;
 }
 
 
-
 int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *object, enum ObjectAnimationsType objectAnimationsType, int AnimationSetIndex) {
-    struct Animation newAnimIdle;
-    Animation_SetAnimation(renderer,&newAnimIdle,object->name,"idle");
 
-    if (objectAnimationsType == ANIMATIONS_OBJECT) { // pokud je objekt hrac
+    char animationNames[99][32];
 
-        struct ObjectAnimations newObjectAnimations = {  // ziskej animace
-            newAnimIdle
-        };
-        object->animationsSet.objectAnimations = newObjectAnimations;
-        object->objectAnimationsType = objectAnimationsType;
-        object->animationsCount = PLAYER_ANIMATIONS_COUNT;
+    int animationsCount = Animation_GetAnimationsCount(object->name,animationNames);
 
-    } else if (objectAnimationsType == ANIMATIONS_SINGLE) {
-        object->animationsSet.singleAnimation = newAnimIdle;
-        object->objectAnimationsType = objectAnimationsType;
-        object->animationsCount = 1;
+    // for (int i = 0; i < animationsCount; ++i) {
+    //     printf("Object: %s | anim: %s\n",object->name,animationNames[i]);
+    // }
 
-    // }else if (objectAnimationsType == ANIMATIONS_SINGLE) {
-    //     object->animations = malloc(sizeof(struct Animation));
-    //     object->animationsCount = 1;
-    }else {
-        printf("ERROR: neznamy ObjectAnimationsType");
+    if (animationsCount < 1) {
+        printf("Nenasly se animace pro objekt: %s",object->name);
+    }
+    object->animationSetIndex = 0;
+    object->activeAnimationIndex = 0;
+    object->animationsCount = animationsCount;
+    object->animations = malloc(sizeof(struct Animation) * object->animationsCount);
+
+    for (int i = 0; i < object->animationsCount; ++i) {
+        Animation_SetAnimation(renderer,&object->animations[i],object->name,animationNames[i]);
     }
 
     return 1;
 }
 
 bool Animation_RemoveAnimations(struct Object *object) {
-    free(object->animationsSet.objectAnimations.Idle.frames);
-    object->animationsSet.objectAnimations.Idle.frames = NULL;
+    for (int i = 0; i < object->animationsCount; ++i) {
+        for (int j = 0; j < object->animations[i].framesCount; ++j) {
+            SDL_DestroyTexture(object->animations[i].frames[j].texture);
+        }
+
+        free(object->animations[i].frames);
+        object->animations[i].frames = NULL;
+    }
+
+    free(object->animations);
+    object->animations = NULL;
 
     return true;
 }
+
+
+void Animation_PrintAnimation(const struct Animation *animation) {
+    printf("\tAnimation\n\t\tname: %s\n\t\tframes:\n",animation->name);
+    for (int i = 0; i < animation->framesCount; ++i) {
+        printf("\t\t\tframe path: %s\n",animation->frames[i].spritePath);
+    }
+}
+
