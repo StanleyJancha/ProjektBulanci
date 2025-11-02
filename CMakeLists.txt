@@ -3,9 +3,9 @@ project(Projekt C)
 
 set(CMAKE_C_STANDARD 11)
 
-#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -g -fsanitize=address")
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_C_FLAGS_DEBUG "-g -O0")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -g -fsanitize=address -LSAN_OPTIONS=verbosity=1:log_threads=1")
+#set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_C_FLAGS_DEBUG "-g -O0")
 
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
@@ -30,5 +30,7 @@ add_executable(Projekt main.c
         src/animace.c
         src/render.c
         src/render.h
+        src/weapons.c
+        src/weapons.h
 )
 target_link_libraries(Projekt ${SDL2_LIBRARIES} SDL2_image)

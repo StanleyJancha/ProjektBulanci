@@ -13,6 +13,7 @@ struct PlayerKeybindSet {
     enum SDL_Scancode move_left;
     enum SDL_Scancode move_down;
     enum SDL_Scancode move_right;
+    enum SDL_Scancode shoot;
 };
 
 #define NUM_PLAYER_KEYBINDS 4 // pocet keybindu na jednoho hrace

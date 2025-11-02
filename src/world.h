@@ -22,7 +22,7 @@ void World_Destroy(struct World * world);
 
 bool World_AddObject(struct World *world, struct Object *object);
 bool World_AddPlayer(struct World *world, struct Player *player);
-bool World_RemoveObject(struct World *world, struct Object *object);
+bool World_RemoveObject(struct World *world, struct Object *object, bool destroy);
 bool World_RemovePlayer(struct World *world, struct Player *player);
 void World_Print(const struct World *world);
 struct Player* World_GetPlayerByIndex(const struct World *world, int index);

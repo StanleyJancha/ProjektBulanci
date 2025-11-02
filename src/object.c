@@ -13,7 +13,7 @@
 
 #include "animace.h"
 
-struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions) {
+struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions, enum ObjectType objectType) {
     struct Object *object = malloc(sizeof(struct Object));
     if (!object) return NULL;
 
@@ -23,6 +23,7 @@ struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct
 
     object->zLayer = zLayer;
     object->collision = collions;
+    object->objectType = objectType;
 
     return object;
 }

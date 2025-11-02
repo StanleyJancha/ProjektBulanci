@@ -13,10 +13,24 @@ enum Collisions {
     COLLISION_BLOCK
 };
 
+enum ObjectType {
+    OBJECT_STATIC,
+    OBJECT_PICKUP_WEAPON,
+    OBJECT_PLAYER
+};
+enum ObjectFacing {
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST
+};
+
+
 struct Object {
     char name[32];
     struct Vector2 size;
     struct Vector2 position;
+    enum ObjectFacing objectDir;
     struct Animation *animations;
     enum ObjectAnimationsType objectAnimationsType;
     int activeAnimationIndex;
@@ -24,10 +38,10 @@ struct Object {
     int animationsCount;
     int zLayer;
     enum Collisions collision;
+    enum ObjectType objectType;
 };
 
-struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions);
-
+struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions, enum ObjectType objectType) ;
 bool Object_SetTextures(SDL_Renderer *ren, struct Object *object);
 bool Object_SetActiveAnimationByName(struct Object * object, char *animName, bool mirrored);
 

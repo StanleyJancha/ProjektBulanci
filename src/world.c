@@ -18,7 +18,7 @@ struct World World_Create() {
 void World_Destroy(struct World * world) {
     int objectsCount = world->objectCount;
     for (int i = 0; i < objectsCount; ++i) {
-        World_RemoveObject(world,&world->objects[0]);
+        World_RemoveObject(world,&world->objects[0],true);
     }
 
     free(world->objects);
@@ -70,13 +70,13 @@ bool World_AddPlayer(struct World *world, struct Player *player) {
     return true;
 }
 
-bool World_RemoveObject(struct World *world, struct Object *object) {
+bool World_RemoveObject(struct World *world, struct Object *object, bool destroy) {
     if (world->objectCount <= 0){return -3;} // jesli je pocet keys 0, tak neni co mazat
 
     int indexToRemove = -1;
 
     for (int i = 0; i < world->objectCount; i++) {
-        if (world->objects[i].name == object->name) {
+        if (strcmp(world->objects[i].name, object->name) == 0) {
             indexToRemove = i;
             break;
         }
@@ -88,7 +88,10 @@ bool World_RemoveObject(struct World *world, struct Object *object) {
     }
 
     if (world->objectCount - 1 == 0) { // nastane, pokud se nasel a zaroven je nova velikost nulova
-        Object_Destroy(&world->objects[0]);
+        if (destroy) {
+            Object_Destroy(&world->objects[0]);
+        }
+
         world->objectCount = 0;
         free(world->objects);
         world->objects = NULL;
@@ -101,7 +104,10 @@ bool World_RemoveObject(struct World *world, struct Object *object) {
         int newIndex = i + ((i >= indexToRemove)?1:0);
         newObjectArray[i] = world->objects[newIndex];
     }
-    Object_Destroy(&world->objects[indexToRemove]);
+    if (destroy) {
+        Object_Destroy(&world->objects[indexToRemove]);
+    }
+
 
     free(world->objects);
     world->objects = NULL;
@@ -117,7 +123,7 @@ bool World_RemovePlayer(struct World *world, struct Player *player) {
     int indexToRemove = -1;
 
     for (int i = 0; i < world->playerCount; i++) {
-        if (world->players[i].object.name == player->object.name) {
+        if (strcmp(world->players[i].object.name, player->object.name) == 0) {
             indexToRemove = i;
             break;
         }
