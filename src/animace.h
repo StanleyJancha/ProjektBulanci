@@ -15,6 +15,11 @@ enum ObjectAnimationsType {
     ANIMATIONS_SINGLE
 };
 
+enum ObjectAnimationRepeatType {
+    ANIMATION_REPEAT,
+    ANIMATION_ONCE
+};
+
 
 struct Sprite {
     SDL_Texture *texture;
@@ -22,13 +27,20 @@ struct Sprite {
     int timeMilis;
 };
 
+enum AnimationMirrorFlip {
+    ANIMATION_NOT_MIRRORED_FLIPPED,
+    ANIMATION_MIRROR,
+    ANIMATION_FLIP,
+    ANIMATION_MIRROR_FLIP
+};
 struct Animation {
     char name[32];
     struct Sprite *frames;
     int framesCount;
     int currentFrame;
+    enum ObjectAnimationRepeatType repeatType;
     Uint32 lastFrameTime;
-    bool mirrored;
+    enum AnimationMirrorFlip mirroredFlipped;
 };
 
 // #define PLAYER_ANIMATIONS_COUNT 3

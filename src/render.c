@@ -9,19 +9,45 @@ bool Render_Object(SDL_Renderer *ren, struct Object *object) {
 
     SDL_Rect dst = {object->position.x, object->position.y, object->size.x, object->size.y}; // dimenze vykreseleni
 
-    if (object->objectAnimationsType == ANIMATIONS_SINGLE) { // jestlize je objekt ciste jeden obrazek
-        SDL_RenderCopyEx(ren,object->animations[object->activeAnimationIndex].frames[0].texture, NULL, &dst,0.0,NULL,((object->animations[object->activeAnimationIndex].mirrored)?SDL_FLIP_VERTICAL:SDL_FLIP_NONE));
+    SDL_RendererFlip flippedMirrored = SDL_FLIP_NONE;
 
+    switch (object->animations[object->activeAnimationIndex].mirroredFlipped) {
+        case ANIMATION_FLIP: {
+            flippedMirrored = SDL_FLIP_HORIZONTAL;
+        }break;
+        case ANIMATION_MIRROR: {
+            flippedMirrored = SDL_FLIP_VERTICAL;
+        }break;
+        case ANIMATION_MIRROR_FLIP: {
+            flippedMirrored = SDL_FLIP_VERTICAL | SDL_FLIP_HORIZONTAL;
+        }break;
+    }
+
+
+    if (object->objectAnimationsType == ANIMATIONS_SINGLE) {
+        // jestlize je objekt ciste jeden obrazek
+        SDL_RenderCopyEx(
+            ren,
+            object->animations[object->activeAnimationIndex].frames[0].texture,
+            NULL,
+            &dst,
+            0.0,
+            NULL,
+            flippedMirrored);
     }else {
         if (object->animations[object->activeAnimationIndex].currentFrame >= object->animations[object->activeAnimationIndex].framesCount) { // jestlize je aktulani frame na konci, tak ho vynuluj, aby se aniamce zacla prehavat od zacatku
                 object->animations[object->activeAnimationIndex].currentFrame = 0;
         }
 
-
         int currFrame = object->animations[object->activeAnimationIndex].currentFrame; // ziska aktulani frame a vykresli ho
         SDL_RenderCopyEx(
             ren,
-            object->animations[object->activeAnimationIndex].frames[currFrame].texture, NULL, &dst, 0.0,NULL,((object->animations[object->activeAnimationIndex].mirrored)?SDL_FLIP_VERTICAL:SDL_FLIP_NONE));
+            object->animations[object->activeAnimationIndex].frames[currFrame].texture,
+            NULL,
+            &dst,
+            0.0,
+            NULL,
+            flippedMirrored);
 
         Uint32 time = SDL_GetTicks(); // ziska cas od zacatku zapnuti programu
 
@@ -30,6 +56,12 @@ bool Render_Object(SDL_Renderer *ren, struct Object *object) {
             object->animations[object->activeAnimationIndex].lastFrameTime = SDL_GetTicks();
         }
     }
+
+    // if (object->animations->repeatType == ANIMATION_ONCE) {
+    //     if (object->animations[object->activeAnimationIndex].currentFrame >= object->animations[object->activeAnimationIndex].framesCount) {
+    //         Object_SetActiveAnimationByName(object,"idle",object->animations[object->activeAnimationIndex].mirroredFlipped);
+    //     }
+    // }
 
     return false;
 }

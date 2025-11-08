@@ -32,5 +32,6 @@ add_executable(Projekt main.c
         src/render.h
         src/weapons.c
         src/weapons.h
+        src/basicStructs.c
 )
 target_link_libraries(Projekt ${SDL2_LIBRARIES} SDL2_image)

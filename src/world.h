@@ -8,13 +8,11 @@
 #include "object.h"
 
 struct World {
+    SDL_Renderer *renderer;
     struct Object *objects;
     int objectCount;
     struct Player *players;
     int playerCount;
-
-    struct Object *tickObjects;
-    int tickObjectsCount;
 };
 
 struct World World_Create();

@@ -11,4 +11,6 @@ struct Vector2 {
 };
 
 
+struct Vector2 Vector2_Subtract(struct Vector2 u,struct Vector2 v);
+
 #endif //PROJEKT_BASICSTRUCT_H

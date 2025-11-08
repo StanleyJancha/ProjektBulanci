@@ -42,21 +42,22 @@ bool Object_CheckCollision(struct World *world, struct Object *object) {
     }
 }
 
-bool Object_SetActiveAnimationByName(struct Object * object, char *animName, bool mirrored) {
+bool Object_SetActiveAnimationByName(struct Object * object, char *animName, enum AnimationMirrorFlip mirroredFlipped) {
     int newAnimationIndex = -1;
 
     for (int i = 0; i < object->animationsCount; ++i) {
         if ((strcmp(object->animations[i].name,animName) == 0) ) {
-            if (object->activeAnimationIndex == i && object->animations[i].mirrored == mirrored) { // jestlize tato animace uz je aktivni, tak konec
+            if (object->activeAnimationIndex == i && object->animations[i].mirroredFlipped == mirroredFlipped) { // jestlize tato animace uz je aktivni, tak konec
                 return true;
             }
             object->animations[i].currentFrame = 0; // nastavime aktivni smiek na 1., aby animace zacla od zacatku
-            object->animations[i].mirrored = mirrored;
+            object->animations[i].mirroredFlipped = mirroredFlipped;
             newAnimationIndex = i;
             break;
         }
     }
     if (newAnimationIndex == -1) {
+        printf("Nepodarilo se nacist animaci '%s' pro objekt '%s'",animName,object->name);
         return false;
     }
 
@@ -72,7 +73,7 @@ void Object_Destroy(struct Object *object) {
 
 void Object_Print(const struct Object *object) {
     printf("Object:\n\tName: %s\n", object->name);
-    for (int i = 0; i < object->animationsCount; ++i) {
-        Animation_PrintAnimation(&object->animations[i]);
-    }
+    // for (int i = 0; i < object->animationsCount; ++i) {
+    //     Animation_PrintAnimation(&object->animations[i]);
+    // }
 }

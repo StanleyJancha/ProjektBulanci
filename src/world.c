@@ -51,6 +51,7 @@ bool World_AddObject(struct World *world, struct Object *object) {
     return true;
 }
 
+
 bool World_AddPlayer(struct World *world, struct Player *player) {
     struct Player *newArray = malloc(sizeof(struct Player) * (world->playerCount + 1));
 
@@ -169,7 +170,7 @@ void World_Print(const struct World *world) {
     }
     printf("World:\n\tPlayers:\n");
     for (int i = 0; i < world->playerCount; i++) {
-        printf("%d. ",i);
+        printf("%d. Player\n ",i);
         struct Player player = world->players[i];
         Player_Print(&player);
     }

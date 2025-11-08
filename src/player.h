@@ -22,7 +22,7 @@ struct Player *Player_CreatePlayer(struct Object *object,struct Weapon *primaryW
 void Player_OnOverlapObject(struct World *world,struct Player * player, struct Object *object);
 void Player_PickUpWeapon(struct Player *player, struct Object *weaponObject);
 bool Player_MoveBy(struct Player *player, struct Vector2 addVector);
-bool Player_Shoot(struct Player *player);
+bool Player_Shoot(struct World *world,struct Player *player);
 bool Player_SetFacingDirectin(struct Player *player, enum ObjectFacing newDir);
 void Player_Print(const struct Player *player);
 void Player_Destroy(struct Player *player);

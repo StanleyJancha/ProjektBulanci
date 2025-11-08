@@ -14,4 +14,9 @@ Struktura
         
 
 
-pointry na funkce
+pokud se hrac hybe, tak spustit animaci
+pokud stoji, tak nech prvni snimek animace
+- mozna pouzit ANIMATION_SINGLE
+
+
+

@@ -15,6 +15,7 @@ enum Collisions {
 
 enum ObjectType {
     OBJECT_STATIC,
+    OBJECT_DYNAMIC,
     OBJECT_PICKUP_WEAPON,
     OBJECT_PLAYER
 };
@@ -43,8 +44,7 @@ struct Object {
 
 struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions, enum ObjectType objectType) ;
 bool Object_SetTextures(SDL_Renderer *ren, struct Object *object);
-bool Object_SetActiveAnimationByName(struct Object * object, char *animName, bool mirrored);
-
+bool Object_SetActiveAnimationByName(struct Object * object, char *animName, enum AnimationMirrorFlip mirroredFlipped);
 bool Object_MoveBy(struct Object *object, struct Vector2 addVector);
 
 

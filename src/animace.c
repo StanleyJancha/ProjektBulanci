@@ -67,6 +67,8 @@ bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *s
         Animation_SetTexture(renderer,&(*sprites)[i]); // nastavi textury
         if (strcmp(name,"psik") == 0) {
             (*sprites)[i].timeMilis = 500;//
+        }else if (strcmp(animName,"shoot") == 0) {
+            (*sprites)[i].timeMilis = 1500;//
         }
         else {
             (*sprites)[i].timeMilis = 100;//
@@ -80,7 +82,8 @@ bool Animation_SetAnimation(SDL_Renderer *renderer,struct Animation *animation,c
     animation->currentFrame = 0;
     animation->frames = NULL;
     animation->lastFrameTime = 0;
-    animation->mirrored = false;
+    animation->mirroredFlipped = ANIMATION_NOT_MIRRORED_FLIPPED;
+    animation->repeatType = ANIMATION_REPEAT;
     Animation_SetSprites(renderer,&animation->frames,&animation->framesCount,name,animName);
 
     return true;
@@ -125,12 +128,10 @@ int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *objec
 
     int animationsCount = Animation_GetAnimationsCount(object->name,animationNames);
 
-    // for (int i = 0; i < animationsCount; ++i) {
-    //     printf("Object: %s | anim: %s\n",object->name,animationNames[i]);
-    // }
-
     if (animationsCount < 1) {
         printf("Nenasly se animace pro objekt: %s",object->name);
+        object->animationsCount = 0;
+        return 0;
     }
     object->animationSetIndex = 0;
     object->activeAnimationIndex = 0;
