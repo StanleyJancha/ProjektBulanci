@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 #include <stdbool.h>
 
@@ -13,6 +14,7 @@
 #include "src/weapons.h"
 #include "src/animace.h"
 #include "src/render.h"
+#include "src/ui.h"
 
 #include "src/WorkingWithFiles.h"
 
@@ -23,12 +25,12 @@ void STARTPLAYERS(struct World *world) {
     //object
     struct Vector2 size2 = {100,100};
     struct Vector2 pos2 = {500,500};
-    struct Object *object2 = Object_CreateObject("tucnacek",size2,pos2,0,COLLISION_NONE,OBJECT_PLAYER);
+    struct Object *object2 = Object_CreateObject("player1",size2,pos2,0,COLLISION_NONE,OBJECT_PLAYER,WEST);
     Animation_AddAnimationsToObject(world->renderer,object2,ANIMATIONS_OBJECT,0);
     //weapon
     struct Vector2 size3 = {50,50};
     struct Vector2 pos3 = {500,500};
-    struct Object *weaponObject = Object_CreateObject("gun",size3,pos3,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON);
+    struct Object *weaponObject = Object_CreateObject("gun",size3,pos3,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
     Animation_AddAnimationsToObject(world->renderer,weaponObject,ANIMATIONS_OBJECT,0);
 
     struct Weapon *primaryWeapon = Weapon_CreateWeapon(weaponObject,5,3);
@@ -45,12 +47,12 @@ void STARTPLAYERS(struct World *world) {
     //object
     struct Vector2 size6 = {100,100};
     struct Vector2 pos6 = {600,300};
-    struct Object *object6 = Object_CreateObject("tucnacek",size6,pos6,0,COLLISION_NONE,OBJECT_PLAYER);
+    struct Object *object6 = Object_CreateObject("player2",size6,pos6,0,COLLISION_NONE,OBJECT_PLAYER,WEST);
     Animation_AddAnimationsToObject(world->renderer,object6,ANIMATIONS_OBJECT,0);
     //weapon
     struct Vector2 size9 = {50,50};
     struct Vector2 pos9 = {500,500};
-    struct Object *weaponObject9 = Object_CreateObject("gun",size9,pos9,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON);
+    struct Object *weaponObject9 = Object_CreateObject("gun",size9,pos9,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
     Animation_AddAnimationsToObject(world->renderer,weaponObject9,ANIMATIONS_OBJECT,0);
 
     struct Weapon *primaryWeapon9 = Weapon_CreateWeapon(weaponObject9,5,3);
@@ -74,7 +76,7 @@ void STARTMAP(struct World *world) {
 
     struct Vector2 size1 = {w,h};
     struct Vector2 pos1 = {0,0};
-    struct Object *object1 = Object_CreateObject("pozadi",size1,pos1,0,COLLISION_NONE,OBJECT_STATIC);
+    struct Object *object1 = Object_CreateObject("pozadi",size1,pos1,0,COLLISION_NONE,OBJECT_STATIC,WEST);
     Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_SINGLE,0);
 
     World_AddObject(world,object1);
@@ -83,7 +85,7 @@ void STARTMAP(struct World *world) {
 
     struct Vector2 size = {300,300};
     struct Vector2 pos = {100,100};
-    struct Object *object = Object_CreateObject("psik",size,pos,0,COLLISION_BLOCK,OBJECT_STATIC);
+    struct Object *object = Object_CreateObject("psik",size,pos,0,COLLISION_BLOCK,OBJECT_STATIC,WEST);
     Animation_AddAnimationsToObject(world->renderer,object,ANIMATIONS_OBJECT,0);
 
     World_AddObject(world,object);
@@ -92,7 +94,7 @@ void STARTMAP(struct World *world) {
 
     struct Vector2 size3 = {50,50};
     struct Vector2 pos3 = {650,500};
-    struct Object *object3 = Object_CreateObject("gun",size3,pos3,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON);
+    struct Object *object3 = Object_CreateObject("gun",size3,pos3,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
     Animation_AddAnimationsToObject(world->renderer,object3,ANIMATIONS_OBJECT,0);
 
     World_AddObject(world,object3);
@@ -177,8 +179,6 @@ void handleInput(struct World *world, const Uint8 *keys) {
                 if (Collsions_areColliding(&playerObjectCopy,&world->objects[j])){
                     if (world->objects[j].collision == COLLISION_BLOCK) {
                         canMove = false;
-                    }else if (world->objects[j].collision == COLLISION_OVERLAP) {
-                        Player_OnOverlapObject(world,player,&world->objects[j]);
                     }
                 }
             }
@@ -204,6 +204,8 @@ int main() {
                                        1080, 720,
                                        0);
     Uint32 startTime = SDL_GetTicks();
+
+    struct UI_Manager ui_manager = UI_Manager_Create();
 
     struct World world = World_Create();
     world.renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
@@ -249,7 +251,42 @@ int main() {
         handleInput(&world, keys);
 
         for (int i = 0; i < world.objectCount; ++i) {
+            if (world.objects[i].objectType == OBJECT_DYNAMIC) {
+                Object_Tick(&world.objects[i]);
+            }
+        }
 
+        for (int i = 0; i < world.objectCount; ++i) {
+            if (world.objects[i].objectType == OBJECT_DYNAMIC) {
+                for (int j = 0; j < world.playerCount; ++j) {
+                    if (Collsions_areColliding(&world.objects[i],&world.players[j].object)) {
+                        char name[32];
+                        strcpy(name,world.objects[i].name);
+                        char *token = strtok(name,"_");
+                        if (strcmp(token,"bullet") == 0) {
+                            token = strtok(NULL,"_");
+                            if (token == NULL){continue;}
+                            if (strcmp(token,world.players[j].object.name) != 0) {
+                                Player_TakeDamage(&world.players[j],1);
+                                World_RemoveObject(&world,&world.objects[i],true);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (world.objects[i].objectType == OBJECT_PICKUP_WEAPON) {
+                for (int j = 0; j < world.playerCount; ++j) {
+                    if (Collsions_areColliding(&world.objects[i],&world.players[j].object)) {
+                        if (world.players[j].secondaryWeapon == NULL) { // pickup secondary weapon
+                            world.objects[i].collision = COLLISION_NONE;
+                            Player_PickUpWeapon(&world.players[j],&world.objects[i]);
+                            World_RemoveObject(&world,&world.objects[i],false);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         /* ----------------- END Main loop ----------------- */
@@ -288,12 +325,37 @@ int main() {
             }
         }
 
+
+        int bulletDestroyTimeMs = 2000;
+        // mazani objektu kulek po case
+        int objectsToDestroy[5] = {-1,-1,-1,-1,-1};
+        int j = 0;
+        for (int i = 0; i < world.objectCount; ++i) {
+            char nameCopy[32];
+            strcpy(nameCopy,world.objects[i].name);
+            if (strcmp(strtok(nameCopy,"_"),"bullet") == 0) {
+                if (SDL_GetTicks() - world.objects[i].spawnTime > bulletDestroyTimeMs) {
+                    objectsToDestroy[j] = i;
+                    j++;
+                }
+            }
+            // free(tmp);
+        }
+        for (int i = 0; i < 5; ++i) {
+            if (objectsToDestroy[i] != -1) {
+                World_RemoveObject(&world,&world.objects[objectsToDestroy[i]],false);
+            }
+        }
+
+
         SDL_RenderPresent(world.renderer);
         SDL_Delay(16); // ~60 FPS
 
     }
 
         World_Destroy(&world);
+
+        UI_Manager_Destroy(&ui_manager);
 
         SDL_DestroyRenderer(world.renderer);
         SDL_DestroyWindow(win);

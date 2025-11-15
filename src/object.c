@@ -13,7 +13,7 @@
 
 #include "animace.h"
 
-struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions, enum ObjectType objectType) {
+struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions, enum ObjectType objectType,enum ObjectFacing objectDir) {
     struct Object *object = malloc(sizeof(struct Object));
     if (!object) return NULL;
 
@@ -24,6 +24,8 @@ struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct
     object->zLayer = zLayer;
     object->collision = collions;
     object->objectType = objectType;
+    object->objectDir = objectDir;
+    object->spawnTime = SDL_GetTicks();;
 
     return object;
 }
@@ -40,6 +42,23 @@ bool Object_CheckCollision(struct World *world, struct Object *object) {
         printf("is player Colliding: %d", Collsions_areColliding(object, &world->objects[i]));
 
     }
+}
+
+void Object_Tick(struct Object *object) {
+    char name[32];
+    strcpy(name,object->name);
+    if (strcmp(strtok(name,"_"), "bullet") == 0) {
+        int bulletSpeed = 10;
+        struct Vector2 addVector = {
+            (object->objectDir == WEST)?-bulletSpeed:(object->objectDir == EAST)?bulletSpeed:0,
+            (object->objectDir == NORTH)?-bulletSpeed:(object->objectDir == SOUTH)?bulletSpeed:0
+        };
+        Object_MoveBy(object,addVector);
+    }
+}
+
+void Object_OnOverLapWithObject(struct World *world,struct Object *object1, struct Object *object2) {
+
 }
 
 bool Object_SetActiveAnimationByName(struct Object * object, char *animName, enum AnimationMirrorFlip mirroredFlipped) {
@@ -65,6 +84,25 @@ bool Object_SetActiveAnimationByName(struct Object * object, char *animName, enu
     return true;
 
 }
+
+double Object_GetAngleFromDir(enum ObjectFacing dir) {
+    switch (dir) {
+        case NORTH: {
+            return -90;
+        }break;
+        case EAST: {
+            return 0;
+        }break;
+        case SOUTH: {
+            return 90;
+        }break;
+        case WEST: {
+            return 180;
+        }break;
+    }
+    return 0;
+}
+
 
 void Object_Destroy(struct Object *object) {
     Animation_RemoveAnimations(object);

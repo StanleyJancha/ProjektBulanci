@@ -23,24 +23,47 @@ struct Player *Player_CreatePlayer(struct Object *object,struct Weapon *primaryW
     player->PlayerKeybindSetIndex = PlayerKeybindSetIndex;
     player->speed = speed;
     player->HP = HP;
+    player->lastBulletShotTime = 0;
 
     return player;
 }
 
 void Player_OnOverlapObject(struct World *world,struct Player * player, struct Object *object) {
+    printf("OVERLAP DYNAMIC %s %s\n",player->object.name,object->name);
     if (object->objectType == OBJECT_PICKUP_WEAPON) {
-        if (player->secondaryWeapon == NULL) {
-            object->collision = COLLISION_NONE;
-            Player_PickUpWeapon(player,object);
-            World_RemoveObject(world,object,false);
+
+    }
+    else if (object->objectType == OBJECT_DYNAMIC) {
+        char name[32];
+        strcpy(name,object->name);
+        char *token = strtok(name,"_");
+        if (strcmp(token,"bullet") == 0) {
+            token = strtok(NULL,"_");
+            if (token == NULL){return;}
+            if (strcmp(token,player->object.name) != 0) {
+                printf("shoot player");
+            }
         }
     }
 }
 
 bool Player_Shoot(struct World *world,struct Player *player) {
+    int weaponCooldown = (player->secondaryWeapon == NULL)?500:200;
+
+    if (SDL_GetTicks() - player->lastBulletShotTime < weaponCooldown) {
+        return false;
+    }
+    player->lastBulletShotTime = SDL_GetTicks();
+
     struct Vector2 size1 = {50,50};
 
-    struct Object *object1 = Object_CreateObject("bullet",size1,player->primaryWeapon->object.position,0,COLLISION_NONE,OBJECT_DYNAMIC);
+    char bulletName[32];
+    char playerName[32];
+    strcpy(bulletName,"bullet_");
+    strcpy(playerName,player->object.name);
+    strcat(bulletName,playerName);
+
+    struct Object *object1 = Object_CreateObject(bulletName,size1,player->primaryWeapon->object.position,0,COLLISION_OVERLAP,OBJECT_DYNAMIC,player->object.objectDir);
     Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_SINGLE,0);
 
     World_AddObject(world,object1);
@@ -133,10 +156,20 @@ void Player_PickUpWeapon(struct Player *player, struct Object *weaponObject) {
     Weapon_SetStatsByName(player->secondaryWeapon);
 }
 
+void Player_Die(struct Player *player) {
+    printf("Player %s died\n",player->object.name);
+}
 
 int Player_TakeDamage(struct Player *player, int damage) {
+    if (player == NULL){printf("Player je NULL pri dostani damage\n");}
 
+    player->HP -= damage;
+    if (player->HP < 0) {
+        printf("%s dostal %d damage\n",player->object.name,damage);
+        Player_Die(player);
+    }
 }
+
 
 void Player_Destroy(struct Player *player) {
     Object_Destroy(&player->object);

@@ -23,7 +23,7 @@ void STARTPLAYERS(struct World *world, SDL_Renderer *renderer) {
     //object
     struct Vector2 size2 = {100,100};
     struct Vector2 pos2 = {500,500};
-    struct Object *object2 = Object_CreateObject("tucnacek",size2,pos2,0,COLLISION_NONE,OBJECT_PLAYER);
+    struct Object *object2 = Object_CreateObject("player1",size2,pos2,0,COLLISION_NONE,OBJECT_PLAYER);
     Animation_AddAnimationsToObject(renderer,object2,ANIMATIONS_OBJECT,0);
     //weapon
     struct Vector2 size3 = {50,50};

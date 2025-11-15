@@ -24,12 +24,12 @@ bool Animation_SetTexture(SDL_Renderer *ren, struct Sprite *sprite) {
     return true;
 }
 
-bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *spriteCount,char name[32], char animName[32]) {
+bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *spriteCount,char objectName[32], char animName[32]) {
     struct dirent *entry;
 
     char path[256];
 
-    snprintf(path, 256, "anims/%s/%s", name, animName); // vytvori cestu
+    snprintf(path, 256, "anims/%s/%s", objectName, animName); // vytvori cestu
 
     DIR *dir = opendir(path);
 
@@ -57,7 +57,7 @@ bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *s
     closedir(dir);
 
     if (filesCount < 1) {
-        printf("Nenasly se sprity pro animaci: %s pro objekt: %s",animName,name);
+        printf("Nenasly se sprity pro animaci: %s pro objekt: %s",animName,objectName);
     }
 
     *sprites = malloc(sizeof(struct Sprite) * filesCount);
@@ -65,7 +65,7 @@ bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *s
     for (int i = 0; i < filesCount; ++i) {
         strcpy((*sprites)[i].spritePath,temporaryArray[i]); // nastaveni cesty
         Animation_SetTexture(renderer,&(*sprites)[i]); // nastavi textury
-        if (strcmp(name,"psik") == 0) {
+        if (strcmp(objectName,"psik") == 0) {
             (*sprites)[i].timeMilis = 500;//
         }else if (strcmp(animName,"shoot") == 0) {
             (*sprites)[i].timeMilis = 1500;//
@@ -77,14 +77,14 @@ bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *s
     *spriteCount = filesCount;
 }
 
-bool Animation_SetAnimation(SDL_Renderer *renderer,struct Animation *animation,char name[32], char animName[32]) {
+bool Animation_SetAnimation(SDL_Renderer *renderer,struct Animation *animation,char objectName[32], char animName[32]) {
     strcpy(animation->name, animName);
     animation->currentFrame = 0;
     animation->frames = NULL;
     animation->lastFrameTime = 0;
     animation->mirroredFlipped = ANIMATION_NOT_MIRRORED_FLIPPED;
     animation->repeatType = ANIMATION_REPEAT;
-    Animation_SetSprites(renderer,&animation->frames,&animation->framesCount,name,animName);
+    Animation_SetSprites(renderer,&animation->frames,&animation->framesCount,objectName,animName);
 
     return true;
 
@@ -92,6 +92,7 @@ bool Animation_SetAnimation(SDL_Renderer *renderer,struct Animation *animation,c
 
 int Animation_GetAnimationsCount(char objectName[32], char animNames[99][32]) {
     char path[256];
+
 
     snprintf(path, 256, "anims/%s", objectName); // vytvori cestu
     DIR *dir = opendir(path);
@@ -125,8 +126,11 @@ int Animation_GetAnimationsCount(char objectName[32], char animNames[99][32]) {
 int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *object, enum ObjectAnimationsType objectAnimationsType, int AnimationSetIndex) {
 
     char animationNames[99][32];
+    char objectNameCopy[32];
+    strcpy(objectNameCopy,object->name);
+    char *nameStrtokTmp = strtok(objectNameCopy, "_");
 
-    int animationsCount = Animation_GetAnimationsCount(object->name,animationNames);
+    int animationsCount = Animation_GetAnimationsCount(nameStrtokTmp,animationNames);
 
     if (animationsCount < 1) {
         printf("Nenasly se animace pro objekt: %s",object->name);
@@ -136,10 +140,11 @@ int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *objec
     object->animationSetIndex = 0;
     object->activeAnimationIndex = 0;
     object->animationsCount = animationsCount;
+    object->objectAnimationsType = objectAnimationsType;
     object->animations = malloc(sizeof(struct Animation) * object->animationsCount);
 
     for (int i = 0; i < object->animationsCount; ++i) {
-        Animation_SetAnimation(renderer,&object->animations[i],object->name,animationNames[i]);
+        Animation_SetAnimation(renderer,&object->animations[i],nameStrtokTmp,animationNames[i]);
     }
 
     return 1;

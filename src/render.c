@@ -7,9 +7,17 @@
 
 bool Render_Object(SDL_Renderer *ren, struct Object *object) {
 
+    if (strcmp(object->name, "bullet") == 0) {
+        int x = 15;
+    }
+
     SDL_Rect dst = {object->position.x, object->position.y, object->size.x, object->size.y}; // dimenze vykreseleni
 
     SDL_RendererFlip flippedMirrored = SDL_FLIP_NONE;
+
+    if (&object->animations[object->activeAnimationIndex] == NULL) {
+        printf("Chyba u objektu %s",object->name);
+    }
 
     switch (object->animations[object->activeAnimationIndex].mirroredFlipped) {
         case ANIMATION_FLIP: {
@@ -24,14 +32,15 @@ bool Render_Object(SDL_Renderer *ren, struct Object *object) {
     }
 
 
-    if (object->objectAnimationsType == ANIMATIONS_SINGLE) {
-        // jestlize je objekt ciste jeden obrazek
+    if (object->objectAnimationsType == ANIMATIONS_SINGLE) { // jestlize je objekt ciste jeden obrazek
+        double angle = (object->objectType == OBJECT_DYNAMIC)?Object_GetAngleFromDir(object->objectDir):0;
+
         SDL_RenderCopyEx(
             ren,
             object->animations[object->activeAnimationIndex].frames[0].texture,
             NULL,
             &dst,
-            0.0,
+            angle,
             NULL,
             flippedMirrored);
     }else {

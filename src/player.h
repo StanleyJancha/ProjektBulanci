@@ -13,6 +13,7 @@ struct Player {
     struct Object object;
     struct Weapon *primaryWeapon;
     struct Weapon *secondaryWeapon;
+    Uint32 lastBulletShotTime;
     int PlayerKeybindSetIndex;
     int speed;
     int HP;
