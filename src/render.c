@@ -5,13 +5,11 @@
 
 #include <SDL_timer.h>
 
+#include "ui.h"
+
 bool Render_Object(SDL_Renderer *ren, struct Object *object) {
-
-    if (strcmp(object->name, "bullet") == 0) {
-        int x = 15;
-    }
-
-    SDL_Rect dst = {object->position.x, object->position.y, object->size.x, object->size.y}; // dimenze vykreseleni
+    double scale = 1;
+    SDL_Rect dst = {object->position.x*scale, object->position.y*scale, object->size.x*scale, object->size.y*scale}; // dimenze vykreseleni
 
     SDL_RendererFlip flippedMirrored = SDL_FLIP_NONE;
 
@@ -73,4 +71,62 @@ bool Render_Object(SDL_Renderer *ren, struct Object *object) {
     // }
 
     return false;
+}
+
+
+bool Render_UI(SDL_Renderer *ren,struct UI *ui) {
+    double scale = 1;
+    SDL_Rect dst = {ui->position.x*scale, ui->position.y*scale, ui->size.x*scale, ui->size.y*scale}; // dimenze vykreseleni
+
+    if (ui->animation.frames != NULL) {
+
+        if (ui->animation.framesCount == 1) { // jestlize je objekt ciste jeden obrazek
+
+            SDL_RenderCopyEx(
+                ren,
+                ui->animation.frames[0].texture,
+                NULL,
+                &dst,
+                0,
+                NULL,
+                SDL_FLIP_NONE);
+        }else {
+            if (ui->animation.currentFrame >= ui->animation.framesCount) { // jestlize je aktulani frame na konci, tak ho vynuluj, aby se aniamce zacla prehavat od zacatku
+                    ui->animation.currentFrame = 0;
+            }
+
+            int currFrame = ui->animation.currentFrame; // ziska aktulani frame a vykresli ho
+
+            SDL_RenderCopyEx(
+                ren,
+                ui->animation.frames[ui->animation.currentFrame].texture,
+                NULL,
+                &dst,
+                0.0,
+                NULL,
+                SDL_FLIP_NONE);
+
+            Uint32 time = SDL_GetTicks(); // ziska cas od zacatku zapnuti programu
+
+            if (time - ui->animation.lastFrameTime >= ui->animation.frames[currFrame].timeMilis) { // nastavi dalsi frame, jestli uz uplynul cas, ktery frame musi trvat
+                ui->animation.currentFrame++;
+                ui->animation.lastFrameTime = SDL_GetTicks();
+            }
+        }
+    }
+
+    if (ui->contentType == UI_TEXT) {
+        SDL_RenderCopyEx(
+            ren,
+            ui->content.text.textTexture,
+            NULL,
+            &dst,
+            0,
+            NULL,
+            SDL_FLIP_NONE);
+    }
+
+    if (ui->child != NULL) {
+        Render_UI(ren,ui->child);
+    }
 }

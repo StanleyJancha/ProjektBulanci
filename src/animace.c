@@ -9,6 +9,7 @@
 #include <SDL_image.h>
 
 #include "object.h"
+#include "ui.h"
 
 bool Animation_SetTexture(SDL_Renderer *ren, struct Sprite *sprite) {
     SDL_Surface* surface = IMG_Load(sprite->spritePath);
@@ -83,7 +84,7 @@ bool Animation_SetAnimation(SDL_Renderer *renderer,struct Animation *animation,c
     animation->frames = NULL;
     animation->lastFrameTime = 0;
     animation->mirroredFlipped = ANIMATION_NOT_MIRRORED_FLIPPED;
-    animation->repeatType = ANIMATION_REPEAT;
+    animation->repeatType = -1;
     Animation_SetSprites(renderer,&animation->frames,&animation->framesCount,objectName,animName);
 
     return true;
@@ -150,6 +151,26 @@ int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *objec
     return 1;
 }
 
+int Animation_AddAnimationToUI(SDL_Renderer *renderer, struct UI *ui){
+    if (ui == NULL) {
+        return -1;
+    }
+
+    char animationNames[99][32];
+
+    int animationsCount = Animation_GetAnimationsCount(ui->identifier,animationNames);
+
+    if (animationsCount < 1) {
+        printf("Nenasly se animace pro UI: %s (u UI to neni vylozene spatne. Pokud je to text, tak nemusi mit pozadi)\n",ui->identifier);
+        ui->animation.frames = NULL;
+        return -1;
+    }
+
+    Animation_SetAnimation(renderer,&ui->animation,ui->identifier,animationNames[0]);
+
+    return 1;
+}
+
 bool Animation_RemoveAnimations(struct Object *object) {
     for (int i = 0; i < object->animationsCount; ++i) {
         for (int j = 0; j < object->animations[i].framesCount; ++j) {
@@ -162,6 +183,17 @@ bool Animation_RemoveAnimations(struct Object *object) {
 
     free(object->animations);
     object->animations = NULL;
+
+    return true;
+}
+
+bool Animation_RemoveAnimation(struct Animation *animation) {
+    for (int j = 0; j < animation->framesCount; ++j) {
+        SDL_DestroyTexture(animation->frames[j].texture);
+    }
+
+    free(animation->frames);
+    animation->frames = NULL;
 
     return true;
 }

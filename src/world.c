@@ -118,6 +118,7 @@ bool World_RemoveObject(struct World *world, struct Object *object, bool destroy
 
     return true;
 }
+
 bool World_RemovePlayer(struct World *world, struct Player *player) {
     if (world->playerCount <= 0){return -3;} // jesli je pocet keys 0, tak neni co mazat
 

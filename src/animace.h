@@ -8,6 +8,7 @@
 #include <stdbool.h>
 
 struct Object;
+struct UI;
 
 enum ObjectAnimationsType {
     ANIMATIONS_PLAYER,
@@ -63,6 +64,8 @@ struct Animation {
 int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *object, enum ObjectAnimationsType objectAnimationsType, int AnimationSetIndex) ;
 bool Animation_GetAnimation(struct Animation *animation,char objectName[32], char animName[32]);
 bool Animation_RemoveAnimations(struct Object *object);
+bool Animation_RemoveAnimation(struct Animation *animation);
+int Animation_AddAnimationToUI(SDL_Renderer *renderer, struct UI *ui);
 void Animation_PrintAnimation(const struct Animation *animation);
 
 #endif //PROJEKT_ANIMACE_H
