@@ -30,7 +30,7 @@ bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *s
 
     char path[256];
 
-    snprintf(path, 256, "anims/%s/%s", objectName, animName); // vytvori cestu
+    snprintf(path, 256, "animations/%s/%s", objectName, animName); // vytvori cestu
 
     DIR *dir = opendir(path);
 
@@ -91,11 +91,10 @@ bool Animation_SetAnimation(SDL_Renderer *renderer,struct Animation *animation,c
 
 }
 
-int Animation_GetAnimationsCount(char objectName[32], char animNames[99][32]) {
+int Animation_GetAnimationsCount(char objectName[32], char animNames[99][32],enum Animation_ObjectType type) {
     char path[256];
 
-
-    snprintf(path, 256, "anims/%s", objectName); // vytvori cestu
+    snprintf(path, 256, (type == ANIMATION_OBJECT)?"animations/%s":"animations_ui/%s", objectName); // vytvori cestu
     DIR *dir = opendir(path);
 
     if (dir == NULL) {
@@ -131,7 +130,7 @@ int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *objec
     strcpy(objectNameCopy,object->name);
     char *nameStrtokTmp = strtok(objectNameCopy, "_");
 
-    int animationsCount = Animation_GetAnimationsCount(nameStrtokTmp,animationNames);
+    int animationsCount = Animation_GetAnimationsCount(nameStrtokTmp,animationNames,ANIMATION_OBJECT);
 
     if (animationsCount < 1) {
         printf("Nenasly se animace pro objekt: %s",object->name);
@@ -158,7 +157,7 @@ int Animation_AddAnimationToUI(SDL_Renderer *renderer, struct UI *ui){
 
     char animationNames[99][32];
 
-    int animationsCount = Animation_GetAnimationsCount(ui->identifier,animationNames);
+    int animationsCount = Animation_GetAnimationsCount(ui->identifier,animationNames,ANIMATION_UI);
 
     if (animationsCount < 1) {
         printf("Nenasly se animace pro UI: %s (u UI to neni vylozene spatne. Pokud je to text, tak nemusi mit pozadi)\n",ui->identifier);

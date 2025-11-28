@@ -198,65 +198,55 @@ void loadMainMenuUIs(struct World *world,struct UI_Manager *ui_manager) {
 
 }
 void loadPauseMenuUIs(struct World *world,struct UI_Manager *ui_manager) {
+    SDL_Color color = {255,255,255,255};
+
     struct Vector2 pos = {500,300};
     struct Vector2 size = {200,100};
 
-    struct UI *buttonUI = UI_CreateButtonUI("button_pause",pos,size,"unpause_game");
-    Animation_AddAnimationToUI(world->renderer,buttonUI);
+    struct UI_Events *pauseButtonEvents = malloc(sizeof(struct UI_Events));
+    strcpy(pauseButtonEvents->onClick, "unpause_game");
 
-    struct Vector2 pos2 = {500,300};
-    struct Vector2 size2 = {200,100};
+    struct UI *pauseButton = UI_CreateUI("button_pause",pos,size,"Unpause",pauseButtonEvents);
+    Animation_AddAnimationToUI(world->renderer,pauseButton);
 
-    struct UI *textUI = UI_CreateTextUI("button_pause_text",pos2,size2,"Continue");
-    Animation_AddAnimationToUI(world->renderer,textUI);
+    pauseButton->text.textTexture = UI_GetTextTexture(world->renderer,pauseButton->text.textToDisplay,color,25);
 
-    SDL_Color color = {255,255,255,255};
+    UI_Manager_AddUI(ui_manager,pauseButton);
 
-    textUI->content.text.textTexture = UI_GetTextTexture(world->renderer,textUI->content.text.textToDisplay,color,25);
-
-    UI_SetChild(buttonUI,textUI);
-
-    UI_Manager_AddUI(ui_manager,buttonUI);
-
-    free(buttonUI);
+    free(pauseButton);
 
     struct Vector2 pos3 = {500,500};
     struct Vector2 size3 = {200,100};
 
-    struct UI *buttonUI2 = UI_CreateButtonUI("main_menu_button",pos3,size3,"goToMainMenu");
-    Animation_AddAnimationToUI(world->renderer,buttonUI2);
+    struct UI_Events *mainMenuButtonEvents = malloc(sizeof(struct UI_Events));
+    strcpy(mainMenuButtonEvents->onClick, "unpause_game");
 
-    struct Vector2 pos4 = {500,500};
-    struct Vector2 size4 = {200,100};
+    struct UI *mainMenuButton = UI_CreateUI("main_menu_button",pos3,size3,"Main Menu",mainMenuButtonEvents);
+    Animation_AddAnimationToUI(world->renderer,mainMenuButton);
 
-    struct UI *textUI2 = UI_CreateTextUI("button_pause_text",pos4,size4,"Continue");
-    Animation_AddAnimationToUI(world->renderer,textUI2);
+    if (strcmp(mainMenuButton->text.textToDisplay, "") != 0) {
+        mainMenuButton->text.textTexture = UI_GetTextTexture(world->renderer,mainMenuButton->text.textToDisplay,color,25);
+    }
 
-    SDL_Color color2 = {255,255,255,255};
+    UI_Manager_AddUI(ui_manager,mainMenuButton);
 
-    textUI2->content.text.textTexture = UI_GetTextTexture(world->renderer,textUI2->content.text.textToDisplay,color2,25);
-
-    UI_SetChild(buttonUI2,textUI2);
-
-    UI_Manager_AddUI(ui_manager,buttonUI2);
-
-    free(buttonUI2);
+    free(mainMenuButton);
 }
 void loadInGameUIs(struct World *world,struct UI_Manager *ui_manager) {
 
     struct Vector2 pos2 = {0,0};
     struct Vector2 size2 = {200,100};
 
-    struct UI *textUI = UI_CreateTextUI("game_timer",pos2,size2,"00:00");
-    Animation_AddAnimationToUI(world->renderer,textUI);
+    struct UI *gameTimerUI = UI_CreateUI("game_timer",pos2,size2,"00:00",NULL);
+    Animation_AddAnimationToUI(world->renderer,gameTimerUI);
 
     SDL_Color color = {255,255,255,255};
 
-    textUI->content.text.textTexture = UI_GetTextTexture(world->renderer,textUI->content.text.textToDisplay,color,25);
+    gameTimerUI->text.textTexture = UI_GetTextTexture(world->renderer,gameTimerUI->text.textToDisplay,color,25);
 
-    UI_Manager_AddUI(ui_manager,textUI);
+    UI_Manager_AddUI(ui_manager,gameTimerUI);
 
-    free(textUI);
+    free(gameTimerUI);
 
 }
 
@@ -303,12 +293,11 @@ int main() {
 
     //World_Print(&world);
 
-    /* ----------------- Main loop ----------------- */
-
     bool running = true;
     SDL_Event e;
 
     while (running) {
+        // region Region Event Loop
         while (SDL_PollEvent(&e)) {
             switch (e.type) {
                 case SDL_QUIT:{ // ZAVRIT OKNO
@@ -343,19 +332,20 @@ int main() {
                         struct UI *clickedOnUI = UI_MouseOnUI(ui_managerPauseMenu,mousePos); // nekontroluje zatim child UI, pouze prvni vrstvu
                         if (clickedOnUI != NULL) {
                             printf("Clicknul na '%s' UI\n",clickedOnUI->identifier);
-                            UI_ButtonCallEvent(&world,&gamerule,clickedOnUI->content.button.functionName);
+                            UI_ButtonCallEvent(&world,&gamerule,clickedOnUI->events->onClick);
                         }
                     }
 
                 }break;
             }
         }
+        // endregion
 
         if (!gamerule.gamePaused) {
             const Uint8 *keys = SDL_GetKeyboardState(NULL);
             handleInput(&world, keys);
 
-
+            // region Dealing with dynamic objects (bullets and guns)
             for (int i = 0; i < world.objectCount; ++i) {
                 if (world.objects[i].objectType == OBJECT_DYNAMIC) {
                     Object_Tick(&world.objects[i]);
@@ -394,26 +384,30 @@ int main() {
                     }
                 }
             }
+            // endregion
         }
 
         /* ----------------- END Main loop ----------------- */
 
-        /////RENDER
+        // region Rendering objects and players
 
         SDL_RenderClear(world.renderer);
 
+        // Static objects
         for (int i = 0; i < world.objectCount; ++i) {
             if (world.objects[i].objectType == OBJECT_STATIC) {
                 Render_Object(world.renderer, &world.objects[i]);
             }
         }
 
+        // Pickable weapons
         for (int i = 0; i < world.objectCount; ++i) {
             if (world.objects[i].objectType == OBJECT_PICKUP_WEAPON) {
                 Render_Object(world.renderer, &world.objects[i]);
             }
         }
 
+        // Players
         for (int i = 0; i < world.playerCount; ++i) {
             Render_Object(world.renderer, &world.players[i].object);
 
@@ -426,12 +420,15 @@ int main() {
             }
         }
 
+        // Dynamic objects
         for (int i = 0; i < world.objectCount; ++i) {
             if (world.objects[i].objectType == OBJECT_DYNAMIC) {
                 Render_Object(world.renderer, &world.objects[i]);
             }
         }
+        // endregion
 
+        // region Bullet time destruction
         if (!gamerule.gamePaused) {
             int bulletDestroyTimeMs = 2000;
             // mazani objektu kulek po case
@@ -446,7 +443,6 @@ int main() {
                         j++;
                     }
                 }
-                // free(tmp);
             }
             for (int i = 0; i < 5; ++i) {
                 if (objectsToDestroy[i] != -1) {
@@ -454,8 +450,9 @@ int main() {
                 }
             }
         }
+        // regionend
 
-        // NASTAVENI CASU V TIMERU
+        // region Setting game time for UI
         if (!gamerule.gamePaused) {
             struct UI *clockUI = UI_Manager_GetUIByIdentifier(&ui_managerInGame,"game_timer");
             if (clockUI) {
@@ -465,16 +462,16 @@ int main() {
                 sprintf(timerText,"%02d:%02d",
                     (seconds/60%100),
                     (seconds%60)%100);
-                if (strcmp(timerText,clockUI->content.text.textToDisplay) != 0) {
+                if (strcmp(timerText,clockUI->text.textToDisplay) != 0) {
                     SDL_Color color = {255,255,255};
-                    strcpy(clockUI->content.text.textToDisplay,timerText);
-                    clockUI->content.text.textTexture = UI_GetTextTexture(world.renderer,timerText,color,32);
+                    strcpy(clockUI->text.textToDisplay,timerText);
+                    clockUI->text.textTexture = UI_GetTextTexture(world.renderer,timerText,color,32);
                 }
             }else{printf("Nelze najit UI pro TIMER ve hre");}
         }
+        // endregion
 
-
-        //render UI
+        // region Render UI
 
         for (int i = 0; i < ui_managerInGame.count; ++i) {
             Render_UI(world.renderer,&ui_managerInGame.UIs[i]);
@@ -485,13 +482,15 @@ int main() {
                 Render_UI(world.renderer,&ui_managerPauseMenu.UIs[i]);
             }
         }
-
+        // endregion
 
 
         SDL_RenderPresent(world.renderer);
         SDL_Delay(16); // ~60 FPS
 
     }
+
+        // After game exit destruction
 
         World_Destroy(&world);
 

@@ -115,10 +115,10 @@ bool Render_UI(SDL_Renderer *ren,struct UI *ui) {
         }
     }
 
-    if (ui->contentType == UI_TEXT) {
+    if (ui->text.textTexture) {
         SDL_RenderCopyEx(
             ren,
-            ui->content.text.textTexture,
+            ui->text.textTexture,
             NULL,
             &dst,
             0,

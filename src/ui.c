@@ -9,8 +9,12 @@
 void UI_Manager_Destroy(struct UI_Manager *manager) {
     for (int i = 0; i < manager->count; ++i) {
         Animation_RemoveAnimation(&manager->UIs[i].animation);
-        if (manager->UIs[i].contentType == UI_TEXT) {
-            SDL_DestroyTexture(manager->UIs[i].content.text.textTexture);
+        if (manager->UIs[i].text.textTexture != NULL) {
+            SDL_DestroyTexture(manager->UIs[i].text.textTexture);
+        }
+        if (manager->UIs[i].events != NULL) {
+            free(manager->UIs[i].events);
+            manager->UIs[i].events = NULL;
         }
     }
 }
@@ -23,7 +27,7 @@ struct UI_Manager UI_Manager_Create() {
     return ui_manager;
 }
 
-struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vector2 size) {
+struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vector2 size,char text[64],struct UI_Events *events) {
     struct UI *ui = malloc(sizeof(struct UI));
     if (ui == NULL) return NULL;
     strcpy(ui->identifier, identifier);
@@ -32,34 +36,15 @@ struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vect
     ui->visibility = VISIBLE;
     ui->child = NULL;
 
-    return ui;
-}
-
-void UI_Text_SetTextTexture(struct World world, struct UI_Text ui) {
-
-}
-
-struct UI *UI_CreateTextUI(char identifier[64], struct Vector2 position, struct Vector2 size, char defaultText[64]) {
-    struct UI *ui = UI_CreateUI(identifier,position,size);
-    ui->contentType = UI_TEXT;
-
-    strcpy(ui->content.text.textToDisplay,defaultText);
-
-    return ui;
-}
-
-struct UI *UI_CreateButtonUI(char identifier[64], struct Vector2 position, struct Vector2 size, char functionName[64]) {
-    struct UI *ui = UI_CreateUI(identifier,position,size);
-    ui->contentType = UI_BUTTON;
-
-    strcpy(ui->content.button.functionName,functionName);
+    strcpy(ui->text.textToDisplay,text);
+    ui->events = events;
 
     return ui;
 }
 
 bool UI_SetChild(struct UI *parent, struct UI *child) {
-    if (parent == NULL) {printf("UI_SetChild - parent not valid") ;return false;}
-    if (child == NULL) {printf("UI_SetChild - child for \"%s\" not valid",parent->identifier) ;return false;}
+    if (parent == NULL) {printf("UI_SetChild - parent not valid\n") ;return false;}
+    if (child == NULL) {printf("UI_SetChild - child for \"%s\" not valid\n",parent->identifier) ;return false;}
 
     parent->child = child;
     return true;
@@ -120,7 +105,7 @@ bool UI_MouseInside(struct UI *ui, struct Vector2 mouse) {
 
 struct UI *UI_MouseOnUI(struct UI_Manager uiManager,struct Vector2 mousePos) {
     for (int i = uiManager.count - 1; i >= 0; --i) {
-        if (uiManager.UIs[i].contentType == UI_BUTTON) {
+        if (strcmp(uiManager.UIs[i].events->onClick, "") != 0) {
             if (UI_MouseInside(&uiManager.UIs[i],mousePos)) {
                 return &uiManager.UIs[i];
             }
@@ -129,13 +114,15 @@ struct UI *UI_MouseOnUI(struct UI_Manager uiManager,struct Vector2 mousePos) {
     return NULL;
 }
 
-bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,char functionName[64]) {
-    if (strcmp(functionName,"unpause_game") == 0) {
+bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,char *eventName) {
+    if (strcmp(eventName,"unpause_game") == 0) {
         Gamerule_UnpauseGame(gamerule);
-    }else
-    if (strcmp(functionName,"") == 0) {
+        return true;
+    }
+    if (strcmp(eventName,"") == 0) {
 
     }
+    return false;
 }
 
 struct UI *UI_Manager_GetUIByIdentifier(struct UI_Manager *uiManager,char *identifier) {
