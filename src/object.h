@@ -29,7 +29,7 @@ enum ObjectFacing {
 
 
 struct Object {
-    char name[32];
+    char name[64];
     struct Vector2 size;
     struct Vector2 position;
     enum ObjectFacing objectDir;

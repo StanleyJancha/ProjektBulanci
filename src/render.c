@@ -27,6 +27,7 @@ bool Render_Object(SDL_Renderer *ren, struct Object *object) {
         case ANIMATION_MIRROR_FLIP: {
             flippedMirrored = SDL_FLIP_VERTICAL | SDL_FLIP_HORIZONTAL;
         }break;
+
     }
 
 

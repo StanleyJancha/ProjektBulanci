@@ -37,6 +37,8 @@ add_executable(Projekt main.c
         src/ui.h
         src/gamerule.h
         src/gamerule.c
+        src/ai.c
+        src/ai.h
 )
 target_link_libraries(Projekt ${SDL2_LIBRARIES} SDL2_image)
 target_link_libraries(Projekt ${SDL2_LIBRARIES} SDL2_ttf)

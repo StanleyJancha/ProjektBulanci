@@ -70,7 +70,7 @@ int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *objec
 bool Animation_GetAnimation(struct Animation *animation,char objectName[32], char animName[32]);
 bool Animation_RemoveAnimations(struct Object *object);
 bool Animation_RemoveAnimation(struct Animation *animation);
-int Animation_AddAnimationToUI(SDL_Renderer *renderer, struct UI *ui);
+int Animation_AddAnimationToUI(SDL_Renderer *renderer, struct UI *ui, char *animationsObjectNameNonMandatory);
 void Animation_PrintAnimation(const struct Animation *animation);
 
 #endif //PROJEKT_ANIMACE_H

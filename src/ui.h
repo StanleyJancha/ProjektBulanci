@@ -19,6 +19,7 @@ enum UI_Visibility {
 struct UI_Text {
     char textToDisplay[64];
     SDL_Texture* textTexture;
+    bool isInput;
 };
 
 struct UI_Events {
@@ -41,9 +42,17 @@ struct UI_Manager {
     int count;
 };
 
+struct Game_UIs {
+    struct UI_Manager *mainMenu;
+    struct UI_Manager *preGame;
+    struct UI_Manager *postGame;
+    struct UI_Manager *pauseMenu;
+    struct UI_Manager *inGame;
+};
+
 SDL_Texture *UI_GetTextTexture(SDL_Renderer *renderer, char *text, SDL_Color color, int ptsize);
-struct UI_Manager UI_Manager_Create();
-struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vector2 size,char text[64],struct UI_Events *events);
+struct UI_Manager *UI_Manager_Create();
+struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vector2 size,char text[64],struct UI_Events *events, bool isTextInput);
 
 bool UI_SetChild(struct UI *parent, struct UI *child);
 
@@ -53,6 +62,6 @@ void UI_Manager_PrintAllUIs(struct UI_Manager *ui_manager);
 
 struct UI *UI_Manager_GetUIByIdentifier(struct UI_Manager *uiManager,char *identifier);
 
-struct UI *UI_MouseOnUI(struct UI_Manager uiManager,struct Vector2 mousePos);
-bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,char *eventName);
+struct UI *UI_MouseOnUI(struct UI_Manager *uiManager,struct Vector2 mousePos);
+bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,struct UI_Manager *ui_manager,struct UI *ui);
 #endif //PROJEKT_UI_H

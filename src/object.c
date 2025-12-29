@@ -39,7 +39,7 @@ bool Object_MoveBy(struct Object *object, struct Vector2 addVector) {
 
 bool Object_CheckCollision(struct World *world, struct Object *object) {
     for (int i = 0; i < world->objectCount; ++i) {
-        printf("is player Colliding: %d", Collsions_areColliding(object, &world->objects[i]));
+        printf("is player Colliding: %d\n", Collsions_areColliding(object, &world->objects[i]));
 
     }
 }

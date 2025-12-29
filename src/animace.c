@@ -25,17 +25,18 @@ bool Animation_SetTexture(SDL_Renderer *ren, struct Sprite *sprite) {
     return true;
 }
 
-bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *spriteCount,char objectName[32], char animName[32]) {
+bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *spriteCount,char objectName[32], char animName[32],enum Animation_ObjectType type) {
     struct dirent *entry;
 
     char path[256];
 
-    snprintf(path, 256, "animations/%s/%s", objectName, animName); // vytvori cestu
+    snprintf(path, 256, (type == ANIMATION_OBJECT)?"animations/%s/%s":"animations_ui/%s/%s", objectName, animName); // vytvori cestu
 
     DIR *dir = opendir(path);
 
     if (dir == NULL) {
         perror("opendir");
+        printf("nenasly se sprity v %s\n",path);
         return false;
     }
 
@@ -78,14 +79,13 @@ bool Animation_SetSprites(SDL_Renderer *renderer,struct Sprite **sprites, int *s
     *spriteCount = filesCount;
 }
 
-bool Animation_SetAnimation(SDL_Renderer *renderer,struct Animation *animation,char objectName[32], char animName[32]) {
+bool Animation_SetAnimation(struct Animation *animation,char animName[32]) {
     strcpy(animation->name, animName);
     animation->currentFrame = 0;
     animation->frames = NULL;
     animation->lastFrameTime = 0;
     animation->mirroredFlipped = ANIMATION_NOT_MIRRORED_FLIPPED;
     animation->repeatType = -1;
-    Animation_SetSprites(renderer,&animation->frames,&animation->framesCount,objectName,animName);
 
     return true;
 
@@ -99,6 +99,7 @@ int Animation_GetAnimationsCount(char objectName[32], char animNames[99][32],enu
 
     if (dir == NULL) {
         perror("opendir");
+        printf("Nenasla se dir: %s\n",path);
         return 0;
     }
     struct dirent *entry;
@@ -133,7 +134,7 @@ int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *objec
     int animationsCount = Animation_GetAnimationsCount(nameStrtokTmp,animationNames,ANIMATION_OBJECT);
 
     if (animationsCount < 1) {
-        printf("Nenasly se animace pro objekt: %s",object->name);
+        printf("Nenasly se animace pro objekt: %s\n",object->name);
         object->animationsCount = 0;
         return 0;
     }
@@ -144,28 +145,38 @@ int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *objec
     object->animations = malloc(sizeof(struct Animation) * object->animationsCount);
 
     for (int i = 0; i < object->animationsCount; ++i) {
-        Animation_SetAnimation(renderer,&object->animations[i],nameStrtokTmp,animationNames[i]);
+        Animation_SetAnimation(&object->animations[i],animationNames[i]);
+        Animation_SetSprites(renderer,&object->animations[i].frames,&object->animations[i].framesCount,nameStrtokTmp,animationNames[i],ANIMATION_OBJECT);
     }
 
     return 1;
 }
 
-int Animation_AddAnimationToUI(SDL_Renderer *renderer, struct UI *ui){
+int Animation_AddAnimationToUI(SDL_Renderer *renderer, struct UI *ui, char *animationsObjectNameNonMandatory){
     if (ui == NULL) {
         return -1;
     }
 
+    char animObjectName[64];
+    if (animationsObjectNameNonMandatory == NULL) {
+        strcpy(animObjectName,ui->identifier);
+    }
+    else {
+        strcpy(animObjectName,animationsObjectNameNonMandatory);
+    }
+
     char animationNames[99][32];
 
-    int animationsCount = Animation_GetAnimationsCount(ui->identifier,animationNames,ANIMATION_UI);
+    int animationsCount = Animation_GetAnimationsCount(animObjectName,animationNames,ANIMATION_UI);
 
     if (animationsCount < 1) {
-        printf("Nenasly se animace pro UI: %s (u UI to neni vylozene spatne. Pokud je to text, tak nemusi mit pozadi)\n",ui->identifier);
+        printf("Nenasly se animace pro UI: %s (u UI to neni vylozene spatne. Pokud je to text, tak nemusi mit pozadi)\n",animObjectName);
         ui->animation.frames = NULL;
         return -1;
     }
 
-    Animation_SetAnimation(renderer,&ui->animation,ui->identifier,animationNames[0]);
+    Animation_SetAnimation(&ui->animation,animationNames[0]);
+    Animation_SetSprites(renderer,&ui->animation.frames,&ui->animation.framesCount,animObjectName,animationNames[0],ANIMATION_UI);
 
     return 1;
 }

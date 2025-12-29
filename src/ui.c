@@ -7,6 +7,10 @@
 #include "world.h"
 
 void UI_Manager_Destroy(struct UI_Manager *manager) {
+    if (manager == NULL) {
+        return;
+    }
+
     for (int i = 0; i < manager->count; ++i) {
         Animation_RemoveAnimation(&manager->UIs[i].animation);
         if (manager->UIs[i].text.textTexture != NULL) {
@@ -20,14 +24,14 @@ void UI_Manager_Destroy(struct UI_Manager *manager) {
 }
 
 
-struct UI_Manager UI_Manager_Create() {
-    struct UI_Manager ui_manager;
-    ui_manager.UIs = NULL;
-    ui_manager.count = 0;
+struct UI_Manager *UI_Manager_Create() {
+    struct UI_Manager *ui_manager = malloc(sizeof(struct UI_Manager));
+    ui_manager->UIs = NULL;
+    ui_manager->count = 0;
     return ui_manager;
 }
 
-struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vector2 size,char text[64],struct UI_Events *events) {
+struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vector2 size,char text[64],struct UI_Events *events, bool isTextInput) {
     struct UI *ui = malloc(sizeof(struct UI));
     if (ui == NULL) return NULL;
     strcpy(ui->identifier, identifier);
@@ -37,6 +41,8 @@ struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vect
     ui->child = NULL;
 
     strcpy(ui->text.textToDisplay,text);
+    ui->text.isInput = isTextInput;
+
     ui->events = events;
 
     return ui;
@@ -103,23 +109,85 @@ bool UI_MouseInside(struct UI *ui, struct Vector2 mouse) {
 }
 
 
-struct UI *UI_MouseOnUI(struct UI_Manager uiManager,struct Vector2 mousePos) {
-    for (int i = uiManager.count - 1; i >= 0; --i) {
-        if (strcmp(uiManager.UIs[i].events->onClick, "") != 0) {
-            if (UI_MouseInside(&uiManager.UIs[i],mousePos)) {
-                return &uiManager.UIs[i];
+struct UI *UI_MouseOnUI(struct UI_Manager *uiManager,struct Vector2 mousePos) {
+    for (int i = uiManager->count - 1; i >= 0; --i) {
+        if (uiManager->UIs[i].events != NULL){
+            if (strcmp(uiManager->UIs[i].events->onClick, "") != 0) {
+                if (UI_MouseInside(&uiManager->UIs[i],mousePos)) {
+                    return &uiManager->UIs[i];
+                }
             }
         }
     }
     return NULL;
 }
 
-bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,char *eventName) {
-    if (strcmp(eventName,"unpause_game") == 0) {
+bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,struct UI_Manager *ui_manager,struct UI *ui) {
+    char onClickEventName[68];
+    strcpy(onClickEventName,ui->events->onClick);
+    printf("akce pro %s\n",onClickEventName);
+
+    if (strcmp(onClickEventName,"unpause_game") == 0) {
         Gamerule_UnpauseGame(gamerule);
         return true;
     }
-    if (strcmp(eventName,"") == 0) {
+    if (strcmp(onClickEventName,"start_game") == 0) {
+        gamerule->gamestates.gamestate = GAME_PRE_PLAY;
+        return true;
+    }
+    if (strcmp(onClickEventName,"begin_match") == 0) {
+        char playerNames[4][64] = {0};
+        int j = 0;
+        for (int i = 0; i < ui_manager->count; ++i) {
+            char tmp[64];
+            strcpy(tmp,ui_manager->UIs[i].identifier);
+            char *name = strtok(tmp,"-");
+            if (strcmp(name,"player_text_field") == 0) {
+                strcpy(playerNames[j],ui_manager->UIs[i].text.textToDisplay);
+                j++;
+            }
+        }
+
+        Gamerule_StartGame(world,gamerule,playerNames);
+        gamerule->gamestates.gamestate = GAME_IN_GAME;
+        return true;
+    }
+
+    if (strcmp(onClickEventName,"exit_game") == 0) {
+        gamerule->gamestates.appRunning = false;
+        return true;
+    }
+    if (strcmp(onClickEventName,"exit_to_main_menu") == 0) {
+        Gamerule_EndGame(world,gamerule,false);
+        gamerule->gamestates.gamestate = GAME_IN_MAIN_MENU;
+        return true;
+    }
+    if (strcmp(onClickEventName,"text_field") == 0) {
+        if (ui->text.isInput == true){
+            if (gamerule->inputUI == NULL || strcmp(gamerule->inputUI->identifier,ui->identifier) != 0) {
+                gamerule->inputUI = ui;
+                SDL_StartTextInput();
+            }else {
+                SDL_StopTextInput();
+                gamerule->inputUI = NULL;
+                printf("Unclick\n");
+            }
+            printf("name: %s\n",gamerule->inputUI->identifier);
+
+
+
+            // bool newUi = (gamerule->inputUI)?(strcmp(gamerule->inputUI->identifier,ui->identifier) == 0):false; // jestli nove kliknuty UI je uz inputUI nebo jesti jsme klikli na jiny
+            // gamerule->inputUI = ui;
+            // if(SDL_IsTextInputActive() && !newUi) {
+            //     SDL_StopTextInput();
+            //     gamerule->inputUI = NULL;
+            //     printf("inut stoppedn\n");
+            // }else {
+            //     SDL_StartTextInput();
+            //     printf("inut started\n");
+            // }
+        }
+        return true;
 
     }
     return false;

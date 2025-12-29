@@ -18,7 +18,7 @@ struct PlayerKeybindSet {
 
 #define NUM_PLAYER_KEYBINDS 4 // pocet keybindu na jednoho hrace
 
-#define NUM_PLAYER_KEYBINDSETS 3 // kolik variant ruznych keybindu
+#define NUM_PLAYER_KEYBINDSETS 4 // kolik variant ruznych keybindu
 extern struct PlayerKeybindSet PlayerKeybindSets[NUM_PLAYER_KEYBINDSETS];
 
 void KeyBinds_HandleInput(SDL_Event *e);

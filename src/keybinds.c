@@ -26,6 +26,13 @@ struct PlayerKeybindSet PlayerKeybindSets[NUM_PLAYER_KEYBINDSETS] = {
     SDL_SCANCODE_5,
     SDL_SCANCODE_6,
     SDL_SCANCODE_0
+    },
+    {
+    SDL_SCANCODE_U,
+    SDL_SCANCODE_H,
+    SDL_SCANCODE_J,
+    SDL_SCANCODE_K,
+    SDL_SCANCODE_M
     }
 };
 

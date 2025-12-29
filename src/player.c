@@ -4,7 +4,7 @@
 
 #include "player.h"
 
-struct Player *Player_CreatePlayer(struct Object *object,struct Weapon *primaryWeapon, struct Weapon *secondaryWeapon, int PlayerKeybindSetIndex, int speed, int HP) {
+struct Player *Player_CreatePlayer(struct Object *object,struct Weapon *primaryWeapon, struct Weapon *secondaryWeapon, int PlayerKeybindSetIndex, int speed, int HP, bool isBot) {
     struct Player *player = malloc(sizeof(struct Player));
     if (!player) return NULL;
 
@@ -17,6 +17,9 @@ struct Player *Player_CreatePlayer(struct Object *object,struct Weapon *primaryW
     free(object);
     object = NULL;
 
+    player->isBot = isBot;
+    player->canMove = true;
+
     player->primaryWeapon = primaryWeapon;
     player->secondaryWeapon = secondaryWeapon;
 
@@ -24,6 +27,9 @@ struct Player *Player_CreatePlayer(struct Object *object,struct Weapon *primaryW
     player->speed = speed;
     player->HP = HP;
     player->lastBulletShotTime = 0;
+
+    player->stats.kills = 0;
+    player->stats.deaths = 0;
 
     return player;
 }
@@ -70,6 +76,11 @@ bool Player_Shoot(struct World *world,struct Player *player) {
     free(object1);
     object1 = NULL;
 }
+
+bool Player_OnMove(struct Player *player, enum ObjectFacing newDir) {
+
+}
+
 
 bool Player_SetFacingDirectin(struct Player *player, enum ObjectFacing newDir) {
     player->object.objectDir = newDir;
@@ -142,12 +153,15 @@ bool Player_MoveBy(struct Player *player, struct Vector2 addVector) {
 
     Object_MoveBy(&player->object,addVector);
 
-    // if (player->primaryWeapon != NULL) {
-    //     Object_MoveBy(&player->primaryWeapon->object,addVector);
-    // }
-    // if (player->secondaryWeapon != NULL) {
-    //     Object_MoveBy(&player->secondaryWeapon->object,addVector);
-    // }
+    player->stats.ui.position.x = player->object.position.x+player->object.size.x/2 -player->stats.ui.size.x/2;
+    player->stats.ui.position.y = player->object.position.y+player->object.size.y/2 -player->stats.ui.size.y/2 - 50;
+
+    if (player->primaryWeapon != NULL) {
+        Object_MoveBy(&player->primaryWeapon->object,addVector);
+    }
+    if (player->secondaryWeapon != NULL) {
+        Object_MoveBy(&player->secondaryWeapon->object,addVector);
+    }
 
 }
 
@@ -161,13 +175,33 @@ void Player_Die(struct Player *player) {
 }
 
 int Player_TakeDamage(struct Player *player, int damage) {
-    if (player == NULL){printf("Player je NULL pri dostani damage\n");}
+    if (player == NULL){printf("Player je NULL pri dostani damage\n");return 0;}
 
     player->HP -= damage;
     if (player->HP < 0) {
         printf("%s dostal %d damage\n",player->object.name,damage);
+        player->stats.deaths++;
         Player_Die(player);
+        return 1;
     }
+    return 0;
+}
+
+struct Player *Player_GetByName(struct World *world,char *name) {
+    for (int i = 0; i < world->playerCount; ++i) {
+        if (strcmp(world->players[i].object.name, name) == 0) {
+            return &world->players[i];
+        }
+    }
+    return NULL;
+}
+
+void Player_UpdateStatsUITexture(SDL_Renderer *renderer,struct Player *player) {
+    SDL_Color color = {255,255,255};
+
+    sprintf(player->stats.ui.text.textToDisplay,"K:%dD:%d",player->stats.kills,player->stats.deaths);
+
+    player->stats.ui.text.textTexture = UI_GetTextTexture(renderer,player->stats.ui.text.textToDisplay,color,32);
 }
 
 
