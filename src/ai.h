@@ -5,7 +5,7 @@
 #ifndef PROJEKT_AI_H
 #define PROJEKT_AI_H
 
-void Ai_BotTick(struct World * world, struct Player *bot);
+void Ai_BotTick(struct World * world, struct Player *bot,struct Gamerule *gamerule);
 
 
 #endif //PROJEKT_AI_H

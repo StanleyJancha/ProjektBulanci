@@ -5,113 +5,51 @@
 #include <stdbool.h>
 
 #include "src/animace.h"
-#include "src/world.h"
+#include "src/gamerule.h"
+
 #include "src/object.h"
 #include "src/keybinds.h"
 #include "src/player.h"
 
 #include "src/collisions.h"
 #include "src/weapons.h"
-#include "src/animace.h"
 #include "src/ai.h"
 #include "src/render.h"
-#include "src/gamerule.h"
 #include "src/ui.h"
 
-#include "src/WorkingWithFiles.h"
 
 #define GAME_LOOP_MILLIS_DELAY 16
-
+#define RESPAWN_COOLDOWN_MS 2000
 
 void handleInput(struct World *world, const Uint8 *keys) {
     for (int i = world->playerCount - 1; i >= 0; --i) {
+        struct Player *player = &world->players[i];
 
-        if (world->players[i].PlayerKeybindSetIndex == -1) {
+        if (player->PlayerKeybindSetIndex == -1) { // PLAYER je bot, takze nema zadne keybindy
             continue;
         }
 
-        struct Player *player = &world->players[i];
         struct PlayerKeybindSet playerKeybindSet = PlayerKeybindSets[world->players[i].PlayerKeybindSetIndex];
-        struct Vector2 addToPos = {0,0};
 
-        enum ObjectFacing newDir = -1;
-        char *playerAnim = NULL;
-        char *weaponAnim = NULL;
-        enum AnimationMirrorFlip animFlipPlayer = ANIMATION_NOT_MIRRORED_FLIPPED;
-        enum AnimationMirrorFlip animFlipWeapon = ANIMATION_NOT_MIRRORED_FLIPPED;
 
         if (keys[playerKeybindSet.move_up]) {
-            newDir = NORTH;
-            addToPos.y = -player->speed;
-            playerAnim = "moveUp";
-            animFlipPlayer = ANIMATION_NOT_MIRRORED_FLIPPED;
-            weaponAnim = "up";
-            animFlipWeapon = ANIMATION_NOT_MIRRORED_FLIPPED;
-        }
-        else if (keys[playerKeybindSet.move_left]) {
-            newDir = WEST;
-            addToPos.x = -player->speed;
-            playerAnim = "moveRight";
-            animFlipPlayer = ANIMATION_FLIP;
-            weaponAnim = "right";
-            animFlipWeapon = ANIMATION_FLIP;
-        }
-        else if (keys[playerKeybindSet.move_down]) {
-            newDir = SOUTH;
-            addToPos.y = player->speed;
-            playerAnim = "moveDown";
-            animFlipPlayer = ANIMATION_NOT_MIRRORED_FLIPPED;
-            weaponAnim = "down";
-            animFlipWeapon = ANIMATION_NOT_MIRRORED_FLIPPED;
-        }
-        else if (keys[playerKeybindSet.move_right]) {
-            newDir = EAST;
-            addToPos.x = player->speed;
-            playerAnim = "moveRight";
-            animFlipPlayer = ANIMATION_NOT_MIRRORED_FLIPPED;
-            weaponAnim = "right";
-            animFlipWeapon = ANIMATION_NOT_MIRRORED_FLIPPED;
-        }
+            Player_OnMove(world,player,NORTH);
 
-        if (newDir != -1) {
-            Player_SetFacingDirectin(player, newDir);
+        }else
+        if (keys[playerKeybindSet.move_right]) {
+            Player_OnMove(world,player,EAST);
 
-            Object_SetActiveAnimationByName(&player->object, playerAnim, animFlipPlayer);
+        }else
+        if (keys[playerKeybindSet.move_down]) {
+            Player_OnMove(world,player,SOUTH);
 
-            if (player->primaryWeapon)
-                Object_SetActiveAnimationByName(&player->primaryWeapon->object, weaponAnim, animFlipWeapon);
-            if (player->secondaryWeapon)
-                Object_SetActiveAnimationByName(&player->secondaryWeapon->object, weaponAnim, animFlipWeapon);
+        }else
+        if (keys[playerKeybindSet.move_left]) {
+            Player_OnMove(world,player,WEST);
 
         }
-        player->object.objectAnimationsType = (newDir != -1)?ANIMATIONS_PLAYER:ANIMATIONS_SINGLE;
-        if (player->primaryWeapon)
-            player->primaryWeapon->object.objectAnimationsType = (newDir != -1)?ANIMATIONS_OBJECT:ANIMATIONS_SINGLE;
-        if (player->secondaryWeapon)
-            player->secondaryWeapon->object.objectAnimationsType = (newDir != -1)?ANIMATIONS_OBJECT:ANIMATIONS_SINGLE;
-
-
-        if ((addToPos.x != 0 || addToPos.y != 0)) {
-
-            bool canMove = true;
-
-            struct Object playerObjectCopy = player->object;
-            Object_MoveBy(&playerObjectCopy, addToPos);
-
-            ///// KOLIZE
-            for (int j = 0; j < world->objectCount; ++j) {
-                if (Collsions_areColliding(&playerObjectCopy,&world->objects[j])){
-                    if (world->objects[j].collision == COLLISION_BLOCK) {
-                        canMove = false;
-                    }
-                }
-            }
-
-
-            if (canMove) {
-                Player_MoveBy(player,addToPos);
-            }
-
+        else {
+            Object_SetActiveAnimationByName(&player->object,"idle",ANIMATION_NOT_MIRRORED_FLIPPED);
         }
 
     }
@@ -120,7 +58,7 @@ void handleInput(struct World *world, const Uint8 *keys) {
 
 
 void loadMainMenuUIs(struct World *world,struct UI_Manager *ui_manager) {
-    SDL_Color color = {255,255,255,255};
+    SDL_Color color = {0,0,0,255};
 
     struct Vector2 exitGameButtonpos = {500,300};
     struct Vector2 exitGameButtonsize = {200,100};
@@ -155,7 +93,7 @@ void loadMainMenuUIs(struct World *world,struct UI_Manager *ui_manager) {
 }
 
 void loadPreGameUIs(struct World *world,struct UI_Manager *ui_manager) {
-    SDL_Color color = {255,255,255,255};
+    SDL_Color color = {0,0,0,255};
 
     struct Vector2 beginMatchButtonPos3 = {500,500};
     struct Vector2 beginMatchButtonSize3 = {200,100};
@@ -174,46 +112,34 @@ void loadPreGameUIs(struct World *world,struct UI_Manager *ui_manager) {
 
     free(beginMatchButton);
 
-    struct Vector2 textInputFieldPlayer1Pos3 = {500,150};
-    struct Vector2 textInputFieldPlayer1Size3 = {200,100};
+    /////
 
-    struct UI_Events *textInputFieldPlayer1Events = malloc(sizeof(struct UI_Events));
-    strcpy(textInputFieldPlayer1Events->onClick, "text_field");
+    for (int i = 0; i < 4; ++i) {
 
-    struct UI *textInputFieldPlayer1 = UI_CreateUI("player_text_field-1",textInputFieldPlayer1Pos3,textInputFieldPlayer1Size3,"",textInputFieldPlayer1Events,true);
-    Animation_AddAnimationToUI(world->renderer,textInputFieldPlayer1,"basic_button");
+        struct Vector2 pos1 = {200,50 + (i)*150};
+        struct Vector2 size1 = {200,100};
 
-    textInputFieldPlayer1->text.textTexture = UI_GetTextTexture(world->renderer,textInputFieldPlayer1->text.textToDisplay,color,25);
+        char identifier[64] =  "player_text_field-";
+        char iToStringBuffer[20];
 
-    UI_Manager_AddUI(ui_manager,textInputFieldPlayer1);
+        sprintf(iToStringBuffer, "%d", i);
+        strcat(identifier,iToStringBuffer);
 
-    free(textInputFieldPlayer1);
+        struct UI *textInput1 = UI_CreateUI_TextField(world,identifier,pos1,size1,"basic_player_text_field");
 
-    /////////////
+        UI_Manager_AddUI(ui_manager,textInput1);
 
-     struct Vector2 textInputFieldPlayer2Pos3 = {500,300};
-     struct Vector2 textInputFieldPlayer2Size3 = {200,100};
+        free(textInput1);
 
+    }
 
-     struct UI_Events *textInputFieldPlayer2Events = malloc(sizeof(struct UI_Events));
-     strcpy(textInputFieldPlayer2Events->onClick, "text_field");
-
-     struct UI *textInputFieldPlayer2 = UI_CreateUI("player_text_field-2",textInputFieldPlayer2Pos3,textInputFieldPlayer2Size3,"",textInputFieldPlayer2Events,true);
-     Animation_AddAnimationToUI(world->renderer,textInputFieldPlayer2,"basic_button");
-
-     textInputFieldPlayer2->text.textTexture = UI_GetTextTexture(world->renderer,textInputFieldPlayer2->text.textToDisplay,color,25);
-
-
-     UI_Manager_AddUI(ui_manager,textInputFieldPlayer2);
-
-     free(textInputFieldPlayer2);
-
+    UI_Manager_PrintAllUIs(ui_manager);
 }
 
 
 
 void loadPostGameUIs(struct World *world,struct UI_Manager *ui_manager) {
-    SDL_Color color = {255,255,255,255};
+    SDL_Color color = {0,0,0,255};
 
     struct Vector2 pos3 = {500,500};
     struct Vector2 size3 = {200,100};
@@ -248,7 +174,7 @@ void loadPostGameUIs(struct World *world,struct UI_Manager *ui_manager) {
 
 
 void loadPauseMenuUIs(struct World *world,struct UI_Manager *ui_manager) {
-    SDL_Color color = {255,255,255,255};
+    SDL_Color color = {0,0,0,255};
 
     struct Vector2 pos = {500,300};
     struct Vector2 size = {200,100};
@@ -290,7 +216,7 @@ void loadInGameUIs(struct World *world,struct UI_Manager *ui_manager) {
     struct UI *gameTimerUI = UI_CreateUI("game_timer",pos2,size2,"00:00",NULL,false);
     Animation_AddAnimationToUI(world->renderer,gameTimerUI,NULL);
 
-    SDL_Color color = {255,255,255,255};
+    SDL_Color color = {0,0,0,255};
 
     gameTimerUI->text.textTexture = UI_GetTextTexture(world->renderer,gameTimerUI->text.textToDisplay,color,25);
 
@@ -319,7 +245,7 @@ int main() {
         return 1;
     }
 
-    struct Gamerule gamerule = {{0,1,GAME_IN_MAIN_MENU},{0,0,0}};
+    struct Gamerule gamerule = {{0,1,GAME_IN_MAIN_MENU},{5,0,0,0}};
 
     struct Game_UIs game_UIs = {NULL,NULL,NULL,NULL,NULL};
 
@@ -342,12 +268,16 @@ int main() {
     game_UIs.preGame = UI_Manager_Create();
     loadPreGameUIs(&world,game_UIs.preGame);
 
+    //TEST ROVNOU DO HRY
     // char PlayerNames[4][64] = {"fwef","fwefw","",""};
     // Gamerule_StartGame(&world,&gamerule,PlayerNames);
     // World_Print(&world);
-    // gamerule.gamestates.gamestate = GAME_IN_GAME;
+    gamerule.gamestates.gamestate = GAME_PRE_PLAY;
+
     SDL_Event e;
     SDL_StopTextInput();
+
+    Uint32 lastFrameTime = SDL_GetTicks();
 
     while (gamerule.gamestates.appRunning) {
         // region Region Event Loop
@@ -363,7 +293,7 @@ int main() {
 
                     if (strlen(gamerule.inputUI->text.textToDisplay) + inputLength  < sizeof(gamerule.inputUI->text.textToDisplay) - 1) {
                         strcat(gamerule.inputUI->text.textToDisplay, e.text.text);
-                        SDL_Color color = {255,255,255,255};
+                        SDL_Color color = {0,0,0,255};
                         gamerule.inputUI->text.textTexture = UI_GetTextTexture(world.renderer,gamerule.inputUI->text.textToDisplay,color,32);
                     }
 
@@ -373,11 +303,11 @@ int main() {
                 case SDL_KEYDOWN: {
                     if (!gamerule.gamestates.gamePaused && gamerule.gamestates.gamestate == GAME_IN_GAME) {
                         for (int i = 0; i < world.playerCount; ++i) {
-                            if (world.players[i].isBot == false){
+                            if (world.players[i].deathStatus.dead){continue;}
+                            if (world.players[i].isBot){continue;}
                             if (e.key.keysym.scancode == PlayerKeybindSets[world.players[i].PlayerKeybindSetIndex].shoot) {
-                                Player_Shoot(&world,&world.players[i]);
+                                Player_Shoot(&world,&world.players[i],&gamerule);
                             }
-                        }
 
                         }
                     }
@@ -398,7 +328,7 @@ int main() {
                             case SDL_SCANCODE_BACKSPACE:{ // ZAVRIT OKNO
                             if (gamerule.inputUI != NULL && strlen(gamerule.inputUI->text.textToDisplay) >= 1) {
                                 gamerule.inputUI->text.textToDisplay[strlen(gamerule.inputUI->text.textToDisplay)-1] = '\0';
-                                SDL_Color color = {255,255,255,255};
+                                SDL_Color color = {0,0,0,255};
                                 gamerule.inputUI->text.textTexture = UI_GetTextTexture(world.renderer,gamerule.inputUI->text.textToDisplay,color,32);
                             }
                             break;
@@ -434,8 +364,16 @@ int main() {
             handleInput(&world, keys);
 
             for (int i = 0; i < world.playerCount; ++i) {
-                if (world.players[i].isBot) {
-                    Ai_BotTick(&world,&world.players[i]);
+                struct Player *player = &world.players[i];
+
+                if (player->deathStatus.dead == true) {
+                    if (SDL_GetTicks() - gamerule.gameTimes.timePaused - player->deathStatus.lastDeathTime > RESPAWN_COOLDOWN_MS) {
+                        Player_Respawn(&world,player);
+                    }
+                }
+
+                if (player->isBot) {
+                    Ai_BotTick(&world,player,&gamerule);
                 }
             }
 
@@ -449,14 +387,30 @@ int main() {
 
             for (int i = 0; i < world.objectCount; ++i) {
                 if (world.objects[i].objectType == OBJECT_DYNAMIC) {
-                    for (int j = 0; j < world.playerCount; ++j) {
-                        if (Collsions_areColliding(&world.objects[i],&world.players[j].object)) {
-                            char name[32];
-                            strcpy(name,world.objects[i].name);
-                            char *token = strtok(name,"_");
-                            if (strcmp(token,"bullet") == 0) {
-                                token = strtok(NULL,"_");
-                                if (token == NULL){continue;}
+                    char name[32];
+                    strcpy(name,world.objects[i].name);
+                    char *token = strtok(name,"_");
+                    if (strcmp(token,"bullet") == 0) {
+                        bool bulletDestroyed = false;
+
+                        token = strtok(NULL,"_");
+                        if (token == NULL){continue;}
+                        for (int j = 0; j < world.objectCount; ++j) {
+                            if (i == j){continue;}
+                            if (world.objects[j].objectType != OBJECT_STATIC){continue;}
+                            if (strcmp(world.objects[j].name,"pozadi") == 0){continue;}
+                            if (Collsions_areColliding(&world.objects[i],&world.objects[j])) {
+                                // printf("o1 %s \n o2 %s\n",&world.objects[i].name,&world.objects[j].name);
+                                World_RemoveObject(&world,&world.objects[i],true);
+                                bulletDestroyed = true;
+                                break;
+                            }
+                        }
+
+                        if (bulletDestroyed){continue;}
+
+                        for (int j = 0; j < world.playerCount; ++j) {
+                            if (Collsions_areColliding(&world.objects[i],&world.players[j].object)) {
                                 if (strcmp(token,world.players[j].object.name) != 0) { //jestlize kulka neni od hrace, ktery ji vystrelil
                                     if (Player_TakeDamage(&world.players[j],1) == 1) { // jestlize kulka zabila hrace
                                         struct Player *killerPlayer = Player_GetByName(&world,token);
@@ -469,6 +423,9 @@ int main() {
                                 }
                             }
                         }
+                    }
+                    else if (1) {
+
                     }
                 }
                 else if (world.objects[i].objectType == OBJECT_PICKUP_WEAPON) {
@@ -488,6 +445,7 @@ int main() {
         }
 
         /* ----------------- END Main loop ----------------- */
+
 
         // region Rendering objects and players
 
@@ -512,6 +470,8 @@ int main() {
 
         // Players
         for (int i = 0; i < world.playerCount; ++i) {
+            if (world.players[i].deathStatus.dead){continue;}
+
             Render_Object(world.renderer, &world.players[i].object);
 
             if (world.players[i].secondaryWeapon != NULL) {
@@ -532,36 +492,75 @@ int main() {
         // endregion
 
         // region Bullet time destruction
-        if (!gamerule.gamestates.gamePaused) {
-            int bulletDestroyTimeMs = 2000;
-            // mazani objektu kulek po case
-            int objectsToDestroy[5] = {-1,-1,-1,-1,-1};
-            int j = 0;
+        if (!gamerule.gamestates.gamePaused) {   // mazani objektu kulek po case
+            int bulletDestroyTimeMs = 2000; // zivotnost BULLET
+
+            int *objectsToDestroyIndexes = malloc(sizeof(int)*world.objectCount);// buffer pro objekty na vymazani
+            for (int i = 0; i < world.objectCount; ++i) {
+                objectsToDestroyIndexes[i] = -1;
+            }
+
+            int j = 0; // index pro pozici v bufferu
             for (int i = 0; i < world.objectCount; ++i) {
                 char nameCopy[32];
                 strcpy(nameCopy,world.objects[i].name);
                 if (strcmp(strtok(nameCopy,"_"),"bullet") == 0) {
-                    if ((SDL_GetTicks() - gamerule.gamestates.gamePaused) - world.objects[i].spawnTime > bulletDestroyTimeMs) {
-                        objectsToDestroy[j] = i;
+                    if ((SDL_GetTicks() - gamerule.gameTimes.timePaused) - world.objects[i].spawnTime > bulletDestroyTimeMs) {
+                        objectsToDestroyIndexes[j] = i;
                         j++;
                     }
                 }
             }
-            for (int i = 0; i < 5; ++i) {
-                if (objectsToDestroy[i] != -1) {
-                    World_RemoveObject(&world,&world.objects[objectsToDestroy[i]],false);
+            for (int i = 0; i < world.objectCount; ++i) { // mazani objektu
+                if (objectsToDestroyIndexes[i] != -1) { // jestlize byl vybrany nejaky objekt na smazani
+                    World_RemoveObject(&world,&world.objects[objectsToDestroyIndexes[i]],false);
+                }
+                else {// kdyz nebyl, tak muzeme zrusit cyklus, protoze pokud je jeden -1, tak vsechny za nim taky budou
+                    break;
                 }
             }
+            free(objectsToDestroyIndexes);
         }
-        // regionend
+        //regionend
 
-        // region Setting game time for UI
+        // region Spawn Gun
         if (!gamerule.gamestates.gamePaused) {
+            bool gunInGame = false; // jestli je sekundarni zbran stale nesebrana hracem
+
+            for (int i = 0; i < world.objectCount; ++i) {
+                if (strcmp(world.objects[i].name,"gun") == 0) {
+                    gunInGame = true;
+                    break;
+                }
+            }
+            int randomVal = rand()%1000;
+            if (!gunInGame && randomVal < 1) {
+                struct Vector2 size3 = {50,50};
+                struct Vector2 pos3 = {-200,-200};
+                struct Object *object3 = Object_CreateObject("gun",size3,pos3,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
+                Animation_AddAnimationsToObject(world.renderer,object3,ANIMATIONS_OBJECT,0);
+
+                Object_SetRandomPosition(&world,object3,100,900,100,600);
+
+                World_AddObject(&world,object3);
+                free(object3);
+                object3 = NULL;
+
+            }
+
+
+        }
+
+        // regionend
+        if (!gamerule.gamestates.gamePaused) {
+            Uint32 curTime = SDL_GetTicks();
+            char timerText[6];
+            int seconds = (curTime-gamerule.gameTimes.startTime-gamerule.gameTimes.timePaused)/1000;
+
+
+            // region Setting game time for UI
             struct UI *clockUI = UI_Manager_GetUIByIdentifier(game_UIs.inGame,"game_timer");
             if (clockUI) {
-                Uint32 curTime = SDL_GetTicks();
-                char timerText[6];
-                int seconds = (curTime-gamerule.gameTimes.startTime-gamerule.gameTimes.timePaused)/1000;
                 sprintf(timerText,"%02d:%02d",
                     (seconds/60%100),
                     (seconds%60)%100);
@@ -570,7 +569,12 @@ int main() {
                     strcpy(clockUI->text.textToDisplay,timerText);
                     clockUI->text.textTexture = UI_GetTextTexture(world.renderer,timerText,color,32);
                 }
+
             }else{printf("Nelze najit UI pro TIMER ve hre\n");}
+
+            if (seconds/60 > gamerule.gameTimes.gameLengthMinutes) { // jestli vyprsi cas hry
+                Gamerule_EndGame(&world,&gamerule,true);
+            }
         }
         // endregion
         }

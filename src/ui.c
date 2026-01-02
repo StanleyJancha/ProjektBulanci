@@ -48,6 +48,20 @@ struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vect
     return ui;
 }
 
+struct UI *UI_CreateUI_TextField(struct World *world,char identifier[64], struct Vector2 position, struct Vector2 size, char *specialAnimationName) {
+    SDL_Color color = {255,255,255,255};
+
+    struct UI_Events *textInputFieldPlayer1Events = malloc(sizeof(struct UI_Events));
+    strcpy(textInputFieldPlayer1Events->onClick, "text_field");
+
+    struct UI *textInputFieldPlayer = UI_CreateUI(identifier,position,size,"",textInputFieldPlayer1Events,true);
+    Animation_AddAnimationToUI(world->renderer,textInputFieldPlayer,specialAnimationName);
+
+    textInputFieldPlayer->text.textTexture = UI_GetTextTexture(world->renderer,textInputFieldPlayer->text.textToDisplay,color,25);
+
+    return textInputFieldPlayer;
+}
+
 bool UI_SetChild(struct UI *parent, struct UI *child) {
     if (parent == NULL) {printf("UI_SetChild - parent not valid\n") ;return false;}
     if (child == NULL) {printf("UI_SetChild - child for \"%s\" not valid\n",parent->identifier) ;return false;}
@@ -86,6 +100,8 @@ SDL_Texture *UI_GetTextTexture(SDL_Renderer *renderer, char *text, SDL_Color col
     SDL_Surface *surface = TTF_RenderText_Blended(font, text, color);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
+
+    TTF_CloseFont(font);
 
     return texture;
 }
@@ -137,16 +153,26 @@ bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,struct UI_
     }
     if (strcmp(onClickEventName,"begin_match") == 0) {
         char playerNames[4][64] = {0};
+        bool atleastOnePlayer = false;
         int j = 0;
         for (int i = 0; i < ui_manager->count; ++i) {
             char tmp[64];
             strcpy(tmp,ui_manager->UIs[i].identifier);
             char *name = strtok(tmp,"-");
             if (strcmp(name,"player_text_field") == 0) {
+                if (strcmp(ui_manager->UIs[i].text.textToDisplay,"") != 0) {
+                    atleastOnePlayer = true;
+                }
                 strcpy(playerNames[j],ui_manager->UIs[i].text.textToDisplay);
                 j++;
             }
         }
+
+        if (!atleastOnePlayer) {
+            return false;
+        }
+
+
 
         Gamerule_StartGame(world,gamerule,playerNames);
         gamerule->gamestates.gamestate = GAME_IN_GAME;

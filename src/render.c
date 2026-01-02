@@ -76,6 +76,7 @@ bool Render_Object(SDL_Renderer *ren, struct Object *object) {
 
 
 bool Render_UI(SDL_Renderer *ren,struct UI *ui) {
+
     double scale = 1;
     SDL_Rect dst = {ui->position.x*scale, ui->position.y*scale, ui->size.x*scale, ui->size.y*scale}; // dimenze vykreseleni
 
@@ -115,6 +116,11 @@ bool Render_UI(SDL_Renderer *ren,struct UI *ui) {
             }
         }
     }
+
+    int w, h;
+    SDL_QueryTexture(ui->text.textTexture, NULL, NULL, &w, &h);
+    dst.w = w;
+    dst.h = h;
 
     if (ui->text.textTexture) {
         SDL_RenderCopyEx(

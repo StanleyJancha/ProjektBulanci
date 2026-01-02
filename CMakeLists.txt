@@ -22,8 +22,8 @@ add_executable(Projekt main.c
         src/player.h
         src/liveInput.c
         src/liveInput.h
-        src/WorkingWithFiles.h
-        src/WorkingWIthFiles.c
+        src/SavingManager.h
+        src/SavingManager.c
         src/collisions.c
         src/collisions.h
         src/animace.h

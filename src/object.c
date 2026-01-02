@@ -12,6 +12,7 @@
 #include "world.h"
 
 #include "animace.h"
+#include "player.h"
 
 struct Object *Object_CreateObject(const char *name, struct Vector2 size, struct Vector2 position, int zLayer, enum Collisions collions, enum ObjectType objectType,enum ObjectFacing objectDir) {
     struct Object *object = malloc(sizeof(struct Object));
@@ -76,7 +77,7 @@ bool Object_SetActiveAnimationByName(struct Object * object, char *animName, enu
         }
     }
     if (newAnimationIndex == -1) {
-        printf("Nepodarilo se nacist animaci '%s' pro objekt '%s'",animName,object->name);
+        printf("Nepodarilo se nacist animaci '%s' pro objekt '%s'\n",animName,object->name);
         return false;
     }
 
@@ -114,4 +115,29 @@ void Object_Print(const struct Object *object) {
     // for (int i = 0; i < object->animationsCount; ++i) {
     //     Animation_PrintAnimation(&object->animations[i]);
     // }
+}
+
+void Object_SetRandomPosition(struct World *world, struct Object *object, int boundsMinX, int boundsMaxX, int boundsMinY, int boundsMaxY) {
+    bool newPosSafe;// nespawne se na nejaky jiny objekt
+    struct Object objectCopy = *object;
+    do {
+        newPosSafe = true;
+        objectCopy.position.x = rand()%(boundsMaxX-boundsMinX+1)+boundsMinX;
+        objectCopy.position.y = rand()%(boundsMaxY-boundsMinY+1)+boundsMinY;
+
+        for (int i = 0; i < world->objectCount; ++i) {
+            if (Collsions_areColliding(&objectCopy,&world->objects[i])) {
+                newPosSafe = false;
+            }
+
+        }
+        for (int i = 0; i < world->playerCount; ++i) {
+            if (Collsions_areColliding(&objectCopy,&world->players[i].object)) {
+                newPosSafe = false;
+            }
+        }
+        // printf("Nova pozice %s ok... x=%d y=%d\n",(newPosSafe)?"je":"neni",playerObjectCopy.position.x,playerObjectCopy.position.y);
+    }while (!newPosSafe);
+
+    object->position = objectCopy.position;
 }

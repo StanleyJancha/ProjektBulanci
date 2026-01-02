@@ -4,6 +4,8 @@
 
 #include "player.h"
 
+#include "collisions.h"
+
 struct Player *Player_CreatePlayer(struct Object *object,struct Weapon *primaryWeapon, struct Weapon *secondaryWeapon, int PlayerKeybindSetIndex, int speed, int HP, bool isBot) {
     struct Player *player = malloc(sizeof(struct Player));
     if (!player) return NULL;
@@ -31,6 +33,9 @@ struct Player *Player_CreatePlayer(struct Object *object,struct Weapon *primaryW
     player->stats.kills = 0;
     player->stats.deaths = 0;
 
+    player->deathStatus.dead = false;
+    player->deathStatus.lastDeathTime = 0;
+
     return player;
 }
 
@@ -53,10 +58,10 @@ void Player_OnOverlapObject(struct World *world,struct Player * player, struct O
     }
 }
 
-bool Player_Shoot(struct World *world,struct Player *player) {
+bool Player_Shoot(struct World *world,struct Player *player,struct Gamerule *gamerule) {
     int weaponCooldown = (player->secondaryWeapon == NULL)?500:200;
 
-    if (SDL_GetTicks() - player->lastBulletShotTime < weaponCooldown) {
+    if (SDL_GetTicks() - gamerule->gamestates.gamePaused - player->lastBulletShotTime < weaponCooldown) {
         return false;
     }
     player->lastBulletShotTime = SDL_GetTicks();
@@ -75,9 +80,107 @@ bool Player_Shoot(struct World *world,struct Player *player) {
     World_AddObject(world,object1);
     free(object1);
     object1 = NULL;
+
+
+
+    if (player->secondaryWeapon != NULL) {
+        player->secondaryWeapon->currAmmo -= 1;
+        if (player->secondaryWeapon->currAmmo <= 0) {
+            free(player->secondaryWeapon);
+            player->secondaryWeapon = NULL;
+        }
+    }
 }
 
-bool Player_OnMove(struct Player *player, enum ObjectFacing newDir) {
+bool Player_OnMove(struct World *world,struct Player *player, enum ObjectFacing newDir) {
+
+        struct Vector2 addToPos = {0,0};
+
+        char *playerAnim = NULL;
+        char *weaponAnim = NULL;
+        enum AnimationMirrorFlip animFlipPlayer = ANIMATION_NOT_MIRRORED_FLIPPED;
+        enum AnimationMirrorFlip animFlipWeapon = ANIMATION_NOT_MIRRORED_FLIPPED;
+
+        if (newDir == NORTH) {
+            newDir = NORTH;
+            addToPos.y = -player->speed;
+            playerAnim = "moveUp";
+            animFlipPlayer = ANIMATION_NOT_MIRRORED_FLIPPED;
+            weaponAnim = "up";
+            animFlipWeapon = ANIMATION_NOT_MIRRORED_FLIPPED;
+        }
+        else if (newDir == EAST) {
+            newDir = EAST;
+            addToPos.x = player->speed;
+            playerAnim = "moveRight";
+            animFlipPlayer = ANIMATION_NOT_MIRRORED_FLIPPED;
+            weaponAnim = "right";
+            animFlipWeapon = ANIMATION_NOT_MIRRORED_FLIPPED;
+        }
+
+        else if (newDir == SOUTH) {
+            newDir = SOUTH;
+            addToPos.y = player->speed;
+            playerAnim = "moveDown";
+            animFlipPlayer = ANIMATION_NOT_MIRRORED_FLIPPED;
+            weaponAnim = "down";
+            animFlipWeapon = ANIMATION_NOT_MIRRORED_FLIPPED;
+        }
+        else if (newDir == WEST) {
+            newDir = WEST;
+            addToPos.x = -player->speed;
+            playerAnim = "moveRight";
+            animFlipPlayer = ANIMATION_FLIP;
+            weaponAnim = "right";
+            animFlipWeapon = ANIMATION_FLIP;
+        }
+
+        if (newDir != -1) {
+            Player_SetFacingDirectin(player, newDir);
+
+            Object_SetActiveAnimationByName(&player->object, playerAnim, animFlipPlayer);
+
+            if (player->primaryWeapon)
+                Object_SetActiveAnimationByName(&player->primaryWeapon->object, weaponAnim, animFlipWeapon);
+            if (player->secondaryWeapon)
+                Object_SetActiveAnimationByName(&player->secondaryWeapon->object, weaponAnim, animFlipWeapon);
+
+        }
+        player->object.objectAnimationsType = (newDir != -1)?ANIMATIONS_PLAYER:ANIMATIONS_SINGLE;
+        if (player->primaryWeapon)
+            player->primaryWeapon->object.objectAnimationsType = (newDir != -1)?ANIMATIONS_OBJECT:ANIMATIONS_SINGLE;
+        if (player->secondaryWeapon)
+            player->secondaryWeapon->object.objectAnimationsType = (newDir != -1)?ANIMATIONS_OBJECT:ANIMATIONS_SINGLE;
+
+
+        if ((addToPos.x != 0 || addToPos.y != 0)) {
+            bool canMove = true;
+
+            struct Object playerObjectCopy = player->object;
+            Object_MoveBy(&playerObjectCopy, addToPos);
+
+            if (
+                (playerObjectCopy.position.x + playerObjectCopy.size.y >= 1080 || playerObjectCopy.position.x <= 0) ||
+                (playerObjectCopy.position.y + playerObjectCopy.size.y >= 720 || playerObjectCopy.position.y <= 0)
+                ) {
+                return false;
+            }
+
+            ///// KOLIZE
+            for (int j = 0; j < world->objectCount; ++j) {
+                if (Collsions_areColliding(&playerObjectCopy,&world->objects[j])){
+                    if (world->objects[j].collision == COLLISION_BLOCK) {
+                        canMove = false;
+                    }
+                }
+            }
+
+
+            if (canMove) {
+                Player_MoveBy(player,addToPos);
+            }
+
+        }
 
 }
 
@@ -171,14 +274,28 @@ void Player_PickUpWeapon(struct Player *player, struct Object *weaponObject) {
 }
 
 void Player_Die(struct Player *player) {
-    printf("Player %s died\n",player->object.name);
+    printf("Player %s died\n",player->displayName);
+    player->deathStatus.dead = true;
+    player->deathStatus.lastDeathTime = SDL_GetTicks();
+    player->object.collision = COLLISION_NONE;
+}
+
+void Player_Respawn(struct World *world,struct Player *player) {
+    printf("Player %s respaned\n",player->displayName);
+    player->object.collision = COLLISION_OVERLAP;
+    player->HP = 2;
+    player->deathStatus.dead = false;
+
+    Object_SetRandomPosition(world,&player->object,100,900,100,600);
+
+    Player_OnMove(world,player,NORTH);
 }
 
 int Player_TakeDamage(struct Player *player, int damage) {
     if (player == NULL){printf("Player je NULL pri dostani damage\n");return 0;}
 
     player->HP -= damage;
-    if (player->HP < 0) {
+    if (player->HP <= 0) {
         printf("%s dostal %d damage\n",player->object.name,damage);
         player->stats.deaths++;
         Player_Die(player);
@@ -197,11 +314,11 @@ struct Player *Player_GetByName(struct World *world,char *name) {
 }
 
 void Player_UpdateStatsUITexture(SDL_Renderer *renderer,struct Player *player) {
-    SDL_Color color = {255,255,255};
+    SDL_Color color = {PLAYER_STATS_UI_TEXT_COLOR};
 
     sprintf(player->stats.ui.text.textToDisplay,"K:%dD:%d",player->stats.kills,player->stats.deaths);
 
-    player->stats.ui.text.textTexture = UI_GetTextTexture(renderer,player->stats.ui.text.textToDisplay,color,32);
+    player->stats.ui.text.textTexture = UI_GetTextTexture(renderer,player->stats.ui.text.textToDisplay,color,PLAYER_STATS_UI_TEXT_SIZE);
 }
 
 

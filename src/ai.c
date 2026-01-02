@@ -9,29 +9,14 @@
 #include "player.h"
 
 
-void Ai_BotTick(struct World * world, struct Player *bot) {
+void Ai_BotTick(struct World * world, struct Player *bot,struct Gamerule *gamerule) {
 
-    struct Vector2 addToPos = {2,2};
+    // enum ObjectFacing newRadnomDirection = rand()%4;
 
+    // Player_OnMove(world,bot,newRadnomDirection);
+    // Player_Shoot(world,bot,gamerule);
 
-    bool canMove = true;
-
-    struct Object playerObjectCopy = bot->object;
-    Object_MoveBy(&playerObjectCopy, addToPos);
-
-    ///// KOLIZE
-    for (int j = 0; j < world->objectCount; ++j) {
-        if (Collsions_areColliding(&playerObjectCopy,&world->objects[j])){
-            if (world->objects[j].collision == COLLISION_BLOCK) {
-                canMove = false;
-            }
-        }
-    }
-
-
-    if (canMove) {
-        Player_MoveBy(bot,addToPos);
-    }
-
+    // kdyz se nepohne
+    Object_SetActiveAnimationByName(&bot->object,"idle",ANIMATION_NOT_MIRRORED_FLIPPED);
 
 }

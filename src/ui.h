@@ -64,4 +64,7 @@ struct UI *UI_Manager_GetUIByIdentifier(struct UI_Manager *uiManager,char *ident
 
 struct UI *UI_MouseOnUI(struct UI_Manager *uiManager,struct Vector2 mousePos);
 bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,struct UI_Manager *ui_manager,struct UI *ui);
+
+
+struct UI *UI_CreateUI_TextField(struct World *world,char identifier[64], struct Vector2 position, struct Vector2 size, char *specialAnimationName);
 #endif //PROJEKT_UI_H

@@ -6,6 +6,8 @@
 
 bool Collsions_areColliding(const struct Object *object1, const struct Object *object2) {
     if (object1 == NULL || object2 == NULL){return false;}
+    if (object1->collision == COLLISION_NONE || object2->collision == COLLISION_NONE){return false;}
+
 
     struct Vector2 startBoundObject1 = {object1->position.x, object1->position.y}; // top left
     struct Vector2 endBoundObject1 = {object1->position.x + object1->size.x, object1->position.y + object1->size.y}; // bottom right

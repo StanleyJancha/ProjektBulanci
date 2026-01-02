@@ -54,21 +54,21 @@ void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2
     snprintf(playerIndexString, sizeof(playerIndexString), "%d", playerIndex+1);
     strcat(playerObjectName,playerIndexString);
 
-    struct Object *object1 = Object_CreateObject(playerObjectName,player1Size,playerPos,0,COLLISION_NONE,OBJECT_PLAYER,WEST);
+    struct Object *object1 = Object_CreateObject(playerObjectName,player1Size,playerPos,0,COLLISION_OVERLAP,OBJECT_PLAYER,WEST);
     Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_OBJECT,0);
     //weapon
     struct Vector2 player1WeaponSize = {20,20};
     struct Vector2 player1WeaponPos = {500,500};
-    struct Object *weaponObject1 = Object_CreateObject("gun",player1WeaponSize,player1WeaponPos,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
+    struct Object *weaponObject1 = Object_CreateObject("pistol",player1WeaponSize,player1WeaponPos,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
     Animation_AddAnimationsToObject(world->renderer,weaponObject1,ANIMATIONS_OBJECT,0);
 
     struct Weapon *primaryWeapon1 = Weapon_CreateWeapon(weaponObject1,5,3);
 
-    struct Player *player1 = Player_CreatePlayer(object1,primaryWeapon1,NULL,(isBot)?-1:playerIndex,5,5,isBot);
+    struct Player *player1 = Player_CreatePlayer(object1,primaryWeapon1,NULL,(isBot)?-1:playerIndex,5,2,isBot);
     strcpy(player1->displayName,displayName);
 
     // UI STATS
-    SDL_Color color = {255,255,255,255};
+    SDL_Color color = {PLAYER_STATS_UI_TEXT_COLOR};
 
     struct Vector2 player1UIPos = {500,300};
     struct Vector2 player1UISize = {50,50};
@@ -81,7 +81,7 @@ void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2
     struct UI *player1StatsUI = UI_CreateUI(statsUIIdentifier,player1UIPos,player1UISize,"K:0 D:0",NULL,false);
     Animation_AddAnimationToUI(world->renderer,player1StatsUI,"kda_UI");
 
-    player1StatsUI->text.textTexture = UI_GetTextTexture(world->renderer,player1StatsUI->text.textToDisplay,color,25);
+    player1StatsUI->text.textTexture = UI_GetTextTexture(world->renderer,player1StatsUI->text.textToDisplay,color,PLAYER_STATS_UI_TEXT_SIZE);
 
     player1->stats.ui = *player1StatsUI;
 
@@ -187,7 +187,7 @@ void Gamerule_SpawnObjects(struct World *world) {
     object1 = NULL;
 
     struct Vector2 size = {300,300};
-    struct Vector2 pos = {100,100};
+    struct Vector2 pos = {50,50};
     struct Object *object = Object_CreateObject("psik",size,pos,0,COLLISION_BLOCK,OBJECT_STATIC,WEST);
     Animation_AddAnimationsToObject(world->renderer,object,ANIMATIONS_OBJECT,0);
 
@@ -212,17 +212,18 @@ void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char play
     int botIndexing = 0;
     for (int i = 0; i < 4; ++i) {
         if (strcmp(playerNames[i],"") != 0) {
-            struct Vector2 loc = {100*i,400};
+            struct Vector2 loc = {100*(i+1),400};
             Gamerule_SpawnPlayer(world,playerNames[playerIndexing],loc,playerIndexing,false);
             playerIndexing++;
             printf("cislo %d je hrac\n",i);
         }
         else {
             struct Vector2 loc = {200*i,600};
-            Gamerule_SpawnPlayer(world,playerNames[botIndexing],loc,botIndexing,true);
+            Gamerule_SpawnPlayer(world,"BOT",loc,botIndexing,true);
             botIndexing++;
             printf("cislo %d je bot\n",i);
         }
+        Player_OnMove(world,&world->players[i],WEST); // pohneme s postavickama, aby hned zacly animace
     }
     gamerule->gameTimes.startTime = SDL_GetTicks();
 
@@ -231,8 +232,11 @@ void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char play
     }
 };
 
-void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule,bool saveStats) {
+void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule, bool saveStats) {
 
+    Gamerule_SaveMatch(world,gamerule);
+
+    gamerule->gamestates.gamestate = GAME_POST_GAME;
     World_Destroy(world);
 };
 
@@ -246,5 +250,89 @@ struct UI_Manager *Gamerule_GetActiveUIManagerByGameState(struct Game_UIs *ui_ma
         case GAME_POST_GAME:{curUIManager=ui_managers->postGame;}break;
     }
     return curUIManager;
+
+}
+
+
+void Gamerule_SaveMatch(struct World *world,struct Gamerule *gamerule) {
+    struct MatchSave match;
+
+    match.gameLength = gamerule->gameTimes.gameLengthMinutes;
+
+    for (int i = 0; i < world->playerCount; ++i) {
+        struct Player player = world->players[i];
+
+        strcpy(match.playerSave[i].name,player.displayName);
+        match.playerSave[i].playerStats = malloc(sizeof(struct PlayerStats));
+        memcpy(match.playerSave[i].playerStats,&player.stats,sizeof(struct PlayerStats));
+    }
+
+    struct MatchSave *oldMatches = NULL;
+    int count = 0;
+    Gamerule_GetMatchHistory(&oldMatches,&count);
+    struct MatchSave *matches = realloc(oldMatches,(count + 1)*(sizeof(struct MatchSave)));
+    memcpy(&matches[count], &match,sizeof(struct MatchSave));
+
+    // for (int i = 0; i < 4; ++i) { // spatne
+    //     //free(match.playerSave[i].playerStats);
+    // }
+
+    FILE *file = fopen("matchHistory", "wb");
+    if (file == NULL) {
+        perror("Nepodarilo se otervit matchHistory file");
+        return;
+    }
+
+    fwrite(matches,sizeof(struct MatchSave),count + 1,file);
+
+    fclose(file);
+
+    free(matches);
+}
+
+void Gamerule_GetMatchHistory(struct MatchSave **matchSaves, int *count) {
+
+    FILE *fp = fopen("matchHistory", "rb");
+
+    if (fp == NULL) {
+        *matchSaves = malloc(sizeof(struct MatchSave));
+        perror("Nepodarilo se otervit matchHistory file");
+        return;
+    }
+
+    fseek(fp, 0, SEEK_END);
+    long fileSize = ftell(fp);
+    rewind(fp);
+
+    *count = fileSize / sizeof(struct MatchSave);
+    *matchSaves = malloc(sizeof(struct MatchSave) * *count);
+
+    fread(*matchSaves, sizeof(struct MatchSave), *count, fp);
+
+    // printf("Pocet zapasu v matchHistory je %d (bez noveho)\n",*count);
+
+    fclose(fp);
+}
+
+void Gamerule_GetScoreboard(struct PlayerSave *scoreboard[5]) {
+    FILE *file = fopen("scoreboard", "rb");
+
+    if (file == NULL) {
+        perror("Nepodarilo se otervit scoreboard file");
+        return;
+    }
+
+    fread(scoreboard,sizeof(struct PlayerSave),5,file);
+
+    fclose(file);
+}
+
+void Gamerule_TryToAddToScoreboard(struct PlayerSave playerSave) {
+    struct PlayerSave scoreboard[5];
+
+    for (int i = 0; i < 5; ++i) {
+
+    }
+
 
 }

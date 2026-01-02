@@ -7,6 +7,7 @@
 #include <SDL_stdinc.h>
 #include <stdbool.h>
 
+
 enum Gamestate{
     GAME_IN_MAIN_MENU,
     GAME_PRE_PLAY,
@@ -21,6 +22,7 @@ struct Gamestates {
 };
 
 struct GameTimes {
+    unsigned int gameLengthMinutes;
     Uint32 startTime;
     Uint32 pauseTime;
     Uint32 timePaused;
@@ -31,6 +33,17 @@ struct Gamerule {
     struct GameTimes gameTimes;
     struct UI *inputUI;
 };
+
+struct PlayerSave {
+    char name[60];
+    struct PlayerStats *playerStats;
+};
+
+struct MatchSave {
+    unsigned int gameLength;
+    struct PlayerSave playerSave[4];
+};
+
 
 
 void Gamerule_PauseGame(struct Gamerule *gamerule);
@@ -46,4 +59,13 @@ void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2
 void Gamerule_SpawnObjects(struct World *world);
 void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char playerNames[4][64]);
 void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule,bool saveStats);
+
+
+void Gamerule_SaveMatch(struct World *world,struct Gamerule *gamerule);
+void Gamerule_GetMatchHistory(struct MatchSave **matchSaves, int *count);
+
+
+void Gamerule_GetScoreboard();
+void Gamerule_SetScoreboard();
+
 #endif //PROJEKT_GAMERULE_H
