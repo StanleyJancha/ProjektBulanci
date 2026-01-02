@@ -17,6 +17,9 @@ void Ai_BotTick(struct World * world, struct Player *bot,struct Gamerule *gameru
     // Player_Shoot(world,bot,gamerule);
 
     // kdyz se nepohne
-    Object_SetActiveAnimationByName(&bot->object,"idle",ANIMATION_NOT_MIRRORED_FLIPPED);
+
+    if (bot->deathStatus.deathAnimationPlaying == false) {
+        Object_SetActiveAnimationByName(&bot->object,"idle",ANIMATION_NOT_MIRRORED_FLIPPED);
+    }
 
 }

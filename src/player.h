@@ -23,6 +23,7 @@ struct PlayerStats {
 
 struct PlayerDeathStatus {
     bool dead;
+    bool deathAnimationPlaying;
     Uint32 lastDeathTime;
 };
 

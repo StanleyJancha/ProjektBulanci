@@ -122,6 +122,9 @@ bool Render_UI(SDL_Renderer *ren,struct UI *ui) {
     dst.w = w;
     dst.h = h;
 
+    dst.x += ui->text.padding.x;
+    dst.y += ui->text.padding.y;
+
     if (ui->text.textTexture) {
         SDL_RenderCopyEx(
             ren,

@@ -42,3 +42,15 @@ add_executable(Projekt main.c
 )
 target_link_libraries(Projekt ${SDL2_LIBRARIES} SDL2_image)
 target_link_libraries(Projekt ${SDL2_LIBRARIES} SDL2_ttf)
+
+
+set(ASSET_DIRS "animations" "animations_ui" "fonts")
+
+foreach(DIR ${ASSET_DIRS})
+    add_custom_command(TARGET Projekt POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_CURRENT_SOURCE_DIR}/${DIR}"
+            "${CMAKE_CURRENT_BINARY_DIR}/${DIR}"
+            COMMENT "Syncing ${DIR} to build directory..."
+    )
+endforeach()

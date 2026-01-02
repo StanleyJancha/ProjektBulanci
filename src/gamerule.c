@@ -5,6 +5,7 @@
 #include "gamerule.h"
 
 #include <SDL_timer.h>
+#include <stdlib.h>
 
 #include "object.h"
 #include "player.h"
@@ -43,7 +44,7 @@ bool Gamerule_ChangeGamestate(struct Gamerule *gamerule,struct Game_UIs *gameUIs
 
 
 
-void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2 playerPos, int playerIndex, bool isBot) {
+void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2 playerPos, int playerIndex, bool isBot, enum PlayerColors playerColor) {
     //object
     struct Vector2 player1Size = {100,100};
 
@@ -55,12 +56,32 @@ void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2
     strcat(playerObjectName,playerIndexString);
 
     struct Object *object1 = Object_CreateObject(playerObjectName,player1Size,playerPos,0,COLLISION_OVERLAP,OBJECT_PLAYER,WEST);
-    Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_OBJECT,0);
+
+    char objectName[60];
+    switch (playerColor) {
+        case PLAYER_RED: {
+            strcpy(objectName,"red");
+        }break;
+        case PLAYER_GREEN: {
+            strcpy(objectName,"green");
+        }break;
+        case PLAYER_BLUE: {
+            strcpy(objectName,"blue");
+        }break;
+        case PLAYER_WHITE: {
+            strcpy(objectName,"white");
+        }break;
+        default: {
+            strcpy(objectName,"");
+        }
+    }
+
+    Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_OBJECT,0,objectName); //
     //weapon
     struct Vector2 player1WeaponSize = {20,20};
     struct Vector2 player1WeaponPos = {500,500};
     struct Object *weaponObject1 = Object_CreateObject("pistol",player1WeaponSize,player1WeaponPos,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
-    Animation_AddAnimationsToObject(world->renderer,weaponObject1,ANIMATIONS_OBJECT,0);
+    Animation_AddAnimationsToObject(world->renderer,weaponObject1,ANIMATIONS_OBJECT,0,NULL);
 
     struct Weapon *primaryWeapon1 = Weapon_CreateWeapon(weaponObject1,5,3);
 
@@ -68,10 +89,9 @@ void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2
     strcpy(player1->displayName,displayName);
 
     // UI STATS
-    SDL_Color color = {PLAYER_STATS_UI_TEXT_COLOR};
 
     struct Vector2 player1UIPos = {500,300};
-    struct Vector2 player1UISize = {50,50};
+    struct Vector2 player1UISize = {60,20};
 
     char statsUIIdentifier[50];
     strcat(statsUIIdentifier,player1->object.name);
@@ -81,7 +101,14 @@ void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2
     struct UI *player1StatsUI = UI_CreateUI(statsUIIdentifier,player1UIPos,player1UISize,"K:0 D:0",NULL,false);
     Animation_AddAnimationToUI(world->renderer,player1StatsUI,"kda_UI");
 
-    player1StatsUI->text.textTexture = UI_GetTextTexture(world->renderer,player1StatsUI->text.textToDisplay,color,PLAYER_STATS_UI_TEXT_SIZE);
+    player1StatsUI->text.color.r = 0;
+    player1StatsUI->text.color.g = 0;
+    player1StatsUI->text.color.b = 0;
+
+    player1StatsUI->text.size = 10;
+    player1StatsUI->text.textTexture = UI_GetTextTexture(world->renderer,player1StatsUI->text);
+
+    UI_Text_SetPadding(&player1StatsUI->text,5,0);
 
     player1->stats.ui = *player1StatsUI;
 
@@ -180,25 +207,43 @@ void Gamerule_SpawnObjects(struct World *world) {
     struct Vector2 size1 = {w,h};
     struct Vector2 pos1 = {0,0};
     struct Object *object1 = Object_CreateObject("pozadi",size1,pos1,0,COLLISION_NONE,OBJECT_STATIC,WEST);
-    Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_SINGLE,0);
+    Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_SINGLE,0,NULL);
 
     World_AddObject(world,object1);
     free(object1);
     object1 = NULL;
 
-    struct Vector2 size = {300,300};
-    struct Vector2 pos = {50,50};
-    struct Object *object = Object_CreateObject("psik",size,pos,0,COLLISION_BLOCK,OBJECT_STATIC,WEST);
-    Animation_AddAnimationsToObject(world->renderer,object,ANIMATIONS_OBJECT,0);
+    struct Vector2 size = {150,150};
+    struct Vector2 pos = {50,300};
+    struct Object *object = Object_CreateObject("crate",size,pos,0,COLLISION_BLOCK,OBJECT_STATIC,WEST);
+    Animation_AddAnimationsToObject(world->renderer,object,ANIMATIONS_OBJECT,0,NULL);
 
     World_AddObject(world,object);
     free(object);
     object = NULL;
 
+    struct Vector2 size2 = {50,50};
+    struct Vector2 pos2 = {500,330};
+    struct Object *object2 = Object_CreateObject("crate",size2,pos2,0,COLLISION_BLOCK,OBJECT_STATIC,WEST);
+    Animation_AddAnimationsToObject(world->renderer,object2,ANIMATIONS_OBJECT,0,NULL);
+
+    World_AddObject(world,object2);
+    free(object2);
+    object2 = NULL;
+
+    struct Vector2 size4 = {100,100};
+    struct Vector2 pos4 = {460,500};
+    struct Object *object4 = Object_CreateObject("crate",size4,pos4,0,COLLISION_BLOCK,OBJECT_STATIC,WEST);
+    Animation_AddAnimationsToObject(world->renderer,object4,ANIMATIONS_OBJECT,0,NULL);
+
+    World_AddObject(world,object4);
+    free(object4);
+    object4 = NULL;
+
     struct Vector2 size3 = {50,50};
     struct Vector2 pos3 = {650,500};
     struct Object *object3 = Object_CreateObject("gun",size3,pos3,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
-    Animation_AddAnimationsToObject(world->renderer,object3,ANIMATIONS_OBJECT,0);
+    Animation_AddAnimationsToObject(world->renderer,object3,ANIMATIONS_OBJECT,0,NULL);
 
     World_AddObject(world,object3);
     free(object3);
@@ -208,18 +253,19 @@ void Gamerule_SpawnObjects(struct World *world) {
 
 void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char playerNames[4][64]) {
     Gamerule_SpawnObjects(world);
+
     int playerIndexing = 0;
     int botIndexing = 0;
     for (int i = 0; i < 4; ++i) {
         if (strcmp(playerNames[i],"") != 0) {
             struct Vector2 loc = {100*(i+1),400};
-            Gamerule_SpawnPlayer(world,playerNames[playerIndexing],loc,playerIndexing,false);
+            Gamerule_SpawnPlayer(world,playerNames[playerIndexing],loc,playerIndexing,false,i);
             playerIndexing++;
             printf("cislo %d je hrac\n",i);
         }
         else {
             struct Vector2 loc = {200*i,600};
-            Gamerule_SpawnPlayer(world,"BOT",loc,botIndexing,true);
+            Gamerule_SpawnPlayer(world,"BOT",loc,botIndexing,true,i);
             botIndexing++;
             printf("cislo %d je bot\n",i);
         }
@@ -232,11 +278,40 @@ void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char play
     }
 };
 
-void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule, bool saveStats) {
+void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule, struct UI_Manager *endScreenUI,bool saveStats) {
+    if (saveStats == false) {
+        gamerule->gamestates.gamestate = GAME_IN_MAIN_MENU;
+    }
+    else {
+        gamerule->gamestates.gamestate = GAME_POST_GAME;
 
-    Gamerule_SaveMatch(world,gamerule);
+        struct MatchSave curMatch = Gamerule_SaveMatch(world,gamerule);
 
-    gamerule->gamestates.gamestate = GAME_POST_GAME;
+        char scoreboardText[256] = {""};
+
+
+        char tmpInt[5];
+        for (int i = 0; i < 4; ++i) {
+            strcat(scoreboardText,curMatch.playerSave[i].name);
+            strcat(scoreboardText,"   Kills: ");
+            sprintf(tmpInt,"%d",curMatch.playerSave[i].playerStats->kills);
+            strcat(scoreboardText,tmpInt);
+
+            strcat(scoreboardText,"   Deaths: ");
+            sprintf(tmpInt,"%d",curMatch.playerSave[i].playerStats->deaths);
+            strcat(scoreboardText,tmpInt);
+            strcat(scoreboardText,"\n");
+        }
+        strcat(scoreboardText,"\0");
+
+        struct UI *scoreboardUi = UI_Manager_GetUIByIdentifier(endScreenUI, "score_board");
+        strcpy(scoreboardUi->text.textToDisplay,scoreboardText);
+        scoreboardUi->text.textTexture = UI_GetTextTexture(world->renderer,scoreboardUi->text);
+
+
+
+    }
+
     World_Destroy(world);
 };
 
@@ -254,7 +329,7 @@ struct UI_Manager *Gamerule_GetActiveUIManagerByGameState(struct Game_UIs *ui_ma
 }
 
 
-void Gamerule_SaveMatch(struct World *world,struct Gamerule *gamerule) {
+struct MatchSave Gamerule_SaveMatch(struct World *world,struct Gamerule *gamerule) {
     struct MatchSave match;
 
     match.gameLength = gamerule->gameTimes.gameLengthMinutes;
@@ -280,14 +355,16 @@ void Gamerule_SaveMatch(struct World *world,struct Gamerule *gamerule) {
     FILE *file = fopen("matchHistory", "wb");
     if (file == NULL) {
         perror("Nepodarilo se otervit matchHistory file");
-        return;
+
+    }
+    else {
+        fwrite(matches,sizeof(struct MatchSave),count + 1,file);
     }
 
-    fwrite(matches,sizeof(struct MatchSave),count + 1,file);
-
     fclose(file);
-
     free(matches);
+
+    return match;
 }
 
 void Gamerule_GetMatchHistory(struct MatchSave **matchSaves, int *count) {

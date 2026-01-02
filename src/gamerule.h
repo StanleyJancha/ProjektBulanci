@@ -4,8 +4,16 @@
 
 #ifndef PROJEKT_GAMERULE_H
 #define PROJEKT_GAMERULE_H
+
 #include <SDL_stdinc.h>
 #include <stdbool.h>
+
+enum PlayerColors {
+    PLAYER_WHITE,
+    PLAYER_GREEN,
+    PLAYER_RED,
+    PLAYER_BLUE
+};
 
 
 enum Gamestate{
@@ -55,13 +63,12 @@ struct Vector2;
 
 struct World;
 void Gamerule_SpawnPlayers(struct World *world);
-void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2 playerPos, int playerIndex,bool isBot);
+void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2 playerPos, int playerIndex, bool isBot, enum PlayerColors playerColor);
 void Gamerule_SpawnObjects(struct World *world);
 void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char playerNames[4][64]);
-void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule,bool saveStats);
+void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule, struct UI_Manager *endScreenUI,bool saveStats);
 
-
-void Gamerule_SaveMatch(struct World *world,struct Gamerule *gamerule);
+struct MatchSave Gamerule_SaveMatch(struct World *world,struct Gamerule *gamerule);
 void Gamerule_GetMatchHistory(struct MatchSave **matchSaves, int *count);
 
 

@@ -66,7 +66,7 @@ enum Animation_ObjectType {
     ANIMATION_UI
 };
 
-int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *object, enum ObjectAnimationsType objectAnimationsType, int AnimationSetIndex) ;
+int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *object, enum ObjectAnimationsType objectAnimationsType, int AnimationSetIndex, char *diffObjectNameNonMandatory);
 bool Animation_GetAnimation(struct Animation *animation,char objectName[32], char animName[32]);
 bool Animation_RemoveAnimations(struct Object *object);
 bool Animation_RemoveAnimation(struct Animation *animation);

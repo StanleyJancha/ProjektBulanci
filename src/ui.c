@@ -43,6 +43,9 @@ struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vect
     strcpy(ui->text.textToDisplay,text);
     ui->text.isInput = isTextInput;
 
+    ui->text.padding.x = 0;
+    ui->text.padding.y = 0;
+
     ui->events = events;
 
     return ui;
@@ -57,7 +60,12 @@ struct UI *UI_CreateUI_TextField(struct World *world,char identifier[64], struct
     struct UI *textInputFieldPlayer = UI_CreateUI(identifier,position,size,"",textInputFieldPlayer1Events,true);
     Animation_AddAnimationToUI(world->renderer,textInputFieldPlayer,specialAnimationName);
 
-    textInputFieldPlayer->text.textTexture = UI_GetTextTexture(world->renderer,textInputFieldPlayer->text.textToDisplay,color,25);
+    textInputFieldPlayer->text.color.r = 0;
+    textInputFieldPlayer->text.color.g = 0;
+    textInputFieldPlayer->text.color.b = 0;
+
+    textInputFieldPlayer->text.size = 10;
+    textInputFieldPlayer->text.textTexture = UI_GetTextTexture(world->renderer,textInputFieldPlayer->text);
 
     return textInputFieldPlayer;
 }
@@ -93,11 +101,11 @@ bool UI_Manager_AddUI(struct UI_Manager *uiManager, struct UI *ui) {
 
 
 
-SDL_Texture *UI_GetTextTexture(SDL_Renderer *renderer, char *text, SDL_Color color, int ptsize) {
-    TTF_Font *font = TTF_OpenFont("fonts/Playwrite.ttf", ptsize);
+SDL_Texture *UI_GetTextTexture(SDL_Renderer *renderer, struct UI_Text uiText) {
+    TTF_Font *font = TTF_OpenFont("fonts/Playwrite.ttf", uiText.size);
     if (!font) {printf("Font error: %s\n", TTF_GetError());return NULL;}
 
-    SDL_Surface *surface = TTF_RenderText_Blended(font, text, color);
+    SDL_Surface *surface = TTF_RenderText_Blended_Wrapped(font, uiText.textToDisplay, uiText.color, 1500);// wrap length je, po kolika pixelech to automaticky zalomi text
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
@@ -172,8 +180,6 @@ bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,struct UI_
             return false;
         }
 
-
-
         Gamerule_StartGame(world,gamerule,playerNames);
         gamerule->gamestates.gamestate = GAME_IN_GAME;
         return true;
@@ -184,8 +190,7 @@ bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,struct UI_
         return true;
     }
     if (strcmp(onClickEventName,"exit_to_main_menu") == 0) {
-        Gamerule_EndGame(world,gamerule,false);
-        gamerule->gamestates.gamestate = GAME_IN_MAIN_MENU;
+        Gamerule_EndGame(world,gamerule,NULL,false);
         return true;
     }
     if (strcmp(onClickEventName,"text_field") == 0) {
@@ -226,4 +231,11 @@ struct UI *UI_Manager_GetUIByIdentifier(struct UI_Manager *uiManager,char *ident
         }
     }
     return NULL;
+}
+
+
+void UI_Text_SetPadding(struct UI_Text *text,int x, int y){
+    text->padding.x = x;
+    text->padding.y = y;
+
 }

@@ -124,17 +124,34 @@ int Animation_GetAnimationsCount(char objectName[32], char animNames[99][32],enu
 }
 
 
-int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *object, enum ObjectAnimationsType objectAnimationsType, int AnimationSetIndex) {
+int Animation_AddAnimationsToObject(SDL_Renderer *renderer, struct Object *object, enum ObjectAnimationsType objectAnimationsType, int AnimationSetIndex, char *diffObjectNameNonMandatory) {
+    if (object == NULL) {
+        return -1;
+    }
+
+    char animObjectName[64];
+    if (diffObjectNameNonMandatory != NULL) {
+        if (strcmp(diffObjectNameNonMandatory, "") == 0) {
+            strcpy(animObjectName,object->name);
+        }
+        else {
+            strcpy(animObjectName,diffObjectNameNonMandatory);
+        }
+    }
+    else {
+        strcpy(animObjectName,object->name);
+    }
+
 
     char animationNames[99][32];
     char objectNameCopy[32];
-    strcpy(objectNameCopy,object->name);
+    strcpy(objectNameCopy,animObjectName);
     char *nameStrtokTmp = strtok(objectNameCopy, "_");
 
     int animationsCount = Animation_GetAnimationsCount(nameStrtokTmp,animationNames,ANIMATION_OBJECT);
 
     if (animationsCount < 1) {
-        printf("Nenasly se animace pro objekt: %s\n",object->name);
+        printf("Nenasly se animace pro objekt: %s\n",animObjectName);
         object->animationsCount = 0;
         return 0;
     }

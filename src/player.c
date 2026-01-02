@@ -34,6 +34,7 @@ struct Player *Player_CreatePlayer(struct Object *object,struct Weapon *primaryW
     player->stats.deaths = 0;
 
     player->deathStatus.dead = false;
+    player->deathStatus.deathAnimationPlaying = false;
     player->deathStatus.lastDeathTime = 0;
 
     return player;
@@ -75,7 +76,7 @@ bool Player_Shoot(struct World *world,struct Player *player,struct Gamerule *gam
     strcat(bulletName,playerName);
 
     struct Object *object1 = Object_CreateObject(bulletName,size1,player->primaryWeapon->object.position,0,COLLISION_OVERLAP,OBJECT_DYNAMIC,player->object.objectDir);
-    Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_SINGLE,0);
+    Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_SINGLE,0,NULL);
 
     World_AddObject(world,object1);
     free(object1);
@@ -275,9 +276,11 @@ void Player_PickUpWeapon(struct Player *player, struct Object *weaponObject) {
 
 void Player_Die(struct Player *player) {
     printf("Player %s died\n",player->displayName);
-    player->deathStatus.dead = true;
     player->deathStatus.lastDeathTime = SDL_GetTicks();
     player->object.collision = COLLISION_NONE;
+    Object_SetActiveAnimationByName(&player->object,"death",ANIMATION_NOT_MIRRORED_FLIPPED);
+    player->deathStatus.deathAnimationPlaying = true;
+    player->deathStatus.dead = true;
 }
 
 void Player_Respawn(struct World *world,struct Player *player) {
@@ -314,11 +317,9 @@ struct Player *Player_GetByName(struct World *world,char *name) {
 }
 
 void Player_UpdateStatsUITexture(SDL_Renderer *renderer,struct Player *player) {
-    SDL_Color color = {PLAYER_STATS_UI_TEXT_COLOR};
-
     sprintf(player->stats.ui.text.textToDisplay,"K:%dD:%d",player->stats.kills,player->stats.deaths);
 
-    player->stats.ui.text.textTexture = UI_GetTextTexture(renderer,player->stats.ui.text.textToDisplay,color,PLAYER_STATS_UI_TEXT_SIZE);
+    player->stats.ui.text.textTexture = UI_GetTextTexture(renderer,player->stats.ui.text);
 }
 
 
