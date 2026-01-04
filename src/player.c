@@ -348,3 +348,15 @@ void Player_Print(const struct Player *player) {
     printf("\t\tPlayerKeybindSetIndex: %d\n", player->PlayerKeybindSetIndex);
     printf("\t\tHP: %d\n", player->HP);
 }
+
+void Player_CheckForRespawn(struct World *world, struct Player *player, struct Gamerule *gamerule) {
+    if (player->deathStatus.deathAnimationPlaying == true){
+        if (player->object.animations[player->object.activeAnimationIndex].currentFrame >= player->object.animations[player->object.activeAnimationIndex].framesCount) {
+            player->deathStatus.deathAnimationPlaying = false;
+        }
+    }else
+        if (SDL_GetTicks() - gamerule->gameTimes.timePaused - player->deathStatus.lastDeathTime > gamerule->playerRespawnTimeSec) {
+            Player_Respawn(world,player);
+        }
+}
+

@@ -141,3 +141,33 @@ void Object_SetRandomPosition(struct World *world, struct Object *object, int bo
 
     object->position = objectCopy.position;
 }
+
+
+void ObjectTypesLogic(struct World *world, int i) {
+    if (world->objects[i].objectType == OBJECT_DYNAMIC) {
+        Object_Tick(&world->objects[i]);
+
+
+        char name[32];
+        strcpy(name,world->objects[i].name);
+        char *token = strtok(name,"_");
+        if (strcmp(token,"bullet") == 0) {
+            Gamerule_CheckBulletHit(world,token,i);
+        }
+        else if (1) {
+
+        }
+    }
+    else if (world->objects[i].objectType == OBJECT_PICKUP_WEAPON) {
+        for (int j = 0; j < world->playerCount; ++j) {
+            if (Collsions_areColliding(&world->objects[i],&world->players[j].object)) {
+                if (world->players[j].secondaryWeapon == NULL) { // pickup secondary weapon
+                    world->objects[i].collision = COLLISION_NONE;
+                    Player_PickUpWeapon(&world->players[j],&world->objects[i]);
+                    World_RemoveObject(world,&world->objects[i],false);
+                    break;
+                }
+            }
+        }
+    }
+}

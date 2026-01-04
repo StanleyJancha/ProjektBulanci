@@ -10,15 +10,54 @@
 
 
 void Ai_BotTick(struct World * world, struct Player *bot,struct Gamerule *gamerule) {
-    if (bot->deathStatus.deathAnimationPlaying){return;}
+    if (bot->deathStatus.dead){return;}
     Object_SetActiveAnimationByName(&bot->object,"idle",ANIMATION_NOT_MIRRORED_FLIPPED);
 
-    struct Vector2 nearestPlayerPos = {-2000};
-    for (int i = 1; i < world->playerCount; ++i) {
-        struct Player player = world->players[i];
-        if (strcmp(player.object.name,bot->object.name) == 0){continue;}
+    struct Player *target = NULL;
+    int minOffset = 99999;
+    bool alignOnX = false;
 
+    for (int i = 0; i < world->playerCount; i++) {
+        struct Player *p = &world->players[i];
+        if (p == bot || p->deathStatus.dead) continue;
 
+        int diffX = fabs(p->object.position.x - bot->object.position.x);
+        int diffY = fabs(p->object.position.y - bot->object.position.y);
+
+        if (diffX < minOffset) {
+            minOffset = diffX;
+            target = p;
+            alignOnX = true;
+        }
+        if (diffY < minOffset) {
+            minOffset = diffY;
+            target = p;
+            alignOnX = false;
+        }
+
+        if (!target) return;
+
+        int threshold = 15;
+
+        if (alignOnX) {
+            if (minOffset > threshold) {
+                int moveDirX = target->object.position.x - bot->object.position.x;
+                Player_OnMove(world, bot, (moveDirX > 0) ? EAST : WEST);
+            } else {
+                int moveDirY = target->object.position.y - bot->object.position.y;
+                Player_SetFacingDirectin(bot, (moveDirY > 0) ? SOUTH : NORTH);
+                Player_Shoot(world, bot, gamerule);
+            }
+        } else {
+            if (minOffset > threshold) {
+                int moveDirY = target->object.position.y - bot->object.position.y;
+                Player_OnMove(world, bot, (moveDirY > 0) ? SOUTH : NORTH);
+            } else {
+                int moveDirX = target->object.position.x - bot->object.position.x;
+                Player_SetFacingDirectin(bot, (moveDirX > 0) ? EAST : WEST);
+                Player_Shoot(world, bot, gamerule);
+            }
+        }
     }
 
 

@@ -41,6 +41,8 @@ struct GameTimes {
 struct Gamerule {
     struct Gamestates gamestates;
     struct GameTimes gameTimes;
+    int playerRespawnTimeSec;
+    int botTickEveryNthFrame;
     struct UI *inputUI;
 };
 
@@ -82,6 +84,8 @@ void Gamerule_UpdateMainMenuScoreboard(SDL_Renderer *renderer,struct UI_Text *sc
 void Gamerule_HandleInput(struct World *world, const Uint8 *keys);
 
 void Gamerule_SpawnWeaponLogic(struct World *world);
+void Gamerule_BulletDestructionLogic(struct World *world,struct Gamerule *gamerule);
+void Gamerule_CheckBulletHit(struct World *world,char *token,int i);
 
 int Gamerule_UpdateTimer(struct World *world,struct Gamerule *gamerule, struct Game_UIs *game_UIs, int gameSeconds);
 

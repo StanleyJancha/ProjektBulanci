@@ -53,6 +53,7 @@ void Object_OnOverLapWithObject(struct World *world,struct Object *object1, stru
 void Object_Tick(struct Object *object);
 double Object_GetAngleFromDir(enum ObjectFacing dir);
 void Object_SetRandomPosition(struct World *world, struct Object *object, int boundsMinX, int boundsMaxX, int boundsMinY, int boundsMaxY);
+void ObjectTypesLogic(struct World *world, int i);
 
 void Object_Destroy(struct Object * object);
 

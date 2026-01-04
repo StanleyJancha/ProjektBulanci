@@ -7,6 +7,7 @@
 #include <SDL_timer.h>
 #include <stdlib.h>
 
+#include "collisions.h"
 #include "object.h"
 #include "player.h"
 #include "weapons.h"
@@ -485,4 +486,73 @@ int Gamerule_UpdateTimer(struct World *world,struct Gamerule *gamerule, struct G
         }
 
     }else{printf("Nelze najit UI pro TIMER ve hre\n");}
+}
+
+
+
+void Gamerule_BulletDestructionLogic(struct World *world,struct Gamerule *gamerule){
+    int bulletDestroyTimeMs = 2000; // zivotnost BULLET
+
+    int *objectsToDestroyIndexes = malloc(sizeof(int)*world->objectCount);// buffer pro objekty na vymazani
+    for (int i = 0; i < world->objectCount; ++i) {
+        objectsToDestroyIndexes[i] = -1;
+    }
+
+    int j = 0; // index pro pozici v bufferu
+    for (int i = 0; i < world->objectCount; ++i) {
+        char nameCopy[32];
+        strcpy(nameCopy,world->objects[i].name);
+        if (strcmp(strtok(nameCopy,"_"),"bullet") == 0) {
+            if ((SDL_GetTicks() - gamerule->gameTimes.timePaused) - world->objects[i].spawnTime > bulletDestroyTimeMs) {
+                objectsToDestroyIndexes[j] = i;
+                j++;
+            }
+        }
+    }
+    for (int i = 0; i < world->objectCount; ++i) { // mazani objektu
+        if (objectsToDestroyIndexes[i] != -1) { // jestlize byl vybrany nejaky objekt na smazani
+            World_RemoveObject(world,&world->objects[objectsToDestroyIndexes[i]],false);
+        }
+        else {// kdyz nebyl, tak muzeme zrusit cyklus, protoze pokud je jeden -1, tak vsechny za nim taky budou
+            break;
+        }
+    }
+    free(objectsToDestroyIndexes);
+    //regionend
+
+}
+
+void Gamerule_CheckBulletHit(struct World *world,char *token,int i) {
+    bool bulletDestroyed = false;
+
+    token = strtok(NULL,"_");
+    if (token == NULL){return;;}
+    for (int j = 0; j < world->objectCount; ++j) {
+        if (i == j){continue;}
+        if (world->objects[j].objectType != OBJECT_STATIC){continue;}
+        if (strcmp(world->objects[j].name,"pozadi") == 0){continue;}
+        if (Collsions_areColliding(&world->objects[i],&world->objects[j])) {
+            // printf("o1 %s \n o2 %s\n",&world->objects[i].name,&world->objects[j].name);
+            World_RemoveObject(world,&world->objects[i],true);
+            bulletDestroyed = true;
+            break;
+        }
+    }
+
+    if (bulletDestroyed){return;;}
+
+    for (int j = 0; j < world->playerCount; ++j) {
+        if (Collsions_areColliding(&world->objects[i],&world->players[j].object)) {
+            if (strcmp(token,world->players[j].object.name) != 0) { //jestlize kulka neni od hrace, ktery ji vystrelil
+                if (Player_TakeDamage(&world->players[j],1) == 1) { // jestlize kulka zabila hrace
+                    struct Player *killerPlayer = Player_GetByName(world,token);
+                    killerPlayer->stats.kills++;
+                    Player_UpdateStatsUITexture(world->renderer,killerPlayer);
+                    Player_UpdateStatsUITexture(world->renderer,&world->players[j]);
+                }
+                World_RemoveObject(world,&world->objects[i],true);
+                break;
+            }
+        }
+    }
 }

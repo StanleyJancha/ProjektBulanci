@@ -20,10 +20,6 @@ add_executable(Projekt main.c
         src/keybinds.c
         src/player.c
         src/player.h
-        src/liveInput.c
-        src/liveInput.h
-        src/SavingManager.h
-        src/SavingManager.c
         src/collisions.c
         src/collisions.h
         src/animace.h
@@ -37,6 +33,8 @@ add_executable(Projekt main.c
         src/ui.h
         src/gamerule.h
         src/gamerule.c
+        src/GameUIs.c
+        src/GameUIs.h
         src/ai.c
         src/ai.h
 )

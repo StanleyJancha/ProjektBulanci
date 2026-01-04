@@ -39,7 +39,7 @@ int main() {
         return 1;
     }
 
-    struct Gamerule gamerule = {{0,1,GAME_IN_MAIN_MENU},{5,0,0,0}};
+    struct Gamerule gamerule = {{0,1,GAME_IN_MAIN_MENU},{5,0,0,0},2,4,NULL};
 
     struct Game_UIs game_UIs = {NULL,NULL,NULL,NULL,NULL};
 
@@ -142,88 +142,38 @@ int main() {
 
             for (int i = 0; i < world.playerCount; ++i) {
                 struct Player *player = &world.players[i];
-
                 if (player->deathStatus.dead == true) {
-                    if (player->deathStatus.deathAnimationPlaying == true){
-                        if (player->object.animations[player->object.activeAnimationIndex].currentFrame >= player->object.animations[player->object.activeAnimationIndex].framesCount) {
-                            player->deathStatus.deathAnimationPlaying = false;
-                        }
-                    }else
-                    if (SDL_GetTicks() - gamerule.gameTimes.timePaused - player->deathStatus.lastDeathTime > RESPAWN_COOLDOWN_MS) {
-                        Player_Respawn(&world,player);
-                    }
+                    Player_CheckForRespawn(&world,player,&gamerule);
                 }
-
-                if (player->isBot) {
+                if (player->isBot && SDL_GetTicks()%gamerule.botTickEveryNthFrame == 1) {
                     Ai_BotTick(&world,player,&gamerule);
                 }
             }
 
-
             // region Dealing with dynamic objects (bullets and guns)
             for (int i = 0; i < world.objectCount; ++i) {
-                if (world.objects[i].objectType == OBJECT_DYNAMIC) {
-                    Object_Tick(&world.objects[i]);
-                }
-            }
-
-            for (int i = 0; i < world.objectCount; ++i) {
-                if (world.objects[i].objectType == OBJECT_DYNAMIC) {
-                    char name[32];
-                    strcpy(name,world.objects[i].name);
-                    char *token = strtok(name,"_");
-                    if (strcmp(token,"bullet") == 0) {
-                        bool bulletDestroyed = false;
-
-                        token = strtok(NULL,"_");
-                        if (token == NULL){continue;}
-                        for (int j = 0; j < world.objectCount; ++j) {
-                            if (i == j){continue;}
-                            if (world.objects[j].objectType != OBJECT_STATIC){continue;}
-                            if (strcmp(world.objects[j].name,"pozadi") == 0){continue;}
-                            if (Collsions_areColliding(&world.objects[i],&world.objects[j])) {
-                                // printf("o1 %s \n o2 %s\n",&world.objects[i].name,&world.objects[j].name);
-                                World_RemoveObject(&world,&world.objects[i],true);
-                                bulletDestroyed = true;
-                                break;
-                            }
-                        }
-
-                        if (bulletDestroyed){continue;}
-
-                        for (int j = 0; j < world.playerCount; ++j) {
-                            if (Collsions_areColliding(&world.objects[i],&world.players[j].object)) {
-                                if (strcmp(token,world.players[j].object.name) != 0) { //jestlize kulka neni od hrace, ktery ji vystrelil
-                                    if (Player_TakeDamage(&world.players[j],1) == 1) { // jestlize kulka zabila hrace
-                                        struct Player *killerPlayer = Player_GetByName(&world,token);
-                                        killerPlayer->stats.kills++;
-                                        Player_UpdateStatsUITexture(world.renderer,killerPlayer);
-                                        Player_UpdateStatsUITexture(world.renderer,&world.players[j]);
-                                    }
-                                    World_RemoveObject(&world,&world.objects[i],true);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    else if (1) {
-
-                    }
-                }
-                else if (world.objects[i].objectType == OBJECT_PICKUP_WEAPON) {
-                    for (int j = 0; j < world.playerCount; ++j) {
-                        if (Collsions_areColliding(&world.objects[i],&world.players[j].object)) {
-                            if (world.players[j].secondaryWeapon == NULL) { // pickup secondary weapon
-                                world.objects[i].collision = COLLISION_NONE;
-                                Player_PickUpWeapon(&world.players[j],&world.objects[i]);
-                                World_RemoveObject(&world,&world.objects[i],false);
-                                break;
-                            }
-                        }
-                    }
-                }
+                ObjectTypesLogic(&world,i);
             }
             // endregion
+
+            // region Timer
+            if (!gamerule.gamestates.gamePaused) {
+                Uint32 curTime = SDL_GetTicks();
+
+                int seconds = (curTime-gamerule.gameTimes.startTime-gamerule.gameTimes.timePaused)/1000;
+
+                Gamerule_UpdateTimer(&world,&gamerule,&game_UIs,seconds);
+
+                if (seconds/60 > gamerule.gameTimes.gameLengthMinutes) { // jestli vyprsi cas hry
+                    Gamerule_EndGame(&world,&gamerule,&game_UIs,true);
+                }
+            }
+            //endregion
+            // region Spawn Gun
+            Gamerule_SpawnWeaponLogic(&world);
+            // endregion
+            Gamerule_BulletDestructionLogic(&world,&gamerule);
+
         }
 
         /* ----------------- END Main loop ----------------- */
@@ -273,62 +223,9 @@ int main() {
         }
         // endregion
 
-        // region Bullet time destruction
-        if (!gamerule.gamestates.gamePaused) {   // mazani objektu kulek po case
-            int bulletDestroyTimeMs = 2000; // zivotnost BULLET
-
-            int *objectsToDestroyIndexes = malloc(sizeof(int)*world.objectCount);// buffer pro objekty na vymazani
-            for (int i = 0; i < world.objectCount; ++i) {
-                objectsToDestroyIndexes[i] = -1;
-            }
-
-            int j = 0; // index pro pozici v bufferu
-            for (int i = 0; i < world.objectCount; ++i) {
-                char nameCopy[32];
-                strcpy(nameCopy,world.objects[i].name);
-                if (strcmp(strtok(nameCopy,"_"),"bullet") == 0) {
-                    if ((SDL_GetTicks() - gamerule.gameTimes.timePaused) - world.objects[i].spawnTime > bulletDestroyTimeMs) {
-                        objectsToDestroyIndexes[j] = i;
-                        j++;
-                    }
-                }
-            }
-            for (int i = 0; i < world.objectCount; ++i) { // mazani objektu
-                if (objectsToDestroyIndexes[i] != -1) { // jestlize byl vybrany nejaky objekt na smazani
-                    World_RemoveObject(&world,&world.objects[objectsToDestroyIndexes[i]],false);
-                }
-                else {// kdyz nebyl, tak muzeme zrusit cyklus, protoze pokud je jeden -1, tak vsechny za nim taky budou
-                    break;
-                }
-            }
-            free(objectsToDestroyIndexes);
-        }
-        //regionend
-
-        // region Spawn Gun
-        if (!gamerule.gamestates.gamePaused) {
-            Gamerule_SpawnWeaponLogic(&world);
 
 
-        }
 
-        // regionend
-        if (!gamerule.gamestates.gamePaused) {
-            Uint32 curTime = SDL_GetTicks();
-
-            int seconds = (curTime-gamerule.gameTimes.startTime-gamerule.gameTimes.timePaused)/1000;
-
-            Gamerule_UpdateTimer(&world,&gamerule,&game_UIs,seconds);
-
-            // if (seconds > 30) { // jestli vyprsi cas hry
-            //     Gamerule_EndGame(&world,&gamerule,&game_UIs,true);
-            // }
-
-            if (seconds/60 > gamerule.gameTimes.gameLengthMinutes) { // jestli vyprsi cas hry
-                Gamerule_EndGame(&world,&gamerule,&game_UIs,true);
-            }
-        }
-        // endregion
         }
 
         // region Render UI

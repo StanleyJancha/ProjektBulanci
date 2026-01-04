@@ -51,6 +51,7 @@ void Player_Print(const struct Player *player);
 void Player_Destroy(struct Player *player);
 int Player_TakeDamage(struct Player *player, int damage);
 void Player_Respawn(struct World *world,struct Player *player);
+void Player_CheckForRespawn(struct World *world, struct Player *player, struct Gamerule *gamerule);
 
 void Player_UpdateStatsUITexture(SDL_Renderer *renderer,struct Player *player);
 #endif //PROJEKT_PLAYER_H
