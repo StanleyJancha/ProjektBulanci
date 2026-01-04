@@ -257,8 +257,8 @@ bool Player_MoveBy(struct Player *player, struct Vector2 addVector) {
 
     Object_MoveBy(&player->object,addVector);
 
-    player->stats.ui.position.x = player->object.position.x+player->object.size.x/2 -player->stats.ui.size.x/2;
-    player->stats.ui.position.y = player->object.position.y+player->object.size.y/2 -player->stats.ui.size.y/2 - 50;
+    player->playerStatsUI.position.x = player->object.position.x+player->object.size.x/2 -player->playerStatsUI.size.x/2;
+    player->playerStatsUI.position.y = player->object.position.y+player->object.size.y/2 -player->playerStatsUI.size.y/2 - 50;
 
     if (player->primaryWeapon != NULL) {
         Object_MoveBy(&player->primaryWeapon->object,addVector);
@@ -317,9 +317,9 @@ struct Player *Player_GetByName(struct World *world,char *name) {
 }
 
 void Player_UpdateStatsUITexture(SDL_Renderer *renderer,struct Player *player) {
-    sprintf(player->stats.ui.text.textToDisplay,"K:%dD:%d",player->stats.kills,player->stats.deaths);
+    sprintf(player->playerStatsUI.text.textToDisplay,"K:%dD:%d",player->stats.kills,player->stats.deaths);
 
-    player->stats.ui.text.textTexture = UI_GetTextTexture(renderer,player->stats.ui.text);
+    player->playerStatsUI.text.textTexture = UI_GetTextTexture(renderer,player->playerStatsUI.text);
 }
 
 

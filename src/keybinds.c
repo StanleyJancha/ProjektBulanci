@@ -6,28 +6,28 @@
 #include "player.h"
 
 struct PlayerKeybindSet PlayerKeybindSets[NUM_PLAYER_KEYBINDSETS] = {
-    {
+    {"Arrows '/'",
         SDL_SCANCODE_UP,
         SDL_SCANCODE_LEFT,
         SDL_SCANCODE_DOWN,
         SDL_SCANCODE_RIGHT,
         SDL_SCANCODE_SLASH
     },
-{
+{"WASD V",
     SDL_SCANCODE_W,
     SDL_SCANCODE_A,
     SDL_SCANCODE_S,
     SDL_SCANCODE_D,
     SDL_SCANCODE_V
     },
-{
+{"Num keyboard 8456 0",
     SDL_SCANCODE_8,
     SDL_SCANCODE_4,
     SDL_SCANCODE_5,
     SDL_SCANCODE_6,
     SDL_SCANCODE_0
     },
-    {
+{"UHJK M",
     SDL_SCANCODE_U,
     SDL_SCANCODE_H,
     SDL_SCANCODE_J,

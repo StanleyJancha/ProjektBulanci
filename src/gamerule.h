@@ -8,6 +8,8 @@
 #include <SDL_stdinc.h>
 #include <stdbool.h>
 
+#include "basicStructs.h"
+
 enum PlayerColors {
     PLAYER_WHITE,
     PLAYER_GREEN,
@@ -44,7 +46,7 @@ struct Gamerule {
 
 struct PlayerSave {
     char name[60];
-    struct PlayerStats *playerStats;
+    struct PlayerStats playerStats;
 };
 
 struct MatchSave {
@@ -63,16 +65,24 @@ struct Vector2;
 
 struct World;
 void Gamerule_SpawnPlayers(struct World *world);
-void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2 playerPos, int playerIndex, bool isBot, enum PlayerColors playerColor);
+void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2 playerPos, int playerIndex, bool isBot, enum PlayerColors playerColor, int index);
 void Gamerule_SpawnObjects(struct World *world);
 void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char playerNames[4][64]);
-void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule, struct UI_Manager *endScreenUI,bool saveStats);
+void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule,struct Game_UIs *gameUIs,bool saveStats);
 
 struct MatchSave Gamerule_SaveMatch(struct World *world,struct Gamerule *gamerule);
 void Gamerule_GetMatchHistory(struct MatchSave **matchSaves, int *count);
 
 
-void Gamerule_GetScoreboard();
-void Gamerule_SetScoreboard();
+void Gamerule_TryToAddToScoreboard(struct PlayerSave *playerSave);
+void Gamerule_GetScoreboard(struct PlayerSave **scoreboard);
+
+void Gamerule_UpdateMainMenuScoreboard(SDL_Renderer *renderer,struct UI_Text *scorboardTextUI);
+
+void Gamerule_HandleInput(struct World *world, const Uint8 *keys);
+
+void Gamerule_SpawnWeaponLogic(struct World *world);
+
+int Gamerule_UpdateTimer(struct World *world,struct Gamerule *gamerule, struct Game_UIs *game_UIs, int gameSeconds);
 
 #endif //PROJEKT_GAMERULE_H

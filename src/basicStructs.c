@@ -11,3 +11,10 @@ struct Vector2 Vector2_Subtract(struct Vector2 u,struct Vector2 v) {
     };
     return newVector;
 }
+
+float CalculateKD(int kills, int deaths) {
+    if (deaths == 0) {
+        return (float)kills;
+    }
+    return (float)kills / (float)deaths;
+}

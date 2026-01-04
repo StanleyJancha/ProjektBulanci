@@ -80,6 +80,12 @@ bool Render_UI(SDL_Renderer *ren,struct UI *ui) {
     double scale = 1;
     SDL_Rect dst = {ui->position.x*scale, ui->position.y*scale, ui->size.x*scale, ui->size.y*scale}; // dimenze vykreseleni
 
+    if (ui->basicBackgroundColor != NULL) {
+        SDL_SetRenderDrawColor(ren, ui->basicBackgroundColor->r, ui->basicBackgroundColor->g, ui->basicBackgroundColor->b, ui->basicBackgroundColor->a);
+        SDL_RenderFillRect(ren, &dst);
+        SDL_SetRenderDrawColor(ren, 0,0,0,0);
+
+    }else
     if (ui->animation.frames != NULL) {
 
         if (ui->animation.framesCount == 1) { // jestlize je objekt ciste jeden obrazek
@@ -117,15 +123,16 @@ bool Render_UI(SDL_Renderer *ren,struct UI *ui) {
         }
     }
 
-    int w, h;
-    SDL_QueryTexture(ui->text.textTexture, NULL, NULL, &w, &h);
-    dst.w = w;
-    dst.h = h;
 
-    dst.x += ui->text.padding.x;
-    dst.y += ui->text.padding.y;
+    if (ui->text.textTexture != NULL) {
+        int w, h;
+        SDL_QueryTexture(ui->text.textTexture, NULL, NULL, &w, &h);
+        dst.w = w;
+        dst.h = h;
 
-    if (ui->text.textTexture) {
+        dst.x += ui->text.padding.x;
+        dst.y += ui->text.padding.y;
+
         SDL_RenderCopyEx(
             ren,
             ui->text.textTexture,

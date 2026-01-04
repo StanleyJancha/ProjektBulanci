@@ -21,276 +21,6 @@
 #define GAME_LOOP_MILLIS_DELAY 16
 #define RESPAWN_COOLDOWN_MS 2000
 
-void handleInput(struct World *world, const Uint8 *keys) {
-    for (int i = world->playerCount - 1; i >= 0; --i) {
-        struct Player *player = &world->players[i];
-
-        if (player->deathStatus.dead) {
-            continue;
-        }
-
-        if (player->PlayerKeybindSetIndex == -1) { // PLAYER je bot, takze nema zadne keybindy
-            continue;
-        }
-
-        struct PlayerKeybindSet playerKeybindSet = PlayerKeybindSets[world->players[i].PlayerKeybindSetIndex];
-
-
-        if (keys[playerKeybindSet.move_up]) {
-            Player_OnMove(world,player,NORTH);
-
-        }else
-        if (keys[playerKeybindSet.move_right]) {
-            Player_OnMove(world,player,EAST);
-
-        }else
-        if (keys[playerKeybindSet.move_down]) {
-            Player_OnMove(world,player,SOUTH);
-
-        }else
-        if (keys[playerKeybindSet.move_left]) {
-            Player_OnMove(world,player,WEST);
-
-        }
-        else {
-            Object_SetActiveAnimationByName(&player->object,"idle",ANIMATION_NOT_MIRRORED_FLIPPED);
-        }
-
-    }
-}
-
-
-
-void loadMainMenuUIs(struct World *world,struct UI_Manager *ui_manager) {
-
-    struct Vector2 exitGameButtonpos = {500,300};
-    struct Vector2 exitGameButtonsize = {200,100};
-
-    struct UI_Events *exitGameButtonEvents = malloc(sizeof(struct UI_Events));
-    strcpy(exitGameButtonEvents->onClick, "exit_game");
-
-    struct UI *exitGameButton = UI_CreateUI("exit_button",exitGameButtonpos,exitGameButtonsize,"Exit game",exitGameButtonEvents,false);
-    Animation_AddAnimationToUI(world->renderer,exitGameButton,"basic_button");
-
-    exitGameButton->text.color.r = 0;
-    exitGameButton->text.color.g = 0;
-    exitGameButton->text.color.b = 0;
-
-    exitGameButton->text.size = 28;
-
-    exitGameButton->text.textTexture = UI_GetTextTexture(world->renderer,exitGameButton->text);
-    UI_Text_SetPadding(&exitGameButton->text,10,10);
-
-    UI_Manager_AddUI(ui_manager,exitGameButton);
-
-    free(exitGameButton);
-
-
-    struct Vector2 startGamepos = {500,100};
-    struct Vector2 startGamesize = {200,100};
-
-    struct UI_Events *startGameEvents = malloc(sizeof(struct UI_Events));
-    strcpy(startGameEvents->onClick, "start_game");
-
-    struct UI *startGame = UI_CreateUI("start_button",startGamepos,startGamesize,"Start game",startGameEvents,false);
-    Animation_AddAnimationToUI(world->renderer,startGame,"basic_button");
-
-    startGame->text.color.r = 0;
-    startGame->text.color.g = 0;
-    startGame->text.color.b = 0;
-
-    startGame->text.size = 28;
-    startGame->text.textTexture = UI_GetTextTexture(world->renderer,startGame->text);
-    UI_Text_SetPadding(&startGame->text,10,10);
-
-    UI_Manager_AddUI(ui_manager,startGame);
-
-    free(startGame);
-}
-
-void loadPreGameUIs(struct World *world,struct UI_Manager *ui_manager) {
-    SDL_Color color = {0,0,0,255};
-
-    struct Vector2 beginMatchButtonPos3 = {500,500};
-    struct Vector2 beginMatchButtonSize3 = {200,100};
-
-    struct UI_Events *beginMatchButtonEvents = malloc(sizeof(struct UI_Events));
-    strcpy(beginMatchButtonEvents->onClick, "begin_match");
-
-    struct UI *beginMatchButton = UI_CreateUI("begin_match_button",beginMatchButtonPos3,beginMatchButtonSize3,"Begin Match",beginMatchButtonEvents,false);
-    Animation_AddAnimationToUI(world->renderer,beginMatchButton,"basic_button");
-
-    if (strcmp(beginMatchButton->text.textToDisplay, "") != 0) {
-        beginMatchButton->text.color.r = 0;
-        beginMatchButton->text.color.g = 0;
-        beginMatchButton->text.color.b = 0;
-
-        beginMatchButton->text.size = 25;
-        beginMatchButton->text.textTexture = UI_GetTextTexture(world->renderer,beginMatchButton->text);
-        UI_Text_SetPadding(&beginMatchButton->text,10,10);
-    }
-
-    UI_Manager_AddUI(ui_manager,beginMatchButton);
-
-    free(beginMatchButton);
-
-    /////
-
-    for (int i = 0; i < 4; ++i) {
-
-        struct Vector2 pos1 = {200,50 + (i)*150};
-        struct Vector2 size1 = {200,100};
-
-        char identifier[64] =  "player_text_field-";
-        char iToStringBuffer[20];
-
-        sprintf(iToStringBuffer, "%d", i);
-        strcat(identifier,iToStringBuffer);
-
-        struct UI *textInput1 = UI_CreateUI_TextField(world,identifier,pos1,size1,"basic_player_text_field");
-
-        textInput1->text.color.r = 0;
-        textInput1->text.color.g = 0;
-        textInput1->text.color.b = 0;
-
-        textInput1->text.size = 20;
-        textInput1->text.textTexture = UI_GetTextTexture(world->renderer,textInput1->text);
-        UI_Text_SetPadding(&textInput1->text,10,10);
-
-
-        UI_Manager_AddUI(ui_manager,textInput1);
-
-        free(textInput1);
-
-    }
-
-    UI_Manager_PrintAllUIs(ui_manager);
-}
-
-
-
-void loadPostGameUIs(struct World *world,struct UI_Manager *ui_manager) {
-    SDL_Color color = {0,0,0,255};
-
-    struct Vector2 pos3 = {700,500};
-    struct Vector2 size3 = {200,100};
-
-    struct UI_Events *mainMenuButtonEvents = malloc(sizeof(struct UI_Events));
-    strcpy(mainMenuButtonEvents->onClick, "exit_to_main_menu");
-
-    struct UI *mainMenuButton = UI_CreateUI("main_menu_button",pos3,size3,"Main Menu",mainMenuButtonEvents,false);
-    Animation_AddAnimationToUI(world->renderer,mainMenuButton,"basic_button");
-
-    if (strcmp(mainMenuButton->text.textToDisplay, "") != 0) {
-        mainMenuButton->text.color.r = 0;
-        mainMenuButton->text.color.g = 0;
-        mainMenuButton->text.color.b = 0;
-
-        mainMenuButton->text.size = 25;
-        mainMenuButton->text.textTexture = UI_GetTextTexture(world->renderer,mainMenuButton->text);
-        UI_Text_SetPadding(&mainMenuButton->text,10,10);
-    }
-
-    UI_Manager_AddUI(ui_manager,mainMenuButton);
-
-    free(mainMenuButton);
-
-    struct Vector2 pos2 = {0,0};
-    struct Vector2 size2 = {200,100};
-
-    struct UI *scoreBoard = UI_CreateUI("score_board",pos2,size2,"winner is",NULL,false);
-    Animation_AddAnimationToUI(world->renderer,scoreBoard,NULL);
-
-    scoreBoard->text.color.r = 0;
-    scoreBoard->text.color.g = 255;
-    scoreBoard->text.color.b = 255;
-
-    scoreBoard->text.size = 40;
-    scoreBoard->text.textTexture = UI_GetTextTexture(world->renderer,scoreBoard->text);
-
-    UI_Manager_AddUI(ui_manager,scoreBoard);
-
-    free(scoreBoard);
-}
-
-
-
-void loadPauseMenuUIs(struct World *world,struct UI_Manager *ui_manager) {
-    SDL_Color color = {0,0,0,255};
-
-    struct Vector2 pos = {500,300};
-    struct Vector2 size = {200,100};
-
-    struct UI_Events *pauseButtonEvents = malloc(sizeof(struct UI_Events));
-    strcpy(pauseButtonEvents->onClick, "unpause_game");
-
-    struct UI *pauseButton = UI_CreateUI("button_unpause",pos,size,"Unpause",pauseButtonEvents,false);
-    Animation_AddAnimationToUI(world->renderer,pauseButton,"basic_button");
-
-
-    pauseButton->text.color.r = 0;
-    pauseButton->text.color.g = 0;
-    pauseButton->text.color.b = 0;
-
-    pauseButton->text.size = 25;
-    pauseButton->text.textTexture = UI_GetTextTexture(world->renderer,pauseButton->text);
-    UI_Text_SetPadding(&pauseButton->text,20,10);
-
-
-    UI_Manager_AddUI(ui_manager,pauseButton);
-
-    free(pauseButton);
-
-    /////
-
-    struct Vector2 pos3 = {500,500};
-    struct Vector2 size3 = {200,100};
-
-    struct UI_Events *mainMenuButtonEvents = malloc(sizeof(struct UI_Events));
-    strcpy(mainMenuButtonEvents->onClick, "exit_to_main_menu");
-
-    struct UI *mainMenuButton = UI_CreateUI("main_menu_button",pos3,size3,"Main Menu",mainMenuButtonEvents,false);
-    Animation_AddAnimationToUI(world->renderer,mainMenuButton,"basic_button");
-
-    if (strcmp(mainMenuButton->text.textToDisplay, "") != 0) {
-
-        mainMenuButton->text.color.r = 0;
-        mainMenuButton->text.color.g = 0;
-        mainMenuButton->text.color.b = 0;
-
-        mainMenuButton->text.size = 20;
-        mainMenuButton->text.textTexture = UI_GetTextTexture(world->renderer,mainMenuButton->text);
-
-    }
-
-    UI_Manager_AddUI(ui_manager,mainMenuButton);
-
-    free(mainMenuButton);
-}
-void loadInGameUIs(struct World *world,struct UI_Manager *ui_manager) {
-
-    struct Vector2 pos2 = {0,0};
-    struct Vector2 size2 = {200,100};
-
-    struct UI *gameTimerUI = UI_CreateUI("game_timer",pos2,size2,"00:00",NULL,false);
-    Animation_AddAnimationToUI(world->renderer,gameTimerUI,NULL);
-
-    gameTimerUI->text.color.r = 0;
-    gameTimerUI->text.color.g = 0;
-    gameTimerUI->text.color.b = 0;
-
-    gameTimerUI->text.size = 40;
-    gameTimerUI->text.textTexture = UI_GetTextTexture(world->renderer,gameTimerUI->text);
-
-    UI_Text_SetPadding(&gameTimerUI->text,20,10);
-
-    UI_Manager_AddUI(ui_manager,gameTimerUI);
-
-    free(gameTimerUI);
-
-}
-
-
 int main() {
     // setup
     int width = 1080;
@@ -316,21 +46,8 @@ int main() {
     struct World world = World_Create();
     world.renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
 
-    // RI PRVNIM ZAPNUTI SE OBJEVI
-    game_UIs.mainMenu = UI_Manager_Create();
-    loadMainMenuUIs(&world,game_UIs.mainMenu);
-
-    game_UIs.pauseMenu = UI_Manager_Create();
-    loadPauseMenuUIs(&world,game_UIs.pauseMenu);
-
-    game_UIs.inGame = UI_Manager_Create();
-    loadInGameUIs(&world,game_UIs.inGame);
-
-    game_UIs.postGame = UI_Manager_Create();
-    loadPostGameUIs(&world,game_UIs.postGame);
-
-    game_UIs.preGame = UI_Manager_Create();
-    loadPreGameUIs(&world,game_UIs.preGame);
+    // Nacteni UIs
+    Game_UIs_Load(&world,&game_UIs);
 
     //TEST ROVNOU DO HRY
     // char PlayerNames[4][64] = {"fwef","fwefw","",""};
@@ -340,8 +57,6 @@ int main() {
 
     SDL_Event e;
     SDL_StopTextInput();
-
-    Uint32 lastFrameTime = SDL_GetTicks();
 
     while (gamerule.gamestates.appRunning) {
         // region Region Event Loop
@@ -355,9 +70,11 @@ int main() {
                 case SDL_TEXTINPUT: {
                     int inputLength = strlen(e.text.text);
 
-                    if (strlen(gamerule.inputUI->text.textToDisplay) + inputLength  < sizeof(gamerule.inputUI->text.textToDisplay) - 1 && strlen(gamerule.inputUI->text.textToDisplay) < 11) {
-                        strcat(gamerule.inputUI->text.textToDisplay, e.text.text);
-                        gamerule.inputUI->text.textTexture = UI_GetTextTexture(world.renderer,gamerule.inputUI->text);
+                    if (gamerule.inputUI && gamerule.gamestates.gamestate == GAME_PRE_PLAY){
+                        if (strlen(gamerule.inputUI->text.textToDisplay) + inputLength  < sizeof(gamerule.inputUI->text.textToDisplay) - 1 && strlen(gamerule.inputUI->text.textToDisplay) < 11) {
+                            strcat(gamerule.inputUI->text.textToDisplay, e.text.text);
+                            gamerule.inputUI->text.textTexture = UI_GetTextTexture(world.renderer,gamerule.inputUI->text);
+                        }
                     }
 
 
@@ -374,7 +91,6 @@ int main() {
 
                         }
                     }
-
 
                     switch (e.key.keysym.scancode) {
                         case SDL_SCANCODE_O: {
@@ -397,7 +113,7 @@ int main() {
                         }
                     }
                 }break;
-                case SDL_MOUSEBUTTONDOWN: {
+                case SDL_MOUSEBUTTONDOWN: { // KLIKANI NA UI PRVKY
                     if (e.button.button == SDL_BUTTON_LEFT) {
                         struct Vector2 mousePos = {e.button.x,e.button.y};
 
@@ -411,8 +127,7 @@ int main() {
                             clickedOnUI = UI_MouseOnUI(game_UIs.pauseMenu,mousePos);
                         }
                         if (clickedOnUI != NULL) {
-                            printf("Clicknul na '%s' UI\n",clickedOnUI->identifier);
-                            UI_ButtonCallEvent(&world,&gamerule,curManager,clickedOnUI);
+                            UI_ButtonCallEvent(&world,&gamerule,&game_UIs,curManager,clickedOnUI);
                         }
                     }
 
@@ -423,11 +138,10 @@ int main() {
 
         if (!gamerule.gamestates.gamePaused) {
             const Uint8 *keys = SDL_GetKeyboardState(NULL);
-            handleInput(&world, keys);
+            Gamerule_HandleInput(&world, keys);
 
             for (int i = 0; i < world.playerCount; ++i) {
                 struct Player *player = &world.players[i];
-
 
                 if (player->deathStatus.dead == true) {
                     if (player->deathStatus.deathAnimationPlaying == true){
@@ -548,7 +262,7 @@ int main() {
             if (world.players[i].primaryWeapon != NULL) {
                 Render_Object(world.renderer, &world.players[i].primaryWeapon->object);
             }
-            Render_UI(world.renderer,&world.players[i].stats.ui);
+            Render_UI(world.renderer,&world.players[i].playerStatsUI);
         }
 
         // Dynamic objects
@@ -593,28 +307,7 @@ int main() {
 
         // region Spawn Gun
         if (!gamerule.gamestates.gamePaused) {
-            bool gunInGame = false; // jestli je sekundarni zbran stale nesebrana hracem
-
-            for (int i = 0; i < world.objectCount; ++i) {
-                if (strcmp(world.objects[i].name,"gun") == 0) {
-                    gunInGame = true;
-                    break;
-                }
-            }
-            int randomVal = rand()%1000;
-            if (!gunInGame && randomVal < 1) {
-                struct Vector2 size3 = {50,50};
-                struct Vector2 pos3 = {-200,-200};
-                struct Object *object3 = Object_CreateObject("gun",size3,pos3,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
-                Animation_AddAnimationsToObject(world.renderer,object3,ANIMATIONS_OBJECT,0,NULL);
-
-                Object_SetRandomPosition(&world,object3,100,900,100,600);
-
-                World_AddObject(&world,object3);
-                free(object3);
-                object3 = NULL;
-
-            }
+            Gamerule_SpawnWeaponLogic(&world);
 
 
         }
@@ -622,30 +315,17 @@ int main() {
         // regionend
         if (!gamerule.gamestates.gamePaused) {
             Uint32 curTime = SDL_GetTicks();
-            char timerText[6];
+
             int seconds = (curTime-gamerule.gameTimes.startTime-gamerule.gameTimes.timePaused)/1000;
 
+            Gamerule_UpdateTimer(&world,&gamerule,&game_UIs,seconds);
 
-            // region Setting game time for UI
-            struct UI *clockUI = UI_Manager_GetUIByIdentifier(game_UIs.inGame,"game_timer");
-            if (clockUI) {
-                sprintf(timerText,"%02d:%02d",
-                    (seconds/60%100),
-                    (seconds%60)%100);
-                if (strcmp(timerText,clockUI->text.textToDisplay) != 0) {
-                    strcpy(clockUI->text.textToDisplay,timerText);
-                    clockUI->text.textTexture = UI_GetTextTexture(world.renderer,clockUI->text);
-                }
-
-            }else{printf("Nelze najit UI pro TIMER ve hre\n");}
-
-
-            // if (seconds > 2) { // jestli vyprsi cas hry
-            //     Gamerule_EndGame(&world,&gamerule,game_UIs.postGame,true);
+            // if (seconds > 30) { // jestli vyprsi cas hry
+            //     Gamerule_EndGame(&world,&gamerule,&game_UIs,true);
             // }
 
             if (seconds/60 > gamerule.gameTimes.gameLengthMinutes) { // jestli vyprsi cas hry
-                Gamerule_EndGame(&world,&gamerule,game_UIs.postGame,true);
+                Gamerule_EndGame(&world,&gamerule,&game_UIs,true);
             }
         }
         // endregion

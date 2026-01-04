@@ -12,13 +12,18 @@ void UI_Manager_Destroy(struct UI_Manager *manager) {
     }
 
     for (int i = 0; i < manager->count; ++i) {
-        Animation_RemoveAnimation(&manager->UIs[i].animation);
-        if (manager->UIs[i].text.textTexture != NULL) {
-            SDL_DestroyTexture(manager->UIs[i].text.textTexture);
+        if (manager->UIs[i].basicBackgroundColor != NULL) {
+           free(manager->UIs[i].basicBackgroundColor);
         }
-        if (manager->UIs[i].events != NULL) {
-            free(manager->UIs[i].events);
-            manager->UIs[i].events = NULL;
+        else {
+            Animation_RemoveAnimation(&manager->UIs[i].animation);
+            if (manager->UIs[i].text.textTexture != NULL) {
+                SDL_DestroyTexture(manager->UIs[i].text.textTexture);
+            }
+            if (manager->UIs[i].events != NULL) {
+                free(manager->UIs[i].events);
+                manager->UIs[i].events = NULL;
+            }
         }
     }
 }
@@ -31,7 +36,7 @@ struct UI_Manager *UI_Manager_Create() {
     return ui_manager;
 }
 
-struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vector2 size,char text[64],struct UI_Events *events, bool isTextInput) {
+struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vector2 size,char text[256],struct UI_Events *events, bool isTextInput) {
     struct UI *ui = malloc(sizeof(struct UI));
     if (ui == NULL) return NULL;
     strcpy(ui->identifier, identifier);
@@ -42,11 +47,14 @@ struct UI *UI_CreateUI(char identifier[64], struct Vector2 position, struct Vect
 
     strcpy(ui->text.textToDisplay,text);
     ui->text.isInput = isTextInput;
+    ui->text.textTexture = NULL;
 
     ui->text.padding.x = 0;
     ui->text.padding.y = 0;
 
     ui->events = events;
+
+    ui->basicBackgroundColor = NULL;
 
     return ui;
 }
@@ -136,6 +144,8 @@ bool UI_MouseInside(struct UI *ui, struct Vector2 mouse) {
 struct UI *UI_MouseOnUI(struct UI_Manager *uiManager,struct Vector2 mousePos) {
     for (int i = uiManager->count - 1; i >= 0; --i) {
         if (uiManager->UIs[i].events != NULL){
+            printf("Name %s\n",uiManager->UIs[i].identifier);
+            printf("Events %p\n",uiManager->UIs[i].events);
             if (strcmp(uiManager->UIs[i].events->onClick, "") != 0) {
                 if (UI_MouseInside(&uiManager->UIs[i],mousePos)) {
                     return &uiManager->UIs[i];
@@ -146,7 +156,7 @@ struct UI *UI_MouseOnUI(struct UI_Manager *uiManager,struct Vector2 mousePos) {
     return NULL;
 }
 
-bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,struct UI_Manager *ui_manager,struct UI *ui) {
+bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,struct Game_UIs *gameUIs,struct UI_Manager *ui_manager,struct UI *ui) {
     char onClickEventName[68];
     strcpy(onClickEventName,ui->events->onClick);
     printf("akce pro %s\n",onClickEventName);
@@ -180,6 +190,7 @@ bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,struct UI_
             return false;
         }
 
+        gamerule->inputUI = NULL;
         Gamerule_StartGame(world,gamerule,playerNames);
         gamerule->gamestates.gamestate = GAME_IN_GAME;
         return true;
@@ -190,7 +201,9 @@ bool UI_ButtonCallEvent(struct World *world,struct Gamerule *gamerule,struct UI_
         return true;
     }
     if (strcmp(onClickEventName,"exit_to_main_menu") == 0) {
-        Gamerule_EndGame(world,gamerule,NULL,false);
+        gamerule->inputUI = NULL;
+        Game_UIs_ClearAllTextfieldsInManager(world,gameUIs->preGame);
+        Gamerule_EndGame(world,gamerule,gameUIs,false);
         return true;
     }
     if (strcmp(onClickEventName,"text_field") == 0) {
@@ -239,3 +252,4 @@ void UI_Text_SetPadding(struct UI_Text *text,int x, int y){
     text->padding.y = y;
 
 }
+

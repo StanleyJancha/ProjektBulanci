@@ -9,12 +9,14 @@
 #include "world.h"
 
 struct PlayerKeybindSet {
+    char info[100];
     enum SDL_Scancode move_up;
     enum SDL_Scancode move_left;
     enum SDL_Scancode move_down;
     enum SDL_Scancode move_right;
     enum SDL_Scancode shoot;
 };
+
 
 #define NUM_PLAYER_KEYBINDS 4 // pocet keybindu na jednoho hrace
 

@@ -14,11 +14,7 @@
 #define PLAYER_STATS_UI_TEXT_SIZE 15
 #define PLAYER_STATS_UI_TEXT_COLOR 0,0,0
 
-struct PlayerStats {
-    struct UI ui;
-    int kills;
-    int deaths;
-};
+
 
 
 struct PlayerDeathStatus {
@@ -39,6 +35,7 @@ struct Player {
     int speed;
     int HP;
     struct PlayerStats stats;
+    struct UI playerStatsUI;
     struct PlayerDeathStatus deathStatus;
 };
 

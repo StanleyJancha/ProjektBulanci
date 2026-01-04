@@ -44,7 +44,7 @@ bool Gamerule_ChangeGamestate(struct Gamerule *gamerule,struct Game_UIs *gameUIs
 
 
 
-void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2 playerPos, int playerIndex, bool isBot, enum PlayerColors playerColor) {
+void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2 playerPos, int playerIndex, bool isBot, enum PlayerColors playerColor, int index) {
     //object
     struct Vector2 player1Size = {100,100};
 
@@ -78,14 +78,14 @@ void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2
 
     Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_OBJECT,0,objectName); //
     //weapon
-    struct Vector2 player1WeaponSize = {20,20};
+    struct Vector2 player1WeaponSize = {50,50};
     struct Vector2 player1WeaponPos = {500,500};
     struct Object *weaponObject1 = Object_CreateObject("pistol",player1WeaponSize,player1WeaponPos,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
     Animation_AddAnimationsToObject(world->renderer,weaponObject1,ANIMATIONS_OBJECT,0,NULL);
 
     struct Weapon *primaryWeapon1 = Weapon_CreateWeapon(weaponObject1,5,3);
 
-    struct Player *player1 = Player_CreatePlayer(object1,primaryWeapon1,NULL,(isBot)?-1:playerIndex,5,2,isBot);
+    struct Player *player1 = Player_CreatePlayer(object1,primaryWeapon1,NULL,(isBot)?-1:index,5,2,isBot);
     strcpy(player1->displayName,displayName);
 
     // UI STATS
@@ -110,7 +110,10 @@ void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2
 
     UI_Text_SetPadding(&player1StatsUI->text,5,0);
 
-    player1->stats.ui = *player1StatsUI;
+    player1->playerStatsUI = *player1StatsUI;
+
+
+    Object_SetRandomPosition(world,&player1->object,100,980,100,620);
 
 
     World_AddPlayer(world,player1);
@@ -119,84 +122,7 @@ void Gamerule_SpawnPlayer(struct World *world, char *displayName, struct Vector2
 
     free(weaponObject1);
     weaponObject1 = NULL;
-
 }
-// }void Gamerule_SpawnPlayers(struct World *world)  {
-//     //object
-//     struct Vector2 player1Size = {100,100};
-//     struct Vector2 player1Pos = {500,500};
-//     struct Object *object1 = Object_CreateObject("player1",player1Size,player1Pos,0,COLLISION_NONE,OBJECT_PLAYER,WEST);
-//     Animation_AddAnimationsToObject(world->renderer,object1,ANIMATIONS_OBJECT,0);
-//     //weapon
-//     struct Vector2 player1WeaponSize = {20,20};
-//     struct Vector2 player1WeaponPos = {500,500};
-//     struct Object *weaponObject1 = Object_CreateObject("gun",player1WeaponSize,player1WeaponPos,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
-//     Animation_AddAnimationsToObject(world->renderer,weaponObject1,ANIMATIONS_OBJECT,0);
-//
-//     struct Weapon *primaryWeapon1 = Weapon_CreateWeapon(weaponObject1,5,3);
-//
-//     struct Player *player1 = Player_CreatePlayer(object1,primaryWeapon1,NULL,1,5,5);
-//
-//     // UI STATS
-//     SDL_Color color = {255,255,255,255};
-//
-//     struct Vector2 player1UIPos = {500,300};
-//     struct Vector2 player1UISize = {50,50};
-//
-//     char statsUIIdentifier[50];
-//     strcat(statsUIIdentifier,"statsUI");
-//     strcat(statsUIIdentifier,"_");
-//     strcat(statsUIIdentifier,player1->object.name);
-//
-//     struct UI *player1StatsUI = UI_CreateUI(statsUIIdentifier,player1UIPos,player1UISize,"K:0 D:0",NULL,false);
-//     Animation_AddAnimationToUI(world->renderer,player1StatsUI,"kda_UI");
-//
-//     player1StatsUI->text.textTexture = UI_GetTextTexture(world->renderer,player1StatsUI->text.textToDisplay,color,25);
-//
-//     player1->stats.ui = *player1StatsUI;
-//
-//
-//     World_AddPlayer(world,player1);
-//     free(player1);
-//     player1 = NULL;
-//
-//     free(weaponObject1);
-//     weaponObject1 = NULL;
-//
-//
-//
-//     //player2
-//
-//     //object
-//     struct Vector2 player2Size = {100,100};
-//     struct Vector2 player2Pos = {600,300};
-//     struct Object *object6 = Object_CreateObject("player2",player2Size,player2Pos,0,COLLISION_NONE,OBJECT_PLAYER,WEST);
-//     Animation_AddAnimationsToObject(world->renderer,object6,ANIMATIONS_OBJECT,0);
-//     //weapon
-//     struct Vector2 player2UIPos = {600,200};
-//     struct Vector2 player2UISize = {50,50};
-//     struct Object *weaponObject2 = Object_CreateObject("gun",player2UISize,player2UIPos,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
-//     Animation_AddAnimationsToObject(world->renderer,weaponObject2,ANIMATIONS_OBJECT,0);
-//
-//     struct Weapon *primaryWeapon2 = Weapon_CreateWeapon(weaponObject2,5,3);
-//
-//     struct Player *player2 = Player_CreatePlayer(object6,primaryWeapon2,NULL,0,5,5);
-//
-//     struct UI *player2StatsUI = UI_CreateUI(statsUIIdentifier,player2UIPos,player2UISize,"K:0 D:0",NULL,false);
-//     Animation_AddAnimationToUI(world->renderer,player2StatsUI,"kda_UI");
-//
-//     player2StatsUI->text.textTexture = UI_GetTextTexture(world->renderer,player2StatsUI->text.textToDisplay,color,25);
-//
-//     player2->stats.ui = *player2StatsUI;
-//
-//     World_AddPlayer(world,player2);
-//     free(player2);
-//     player2 = NULL;
-//
-//     free(weaponObject2);
-//     weaponObject2 = NULL;
-//
-// }
 
 void Gamerule_SpawnObjects(struct World *world) {
 
@@ -251,7 +177,7 @@ void Gamerule_SpawnObjects(struct World *world) {
 
 }
 
-void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char playerNames[4][64]) {
+ void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char playerNames[4][64]) {
     Gamerule_SpawnObjects(world);
 
     int playerIndexing = 0;
@@ -259,13 +185,13 @@ void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char play
     for (int i = 0; i < 4; ++i) {
         if (strcmp(playerNames[i],"") != 0) {
             struct Vector2 loc = {100*(i+1),400};
-            Gamerule_SpawnPlayer(world,playerNames[playerIndexing],loc,playerIndexing,false,i);
+            Gamerule_SpawnPlayer(world,playerNames[playerIndexing],loc,playerIndexing,false,i,i);
             playerIndexing++;
             printf("cislo %d je hrac\n",i);
         }
         else {
             struct Vector2 loc = {200*i,600};
-            Gamerule_SpawnPlayer(world,"BOT",loc,botIndexing,true,i);
+            Gamerule_SpawnPlayer(world,"BOT",loc,botIndexing,true,i,i);
             botIndexing++;
             printf("cislo %d je bot\n",i);
         }
@@ -278,7 +204,10 @@ void Gamerule_StartGame(struct World *world,struct Gamerule *gamerule, char play
     }
 };
 
-void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule, struct UI_Manager *endScreenUI,bool saveStats) {
+void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule, struct Game_UIs *gameUIs,bool saveStats) {
+    gamerule->inputUI = NULL;
+    Game_UIs_ClearAllTextfieldsInManager(world,gameUIs->preGame);
+
     if (saveStats == false) {
         gamerule->gamestates.gamestate = GAME_IN_MAIN_MENU;
     }
@@ -294,23 +223,27 @@ void Gamerule_EndGame(struct World *world,struct Gamerule *gamerule, struct UI_M
         for (int i = 0; i < 4; ++i) {
             strcat(scoreboardText,curMatch.playerSave[i].name);
             strcat(scoreboardText,"   Kills: ");
-            sprintf(tmpInt,"%d",curMatch.playerSave[i].playerStats->kills);
+            sprintf(tmpInt,"%d",curMatch.playerSave[i].playerStats.kills);
             strcat(scoreboardText,tmpInt);
 
             strcat(scoreboardText,"   Deaths: ");
-            sprintf(tmpInt,"%d",curMatch.playerSave[i].playerStats->deaths);
+            sprintf(tmpInt,"%d",curMatch.playerSave[i].playerStats.deaths);
             strcat(scoreboardText,tmpInt);
             strcat(scoreboardText,"\n");
         }
         strcat(scoreboardText,"\0");
 
-        struct UI *scoreboardUi = UI_Manager_GetUIByIdentifier(endScreenUI, "score_board");
+        struct UI *scoreboardUi = UI_Manager_GetUIByIdentifier(gameUIs->postGame, "score_board");
         strcpy(scoreboardUi->text.textToDisplay,scoreboardText);
         scoreboardUi->text.textTexture = UI_GetTextTexture(world->renderer,scoreboardUi->text);
 
-
-
+        for (int i = 0; i < 4; ++i) {
+            Gamerule_TryToAddToScoreboard(&curMatch.playerSave[i]);
+        }
     }
+
+    struct UI * mainmenuScoreboard = UI_Manager_GetUIByIdentifier(gameUIs->mainMenu,"score_board_main_menu");
+    Gamerule_UpdateMainMenuScoreboard(world->renderer,&mainmenuScoreboard->text);
 
     World_Destroy(world);
 };
@@ -338,8 +271,8 @@ struct MatchSave Gamerule_SaveMatch(struct World *world,struct Gamerule *gamerul
         struct Player player = world->players[i];
 
         strcpy(match.playerSave[i].name,player.displayName);
-        match.playerSave[i].playerStats = malloc(sizeof(struct PlayerStats));
-        memcpy(match.playerSave[i].playerStats,&player.stats,sizeof(struct PlayerStats));
+        match.playerSave[i].playerStats.kills = player.stats.kills;
+        match.playerSave[i].playerStats.deaths = player.stats.deaths;
     }
 
     struct MatchSave *oldMatches = NULL;
@@ -391,25 +324,165 @@ void Gamerule_GetMatchHistory(struct MatchSave **matchSaves, int *count) {
     fclose(fp);
 }
 
-void Gamerule_GetScoreboard(struct PlayerSave *scoreboard[5]) {
+void Gamerule_GetScoreboard(struct PlayerSave **scoreboard) {
     FILE *file = fopen("scoreboard", "rb");
+
+    if (file == NULL) {
+        perror("Nepodarilo se otervit scoreboard file");
+        *scoreboard = NULL;
+        return;
+    }
+
+    fread(*scoreboard,sizeof(struct PlayerSave),5,file);
+
+    fclose(file);
+}
+
+void Gamerule_TryToAddToScoreboard(struct PlayerSave *playerSave) {
+    struct PlayerSave *scoreboard = malloc(sizeof(struct PlayerSave) * 5);
+    Gamerule_GetScoreboard(&scoreboard);
+
+    if (scoreboard == NULL) {
+        scoreboard = malloc(sizeof(struct PlayerSave) * 5);
+        for (int i = 0; i < 5; ++i) {
+            strcpy(scoreboard[i].name,"-");
+            scoreboard[i].playerStats.kills = 0;
+            scoreboard[i].playerStats.deaths = 0;
+        }
+    }
+
+    FILE *file = fopen("scoreboard", "wb");
 
     if (file == NULL) {
         perror("Nepodarilo se otervit scoreboard file");
         return;
     }
 
-    fread(scoreboard,sizeof(struct PlayerSave),5,file);
 
-    fclose(file);
-}
+    int insertIdx = -1;
+    float playerKD = CalculateKD(playerSave->playerStats.kills, playerSave->playerStats.deaths);
 
-void Gamerule_TryToAddToScoreboard(struct PlayerSave playerSave) {
-    struct PlayerSave scoreboard[5];
-
-    for (int i = 0; i < 5; ++i) {
-
+    for (int i = 0; i < 5; i++) {
+        float currentKD = CalculateKD(scoreboard[i].playerStats.kills, scoreboard[i].playerStats.deaths);
+        if (playerKD > currentKD) {
+            insertIdx = i;
+            break;
+        }
     }
 
+    if (insertIdx != -1) {
+        for (int i = 4; i > insertIdx; i--) {
+            scoreboard[i] = scoreboard[i - 1];
+        }
+        scoreboard[insertIdx] = *playerSave;
+    }
 
+    fwrite(scoreboard,sizeof(struct PlayerSave),5,file);
+
+    fclose(file);
+
+    free(scoreboard);
+}
+
+
+void Gamerule_UpdateMainMenuScoreboard(SDL_Renderer *renderer,struct UI_Text *scorboardTextUI) {
+    struct PlayerSave *scoreboard = malloc(sizeof(struct PlayerSave)*5);
+    Gamerule_GetScoreboard(&scoreboard);
+    char scoreboardText[256] = {0};
+
+    strcat(scoreboardText,"Scoreboard\n");
+
+    if (scoreboard != NULL) {
+        for (int i = 0; i < 5; ++i) {
+            struct PlayerSave playerSave = scoreboard[i];
+            char line[64];
+            snprintf(line, sizeof(line),
+                "%d. %s   KD: %.2f\n", i+1,playerSave.name,
+                (strcmp(playerSave.name, "-") != 0)?CalculateKD(playerSave.playerStats.kills,playerSave.playerStats.deaths):0);
+            strcat(scoreboardText,line);
+        }
+        strcat(scoreboardText,"\0");
+    }
+    strcpy(scorboardTextUI->textToDisplay,scoreboardText);
+    scorboardTextUI->textTexture = UI_GetTextTexture(renderer,*scorboardTextUI);
+}
+
+void Gamerule_HandleInput(struct World *world, const Uint8 *keys) {
+    for (int i = world->playerCount - 1; i >= 0; --i) {
+        struct Player *player = &world->players[i];
+
+        if (player->deathStatus.dead) {
+            continue;
+        }
+
+        if (player->PlayerKeybindSetIndex == -1) { // PLAYER je bot, takze nema zadne keybindy
+            continue;
+        }
+
+        struct PlayerKeybindSet playerKeybindSet = PlayerKeybindSets[world->players[i].PlayerKeybindSetIndex];
+
+
+        if (keys[playerKeybindSet.move_up]) {
+            Player_OnMove(world,player,NORTH);
+
+        }else
+        if (keys[playerKeybindSet.move_right]) {
+            Player_OnMove(world,player,EAST);
+
+        }else
+        if (keys[playerKeybindSet.move_down]) {
+            Player_OnMove(world,player,SOUTH);
+
+        }else
+        if (keys[playerKeybindSet.move_left]) {
+            Player_OnMove(world,player,WEST);
+        }
+        else {
+            Object_SetActiveAnimationByName(&player->object,"idle",ANIMATION_NOT_MIRRORED_FLIPPED);
+        }
+
+    }
+}
+
+void Gamerule_SpawnWeaponLogic(struct World *world) {
+    bool gunInGame = false; // jestli je sekundarni zbran stale nesebrana hracem
+
+    for (int i = 0; i < world->objectCount; ++i) {
+        if (strcmp(world->objects[i].name,"gun") == 0) {
+            gunInGame = true;
+            break;
+        }
+    }
+    int randomVal = rand()%1000;
+    if (!gunInGame && randomVal < 1) {
+        struct Vector2 size3 = {50,50};
+        struct Vector2 pos3 = {-200,-200};
+        struct Object *object3 = Object_CreateObject("gun",size3,pos3,0,COLLISION_OVERLAP,OBJECT_PICKUP_WEAPON,WEST);
+        Animation_AddAnimationsToObject(world->renderer,object3,ANIMATIONS_OBJECT,0,NULL);
+
+        Object_SetRandomPosition(world,object3,100,900,100,600);
+
+        World_AddObject(world,object3);
+        free(object3);
+        object3 = NULL;
+
+    }
+}
+
+
+int Gamerule_UpdateTimer(struct World *world,struct Gamerule *gamerule, struct Game_UIs *game_UIs, int gameSeconds) {
+    char timerText[6];
+
+    // region Setting game time for UI
+    struct UI *clockUI = UI_Manager_GetUIByIdentifier(game_UIs->inGame,"game_timer");
+    if (clockUI) {
+        sprintf(timerText,"%02d:%02d",
+            (gameSeconds/60%100),
+            (gameSeconds%60)%100);
+        if (strcmp(timerText,clockUI->text.textToDisplay) != 0) {
+            strcpy(clockUI->text.textToDisplay,timerText);
+            clockUI->text.textTexture = UI_GetTextTexture(world->renderer,clockUI->text);
+        }
+
+    }else{printf("Nelze najit UI pro TIMER ve hre\n");}
 }
